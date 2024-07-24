@@ -1,0 +1,161 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.SocialPlatforms;
+using UnityEngine.UIElements;
+
+public class CameraMove : MonoBehaviour
+{
+    [SerializeField]
+    float Hight = 8f;//카메라 높이
+
+    [SerializeField]
+    int MouseSensitivity = 100;//마우스 감도
+    public void SetSensitivity(int value) { MouseSensitivity = value; }
+
+    float MouseX;
+    float MouseY;
+
+    [SerializeField]
+    float MaxAngle = 40;
+    [SerializeField]
+    float MinAngle = -40;
+
+    float Horizontal;
+    float Vertical;
+    Vector3 Movement;
+
+    Rigidbody rb;
+
+    [SerializeField]
+    float Speed = 1.0f;
+
+    protected internal void Init()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    /*protected internal void CameraUpdate()
+    {
+        //WASD 로 카메라 움직이는 코드
+
+        //현재 카메라의 Position을 가져옴
+        Vector3 position = this.transform.position;
+
+        //Axis에서 수직 수평 값 가져옴
+        Horizontal = Input.GetAxis("Horizontal");
+        Vertical = Input.GetAxis("Vertical");
+
+        //수평키가 눌렸을경우에만 실행
+        if(Horizontal != 0)
+            position += transform.right * Horizontal * Time.deltaTime * Speed;
+
+        //수직키가 눌렸을때 실행
+        if(Vertical != 0)
+            position += transform.forward * Vertical * Time.deltaTime * Speed;
+
+        position.y = Hight;//Position의 Y값(높이)을 지정한 Hight로 고정
+
+        //position 적용
+        transform.position = position;
+        //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//
+
+        //마우스 XY축 얻어오는 코드
+        MouseX = Input.GetAxis("Mouse X");
+        MouseY = Input.GetAxis("Mouse Y");
+
+        //각도를 제한해주면서 시점을 넣어주는 코드
+        transform.Rotate(-MouseY * MouseSensitivity * 10 * Time.deltaTime, 0f, 0);//마우스 Y축으로 시점 조작
+        transform.Rotate(0f,MouseX * MouseSensitivity * 10 * Time.deltaTime, 0, Space.World);//마우스 X축으로 시점 조작
+
+        Vector3 rot = transform.rotation.eulerAngles;
+        rot.x = (rot.x > 180) ? rot.x - 360 : rot.x;
+        rot.x = Mathf.Clamp(rot.x, MinAngle, MaxAngle);
+
+        transform.rotation = Quaternion.Euler(rot.x,rot.y,0);
+    }*/
+
+    protected internal void CameraUpdate()
+    {
+        Move();
+        CameraRot();
+
+        if(Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
+        {
+            ObjInteraction();
+        }
+    }
+
+    private void ObjInteraction()
+    {
+        RaycastHit hit;
+        float MaxDistance = 10.0f;
+
+        if(Physics.Raycast(transform.position, transform.forward, out hit, MaxDistance))
+        {
+            if(hit.transform.GetComponent<Mission>() != null)
+            {
+                hit.transform.GetComponent<Mission>().SendMSG();
+            }
+            else if(hit.transform.tag == "IObject")//상호작용 가능한 유동 오브젝트
+            {
+                Debug.Log("Ray : IObject");
+                //SendMessage로 함수를 호출해주고 반환은 필요없으니까 안하는옵션을 넣어줌
+                hit.transform.GetComponent<ObjectInteraction>().SendMessage("InteractionStart", SendMessageOptions.DontRequireReceiver);
+
+                if(hit.transform.GetComponent<SoundPlayer>() != null)
+                    hit.transform.GetComponent<SoundPlayer>().SendMessage("PlaySound",SendMessageOptions.DontRequireReceiver);
+            }
+            else if(hit.transform.tag == "GetItem")//
+            {
+                Debug.Log("Ray : GetItem");
+                if(hit.transform.GetComponent<ItemInteraction>() != null)
+                {
+                    hit.transform.GetComponent<ItemInteraction>().SendMessage("ItemUISpawn", SendMessageOptions.DontRequireReceiver);
+                }
+                //아이탬 습득 호출
+                //hit.transform.
+            }
+            else if(hit.transform.tag == "ITObject")//유동X 습득X 없지만 3DIObjectView로 보여줘야하는 오브젝트들
+            {
+                Debug.Log("Ray : ITObject");
+                hit.transform.GetComponent<ItemInteraction>().SendMessage("ObjectUISpawn",hit.transform.gameObject, SendMessageOptions.DontRequireReceiver);
+
+                //3DObjectView호출 코드
+            }
+        }
+    }
+
+    private void Move()
+    {
+        Horizontal = Input.GetAxisRaw("Horizontal");
+        Vertical = Input.GetAxisRaw("Vertical");
+
+        Movement = transform.forward * Vertical;
+        Movement += transform.right * Horizontal;
+        Movement.y = 0;
+        GetComponent<CharacterController>().Move(Movement.normalized * Speed);
+        transform.position = new Vector3(transform.position.x, Hight, transform.position.z);
+    }
+
+    private void CameraRot()
+    {
+        //마우스 XY축 얻어오는 코드
+        MouseX = Input.GetAxis("Mouse X");
+        MouseY = Input.GetAxis("Mouse Y");
+
+        //각도를 제한해주면서 시점을 넣어주는 코드
+        transform.Rotate(-MouseY * MouseSensitivity * 10 * Time.deltaTime, 0f, 0);//마우스 Y축으로 시점 조작
+        transform.Rotate(0f, MouseX * MouseSensitivity * 10 * Time.deltaTime, 0, Space.World);//마우스 X축으로 시점 조작
+
+        //특정 각도이상이 되면 시점이 이상한 각도에서 고정되는 문제를 해결하기 위한 코드
+        //정확하겐 eulerAngles 은 0 ~ 180도 까지 반환해주는거라 180도 이상이 되면 제한이 걸려서 360도 빼주면서 clamp로 제한을 걸어둠
+        Vector3 rot = transform.rotation.eulerAngles;
+        rot.x = (rot.x > 180) ? rot.x - 360 : rot.x;
+        rot.x = Mathf.Clamp(rot.x, MinAngle, MaxAngle);
+
+        transform.rotation = Quaternion.Euler(rot.x, rot.y, 0);
+    }
+}
