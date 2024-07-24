@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    List<ObjectLoader> objectList = new List<ObjectLoader>();
+    List<ObjectData> objectList = new List<ObjectData>();
     List<ChatLoader> chatList = new List<ChatLoader>();
 
     private void Awake()
@@ -13,7 +13,7 @@ public class DataManager : MonoBehaviour
         
     }
 
-    public ObjectLoader GetData(GameObject gameObject)
+    public ObjectData GetObjectData(GameObject gameObject)
     {
         return null;
     }

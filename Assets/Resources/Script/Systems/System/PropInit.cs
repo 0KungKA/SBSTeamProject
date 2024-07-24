@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class PropInit : MonoBehaviour
 {
-    ObjectLoader myData;
+    ObjectData myData;
 
     string Description;
 
     void Start()
     {
         myData = null;
-        myData = Manager.DataManager_Instance.GetData(this.gameObject);
+        myData = Manager.DataManager_Instance.GetObjectData(this.gameObject);
         Init();
     }
 
