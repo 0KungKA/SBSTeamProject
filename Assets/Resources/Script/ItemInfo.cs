@@ -6,5 +6,4 @@ public class ItemInfo : MonoBehaviour
 {
     [SerializeField]
     public string ItemExplanatino;//æ∆¿Ã≈∆ º≥∏Ì
-    
 }

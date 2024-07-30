@@ -18,4 +18,9 @@ public class ObjectData : MonoBehaviour
         Get_Item = get_Item;
         Description = description;
     }
+
+    public void Init()
+    {
+        CSVReader.Read(Manager.DataManager_Instance.CSVPath + "ObjectCSVFile");
+    }
 }

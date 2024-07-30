@@ -9,7 +9,7 @@ public class ItemInteraction : MonoBehaviour
 {
     string DefaultPath = "0.UI/Item_UI/Icon";
 
-    public void ItemUISpawn()//RenderTexture로 아이템 이미지 띄우는 방식
+    public void ItemUISpawn0()//RenderTexture로 아이템 이미지 띄우는 방식
     {
         GameObject Pgo = ItemManager.ItemManager_Instance.GetNullItemSlot();
         if(Pgo != null )
@@ -60,9 +60,7 @@ public class ItemInteraction : MonoBehaviour
         
     }
 
-    
-
-    /*public void ItemUISpawn()//이미지로 Item UI 띄우는 코드 (약간 수정 필요)
+    public void ItemUISpawn() //이미지로 Item UI 띄우는 코드 (약간 수정 필요)
     {
         GameObject Pgo = ItemManager.ItemManager_Instance.GetNullItemSlot();
         if (Pgo != null)
@@ -71,6 +69,7 @@ public class ItemInteraction : MonoBehaviour
             Cgo.transform.parent = Pgo.transform;
             Cgo.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
             Cgo.GetComponent<RectTransform>().localScale = Vector3.one;
+
             if (transform.gameObject.layer == (int)Layer_Enum.LayerInfo.ViewItem)
             {
                 Manager.UIManager_Instance.UIPopup("UI_Item_View");
@@ -111,7 +110,8 @@ public class ItemInteraction : MonoBehaviour
             Manager.UIManager_Instance.UIPopup("UI_Instant_Popup");
         }
 
-    }*/
+    }
+
 
     public void ObjectUISpawn(GameObject go)//ITObject태그
     {

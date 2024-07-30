@@ -30,13 +30,6 @@ public class ItemManager : MonoBehaviour
 
     private void Update()
     {
-        for(int i = 0; i < itemSlot.Length; i++)
-        {
-            if(itemSlot[i].transform.childCount == 0)
-            {
-                itemSlot[i].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.gray;
-            }
-        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             int temp = 0;
@@ -47,12 +40,12 @@ public class ItemManager : MonoBehaviour
                 if (SelectItemSlot[temp] == false)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.white;
+                    //itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.white;
                 }
                 else if(SelectItemSlot[temp] == true)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.gray;
+                    //itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.gray;
                 }
             }
         }
@@ -66,12 +59,12 @@ public class ItemManager : MonoBehaviour
                 if (SelectItemSlot[temp] == false)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.white;
+                    //itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.white;
                 }
                 else if (SelectItemSlot[temp] == true)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.gray;
+                    //itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.gray;
                 }
             }
         }
@@ -85,12 +78,12 @@ public class ItemManager : MonoBehaviour
                 if (SelectItemSlot[temp] == false)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.white;
+                    //itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.white;
                 }
                 else if (SelectItemSlot[temp] == true)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.gray;
+                    //itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.gray;
                 }
             }
         }
@@ -104,12 +97,12 @@ public class ItemManager : MonoBehaviour
                 if (SelectItemSlot[temp] == false)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.white;
+                    //itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.white;
                 }
                 else if (SelectItemSlot[temp] == true)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.gray;
+                    //itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.gray;
                 }
             }
         }
@@ -123,12 +116,12 @@ public class ItemManager : MonoBehaviour
                 if (SelectItemSlot[temp] == false)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.white;
+                    //itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.white;
                 }
                 else if (SelectItemSlot[temp] == true)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.gray;
+                    //itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.gray;
                 }
             }
         }
@@ -142,12 +135,12 @@ public class ItemManager : MonoBehaviour
                 if (SelectItemSlot[temp] == false)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.white;
+                    //itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.white;
                 }
                 else if (SelectItemSlot[temp] == true)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.gray;
+                    //itemSlot[temp].transform.parent.Find("Camera").GetComponent<Camera>().backgroundColor = Color.gray;
                 }
             }
         }
