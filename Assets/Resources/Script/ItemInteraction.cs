@@ -79,30 +79,26 @@ public class ItemInteraction : MonoBehaviour
                 Debug.Log(transform.name + "의 레이어가 ViewItem이 아닙니다 설정 확인해주세요");
             }
 
-            GameObject Cgo2 = Manager.Instance.Instantiate(Resources.Load<GameObject>(DefaultPath + "/" + transform.name));
+            GameObject Cgo2 = gameObject;
             Cgo2.transform.parent = GameObject.FindWithTag("Target").transform;
             Cgo2.transform.parent.GetComponent<Testing_Script>().Target = Cgo2.transform.gameObject;
-            Cgo2.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+            Cgo2.transform.localPosition = Vector3.zero;
             GameObject gm = GameObject.Find("UI_Item_View");
             gm = gm.transform.Find("Item_Explanation_BGImg").gameObject;
             gm = gm.transform.GetChild(0).gameObject;
             string[] st = gm.GetComponent<TypeWriterEffect>().fulltext;
+
             if (Cgo2.GetComponent<ItemInfo>() != null)
             {
                 st[0] = new string(Cgo2.GetComponent<ItemInfo>().ItemExplanatino);
-                Manager.ErrorInfo_Instance.ErrorEnqueue(st[0]);
-                Manager.UIManager_Instance.UIPopup("UI_Instant_Popup");
+                //Manager.ErrorInfo_Instance.ErrorEnqueue(st[0]);
             }
-
-            //gameObject.layer = (int)Layer_Enum.LayerInfo.ViewItem;
-            //gameObject.transform.parent = GameObject.FindWithTag("Target").transform;
-            //gameObject.transform.localPosition = Vector3.zero;
 
             //아래 디스트로이로 지우긴하는데 지우기보단 오브젝트를 타겟으로 옮겨서 렌더타깃시킬려고했는데 크기가 너무 작음
             //크기를 자동으로 설정해주는 코드를 짜야할듯
 
             Debug.Log("ItemInteraction 코드 수정 필요");
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         else
         {
@@ -117,13 +113,8 @@ public class ItemInteraction : MonoBehaviour
     {
         GameObject newGo = Manager.Instance.Instantiate(go);
         GameObject.FindWithTag("Target").GetComponent<Testing_Script>().Targetset(newGo);
-        /*newGo.transform.parent = GameObject.FindWithTag("Target").transform;
-        if (newGo.GetComponent<RectTransform>() != null)
-            newGo.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-        else if (newGo.GetComponent<Transform>() != null)
-            newGo.GetComponent<Transform>().localPosition = Vector3.zero;*/
 
-        newGo.transform.localScale = new Vector3(20,20,20);
+        //newGo.transform.localScale = new Vector3(20,20,20);
 
         if (transform.gameObject.layer == (int)Layer_Enum.LayerInfo.ViewItem)
             Manager.UIManager_Instance.UIPopup("UI_Item_View");
