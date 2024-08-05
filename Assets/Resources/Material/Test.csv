@@ -1,0 +1,4 @@
+﻿Division,Name,ViewObject,GetItem,Description
+F,Closet,FALSE,FALSE,Null
+P,Teddy Bear,TRUE,FALSE,망가진 곰인형이다. 누가 가지고 놀던것일까?
+I,HairPin,TRUE,TRUE,머리핀이다.
