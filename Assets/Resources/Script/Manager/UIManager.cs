@@ -144,6 +144,9 @@ public class UIManager : MonoBehaviour
         GameObject go = UIListsStack.Pop();
 
         if(go !=null)
+        {
+            StopAllCoroutines();
             Destroy(go);
+        }
     }
 }

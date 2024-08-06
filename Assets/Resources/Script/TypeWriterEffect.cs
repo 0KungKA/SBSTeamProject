@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class TypeWriterEffect : MonoBehaviour
 {
+    [SerializeField]
+    AudioSource effectAudio;
+
     //변경할 변수
 	public float delay;
     public float Skip_delay;
@@ -126,6 +129,7 @@ public class TypeWriterEffect : MonoBehaviour
             //타이핑 시작
             for (int i = 0; i < _fullText[cnt].Length; i++)
             {
+                effectAudio.Play();
                 //타이핑중도탈출
                 if (text_cut == true)
                 {
