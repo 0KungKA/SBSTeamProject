@@ -38,4 +38,9 @@ public class ButtonInteraction : MonoBehaviour
         gm.transform.parent = null;
         Destroy(gm);
     }
+
+    public void CheckItem()
+    {
+        GameObject.Find("EventSystem").GetComponent<Synthesis>().SynthesisModule();
+    }
 }

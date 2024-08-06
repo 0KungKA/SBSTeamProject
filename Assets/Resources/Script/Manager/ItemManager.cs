@@ -181,6 +181,21 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    IEnumerator ItemViewSpawn(string path)
+    {
+        while (true)
+        {
+            if (GameObject.Find("UI_Item_View") == null)
+            {
+                CreateItem(path);
+                yield break;
+            }
+            else
+                yield return null;
+
+        }
+    }
+
     public void CreateItem(string path)
     {
         GameObject Pgo = ItemManager.ItemManager_Instance.GetNullItemSlot();
@@ -189,15 +204,15 @@ public class ItemManager : MonoBehaviour
             GameObject Cgo = Manager.Instance.Instantiate(Resources.Load<GameObject>(DefaultPath + "/" + path));
             Cgo.transform.parent = Pgo.transform;
             Cgo.GetComponent<Transform>().localPosition = Vector3.zero;
-            Cgo.GetComponent<Transform>().localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            //Cgo.GetComponent<Transform>().localScale = new Vector3(0.1f, 0.1f, 0.1f);
             Cgo.transform.localRotation = Quaternion.identity;
-            if (transform.gameObject.layer == (int)Layer_Enum.LayerInfo.ViewItem)
+            if (Cgo.transform.gameObject.layer == (int)Layer_Enum.LayerInfo.ViewItem)
             {
                 Manager.UIManager_Instance.UIPopup("UI_Item_View");
             }
             else
             {
-                Debug.Log(transform.name + "의 레이어가 ViewItem이 아닙니다 설정 확인해주세요");
+                Debug.Log(transform.name + "의 레이어가 ViewItem이 아닙니다. 설정 확인해주세요");
             }
 
             GameObject Cgo2 = Manager.Instance.Instantiate(Resources.Load<GameObject>(DefaultPath + "/" + path));

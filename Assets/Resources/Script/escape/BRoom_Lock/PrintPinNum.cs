@@ -62,7 +62,7 @@ public class PrintPinNum : MonoBehaviour
     {
         for (int i = 0; i < PinText.Length; i++)
         {
-            PinText[i].GetComponent<Text>().text = "0";
+            PinText[i].GetComponent<Text>().text = "";
             PinText[i].GetComponent<PrintPinNum>().PinBool = true;
         }
     }

@@ -146,9 +146,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8317887951439973830}
-        m_TargetAssemblyTypeName: TypeWriterEffect, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 3357308141462935570}
+        m_TargetAssemblyTypeName: ButtonInteraction, Assembly-CSharp
+        m_MethodName: CheckItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

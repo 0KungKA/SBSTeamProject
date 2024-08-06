@@ -36,7 +36,7 @@ public class SceneInit : MonoBehaviour
 
         //뭔가 더 추가할것들 추가하기
 
-        Destroy(transform.parent);
+        Destroy(Fade.transform.parent);
         yield break;
     }
 }

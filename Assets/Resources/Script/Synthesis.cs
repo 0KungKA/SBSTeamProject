@@ -27,16 +27,16 @@ public class Synthesis : MonoBehaviour
                 itemslotTemp = ItemManager.ItemManager_Instance.GetItemSlot();
             else if (itemslotTemp != null) 
             {
-                StartCoroutine("SynthesisModule");
+                //StartCoroutine("SynthesisModule");
                 yield break;
             }
             yield return null;
         }
     }
-    IEnumerator SynthesisModule()
+    public void SynthesisModule()
     {
-        while (true)
-        {
+        //while (true)
+        //{
             itemslotTemp = ItemManager.ItemManager_Instance.GetItemSlot();
             int SynthesisItemCaseSize = SynthesisItemCase.Count();
             int itemslotTempSize = itemslotTemp.Count();
@@ -76,12 +76,13 @@ public class Synthesis : MonoBehaviour
                     if (CaseItem[temp] != null)
                     {
                         temp++;
-                        ItemManager.ItemManager_Instance.CreateItem("B_O_ACT_INV_Rockpick");
+                        //ItemManager.ItemManager_Instance.CreateItem("B_Rockpick");
+                        ItemManager.ItemManager_Instance.StartCoroutine("ItemViewSpawn", "B_Rockpick");
                     }
                 }
 
-                yield return new WaitForSeconds(1.0f);
+                //yield return new WaitForSeconds(1.0f);
             }
-        }
+        //}
     }
 }
