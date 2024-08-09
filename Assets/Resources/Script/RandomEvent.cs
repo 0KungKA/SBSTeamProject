@@ -23,7 +23,11 @@ public class RandomEvent : MonoBehaviour
             foreach(GameObject go in gm)
             {
                 go.GetComponent<Bolt>().BoltEventStart(BoltPlayValue);
-                GameObject.Find("WorldSound").GetComponent<AudioSource>().Play();
+                AudioSource As = GameObject.Find("WorldSound").GetComponent<AudioSource>();
+                if (As.isPlaying==false)
+                {
+                    As.Play();
+                }
             }
         }
     }

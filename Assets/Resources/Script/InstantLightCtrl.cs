@@ -57,13 +57,13 @@ public class InstantLightCtrl : MonoBehaviour
         }
         else if (Mathf.Abs(targetIntensity - currentIntensity) >= 0.01)
         {
-            if(targetIntensity - currentIntensity >= 0)
+            if (targetIntensity - currentIntensity >= 0)
             {
-                currentIntensity += Time.deltaTime * 3f;
+                currentIntensity += 3f * Time.deltaTime;
             }
             else
             {
-                currentIntensity -= Time.deltaTime * 3f;
+                currentIntensity -= 3f * Time.deltaTime;
 
                 theLight.intensity = currentIntensity;
                 //theLight.range = currentIntensity + 300;

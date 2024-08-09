@@ -163,6 +163,7 @@ public class ItemManager : MonoBehaviour
         {
             if(item.transform.childCount == 0)
             {
+                Debug.Log(item.name + "»£√‚");
                 return item;
             }
         }
@@ -198,7 +199,7 @@ public class ItemManager : MonoBehaviour
 
     public void CreateItem(string path)
     {
-        GameObject Pgo = ItemManager.ItemManager_Instance.GetNullItemSlot();
+        GameObject Pgo = GetNullItemSlot();
         if (Pgo != null)
         {
             GameObject Cgo = Manager.Instance.Instantiate(Resources.Load<GameObject>(DefaultPath + "/" + path));

@@ -129,7 +129,9 @@ public class TypeWriterEffect : MonoBehaviour
             //타이핑 시작
             for (int i = 0; i < _fullText[cnt].Length; i++)
             {
-                effectAudio.Play();
+                if(effectAudio != null)
+                    effectAudio.Play();
+
                 //타이핑중도탈출
                 if (text_cut == true)
                 {
