@@ -12,6 +12,7 @@ TagManager:
   - Target
   - LavelUI
   - OnMouse
+  - BoltLight
   layers:
   - Default
   - TransparentFX

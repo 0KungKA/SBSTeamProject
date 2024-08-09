@@ -1,0 +1,7 @@
+﻿번호,고유번호,캐릭터 타입,캐릭터 이름,캐릭터 3D 모델링 파일명,캐릭터 2D 일러스트 파일명1,캐릭터 2D 일러스트 파일명2,캐릭터 2D 일러스트 파일명3,캐릭터 애니메이션,캐릭터 보이스,기획자 참조용,,,,
+Idx,OriginNum,CharacterType,CharacterName,Char3DFileName,Char2DFileName1,Char2DFileName2,Char2DFileName3,CharacterAnimation,CharacterVoice,,,,,
+Int,Int,Int,String,String,String,String,String,String,String,,,,,
+1,10001,1,Char_info_001,Null,Null,Null,Null,,,앤서니,,,,
+2,20001,2,Char_info_002,NPC_CM_M,NPC_JSB_M1,NPC_JSB_M2,NPC_JSB_M3,,,케일럽,,,,
+3,20002,2,Char_info_003,NPC_CM_F,NPC_JSB_F1,NPC_JSB_F2,NPC_JSB_F3,,,아그네스,,,,
+,,,,,,,,,,,,,,

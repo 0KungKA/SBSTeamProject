@@ -65,7 +65,6 @@ public class Manager : MonoBehaviour
         else
             Instance._CameraManager = Manager_Obj.GetComponentInChildren<CameraManager>();
 
-
         if (GetComponentInChildren<DataManager>() == null)
             Instance._DataManager = Manager_Obj.AddComponent<DataManager>();
         else
