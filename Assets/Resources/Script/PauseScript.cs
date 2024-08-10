@@ -13,12 +13,10 @@ public class PauseScript : MonoBehaviour
         onPuase = true;
         Time.timeScale = 0;
 
-        //Manager.CM_Instance.SetMoveState(false);
     }
 
     private void OnDisable()
     {
-        //Manager.CM_Instance.SetMoveState(true);
         onPuase = false;
         Time.timeScale = 1;
     }

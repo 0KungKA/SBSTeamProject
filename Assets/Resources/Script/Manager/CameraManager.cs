@@ -7,7 +7,9 @@ public class CameraManager : MonoBehaviour
 {
     //컷씬 재생될때 카메라가 움직이면 안되니까 움직임을 제한하는 변수
     bool MoveState = true;
-    protected internal void SetMoveState(bool value) { this.MoveState = value; }
+    bool RotState = true;
+    protected internal void SetMoveState(bool value) { MoveState = value; }
+    protected internal void SetRotState(bool value) { RotState = value; }
 
     static CameraMove CM;
 
@@ -24,6 +26,7 @@ public class CameraManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         MoveState = true;
+        RotState = true;
     }
 
     public void OnMouseCursor()
@@ -31,13 +34,19 @@ public class CameraManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Locked;
         MoveState = false;
+        RotState = false;
     }
 
     private void Update()
     {
         if (MoveState)
         {
-            CM.CameraUpdate();
+            CM.Move();
+        }
+
+        if (RotState)
+        {
+            CM.CameraRot();
         }
     }
 

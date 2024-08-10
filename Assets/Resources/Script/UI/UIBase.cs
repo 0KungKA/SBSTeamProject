@@ -17,6 +17,7 @@ public class UIBase : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             Manager.CM_Instance.SetMoveState(false);
+            Manager.CM_Instance.SetRotState(false);
         }
         Manager.UIManager_Instance.UIPush(this.gameObject);
         Debug.Log(gameObject.name + " : UIBase call ");

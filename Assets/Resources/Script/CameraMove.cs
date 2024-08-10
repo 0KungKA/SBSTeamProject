@@ -77,14 +77,29 @@ public class CameraMove : MonoBehaviour
         transform.rotation = Quaternion.Euler(rot.x,rot.y,0);
     }*/
 
-    protected internal void CameraUpdate()
+    void Update()
     {
-        Move();
-        CameraRot();
+        //Move();
+        //CameraRot();
 
         if(Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
         {
             ObjInteraction();
+        }
+        else
+        {
+            RaycastHit hit;
+            float MaxDistance = 10.0f;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, MaxDistance))
+            {
+                if (hit.transform.tag == "Hide")
+                {
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        hit.transform.GetComponent<ObjectInteraction>().StartCoroutine("Hide");
+                    }
+                }
+            }
         }
     }
 
@@ -115,20 +130,17 @@ public class CameraMove : MonoBehaviour
                 {
                     hit.transform.GetComponent<ItemInteraction>().SendMessage("ItemUISpawn", SendMessageOptions.DontRequireReceiver);
                 }
-                //아이탬 습득 호출
-                //hit.transform.
             }
             else if(hit.transform.tag == "ITObject")//유동X 습득X 없지만 3DIObjectView로 보여줘야하는 오브젝트들
             {
                 Debug.Log("Ray : ITObject");
                 hit.transform.GetComponent<ItemInteraction>().SendMessage("ObjectUISpawn",hit.transform.gameObject, SendMessageOptions.DontRequireReceiver);
-
-                //3DObjectView호출 코드
             }
+            
         }
     }
 
-    private void Move()
+    protected internal void Move()
     {
         Horizontal = Input.GetAxisRaw("Horizontal");
         Vertical = Input.GetAxisRaw("Vertical");
@@ -140,7 +152,7 @@ public class CameraMove : MonoBehaviour
         transform.position = new Vector3(transform.position.x, Hight, transform.position.z);
     }
 
-    private void CameraRot()
+    protected internal void CameraRot()
     {
         //마우스 XY축 얻어오는 코드
         MouseX = Input.GetAxis("Mouse X");

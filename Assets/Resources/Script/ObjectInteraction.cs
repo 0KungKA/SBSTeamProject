@@ -40,10 +40,12 @@ public class ObjectInteraction : MonoBehaviour
     bool thisMove = false;//이게 이미 움직인 오브젝트인가에 대한 bool 값
     bool OnMove = false;//움직이고 있는지 아닌지 확인하는 bool 값
 
-    [Space(20)]
+    bool OnHide = false;//숨은 상태인지 아닌지 확인하는 bool값
+
+    /*[Space(20)]
     //만일 옷장같은 숨을수있는 가구와 상호작용할경우 해당 가구 앞쪽에 카메라를 이동시키기 위해 Vector3값으로 포지션 셋팅
     [SerializeField]
-    Vector3 CameraPos;
+    Vector3 CameraPos;*/
 
     private void Start()
     {
@@ -241,6 +243,56 @@ public class ObjectInteraction : MonoBehaviour
             }
 
             yield return null;
+        }
+    }
+
+    IEnumerator Hide()
+    {
+        Manager.CM_Instance.SetMoveState(false);
+        GameObject gm = GameObject.FindWithTag("MainCamera").gameObject;
+        SavePos = gm.transform.position;
+        bool goSavePos = false;
+        while (true)
+        {
+            if (OnHide == false)
+            {
+                gm.transform.position = new Vector3(Mathf.Lerp(gm.transform.position.x, transform.position.x, 0.5f),
+                    Mathf.Lerp(gm.transform.position.y, transform.position.y, 0.5f),
+                    Mathf.Lerp(gm.transform.position.z, transform.position.z, 0.5f));
+
+                /*gm.transform.rotation = new Quaternion(Mathf.Lerp(gm.transform.rotation.x, transform.rotation.x, 0.5f),
+                    Mathf.Lerp(gm.transform.rotation.y, transform.rotation.y, 0.5f),
+                    Mathf.Lerp(gm.transform.rotation.z, transform.rotation.z, 0.5f),
+                    Mathf.Lerp(gm.transform.rotation.w, transform.rotation.w, 0.5f));*/
+                gm.transform.rotation = transform.rotation;
+
+                if (Mathf.Abs(Vector3.Distance(gm.transform.position, transform.position)) <= 0.1f)
+                {
+                    gm.transform.Rotate(new Vector3(0, 90, 0));
+                    OnHide = true;
+                }
+                yield return null;
+            }
+            else if (OnHide == true) 
+            {
+                if(Input.GetKeyDown(KeyCode.E))
+                    goSavePos = true;
+
+                if(goSavePos)
+                {
+                    gm.transform.position = new Vector3(Mathf.Lerp(gm.transform.position.x, SavePos.x, 0.5f),
+                    Mathf.Lerp(gm.transform.position.y, SavePos.y, 0.5f),
+                    Mathf.Lerp(gm.transform.position.z, SavePos.z, 0.5f));
+
+                    if (Mathf.Abs(Vector3.Distance(gm.transform.position, SavePos)) <= 0.1f)
+                    {
+                        Manager.CM_Instance.SetMoveState(true);
+                        OnHide = false;
+                        yield break;
+                    }
+                }
+                yield return null;
+            }
         }
     }
 }
