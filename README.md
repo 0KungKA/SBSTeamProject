@@ -5,3 +5,6 @@ https://github.com/0KungKA/SBSTeamProject/tree/main/Assets/Resources/Material/Ob
 
 캐릭터 이미지 = SBSTeamProject/Assets/Resources/Material/ObjectTexture/NPC
 https://github.com/0KungKA/SBSTeamProject/tree/main/Assets/Resources/Material/ObjectTexture/NPC
+
+테스트 폴더
+https://github.com/0KungKA/SBSTeamProject/tree/main/Assets/Resources/Material/ObjectTexture/TEST
