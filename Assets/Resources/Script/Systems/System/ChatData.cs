@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -16,18 +17,25 @@ public class ChatData : MonoBehaviour
     Sprite RImg;
     int RHighlight;
 
-    public ChatData()
+    string NPCpath = "Assets/Resources/Material/ObjectTexture/NPC/";
+
+    CharacterData CharacterData;
+
+    private void Start()
     {
+        CharacterData = new CharacterData();
+        CharacterData.Init();
     }
 
-    public ChatData(int number, string name, string detail, Sprite Limg, int Lhighlight, Sprite Rimg, int Rhighlight)
+    public void SetChatData(int number, string name, string detail, string LimgName, int Lhighlight, string RimgName, int Rhighlight)
     {
-        Number = number;
+        /*Number = number;
         Name = name;
         Detail = detail;
-        LImg = Limg;
+        LImg = ImgLoad(LimgName);
         LHighlight = Lhighlight;
-        RImg = Rimg;
-        RHighlight = Rhighlight;
+        RImg = ImgLoad(RimgName);
+        RHighlight = Rhighlight;*/
     }
+
 }

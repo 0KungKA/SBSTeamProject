@@ -31,13 +31,17 @@ public class DataManager : MonoBehaviour
     {
         Data = CSVReader.Read(CSVPath + "StringTable");
 
+        //스트링테이블 시작
         SetObjectNameList();
         SetCharacterNameList();
         SetObjectInteractionList();
         SetChatDetailList();
         SetUIDetailList();
+        //스트링테이블 끝
+        int a = 10;
     }
 
+    //스트링테이블 시작
     public void SetObjectNameList()//오브젝트 이름
     {
         for (int i = 0; i < Data.Count; i++)
@@ -102,4 +106,5 @@ public class DataManager : MonoBehaviour
             }
         }
     }
+    //스트링테이블 끝
 }

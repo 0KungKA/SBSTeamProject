@@ -5,19 +5,18 @@ using UnityEngine;
 public class PauseScript : MonoBehaviour
 {
     float timeScaleTemp;
-    bool onPuase = false;
+    //bool onPuase = false;
 
     public void Start()
     {
         timeScaleTemp = Time.timeScale;
-        onPuase = true;
+        //onPuase = true;
         Time.timeScale = 0;
-
     }
 
     private void OnDisable()
     {
-        onPuase = false;
+        //onPuase = false;
         Time.timeScale = 1;
     }
 }

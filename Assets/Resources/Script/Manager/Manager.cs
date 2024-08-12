@@ -28,6 +28,7 @@ public class Manager : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         Init();
         _UIManager.Init();
     }

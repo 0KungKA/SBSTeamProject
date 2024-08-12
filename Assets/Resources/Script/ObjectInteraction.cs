@@ -73,7 +73,13 @@ public class ObjectInteraction : MonoBehaviour
         }
 
         if(TargetPos ==  Vector3.zero && TargetRot == Vector3.zero)
-            Debug.Log(gameObject.name + " : 설정값 오류");
+        {
+            if(transform.parent != null)
+                Debug.Log(transform.parent.name + " " + gameObject.name + " : 설정값 오류");
+
+            else if (transform.parent != null)
+                Debug.Log(gameObject.name + " : 설정값 오류");
+        }
 
         //움직이든 돌리든 어쨋든 다시 원상태로 돌려야하기때문에 두개다 받아줌
         SavePos = transform.localPosition;
