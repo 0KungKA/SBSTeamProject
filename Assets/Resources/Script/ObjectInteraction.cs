@@ -91,14 +91,7 @@ public class ObjectInteraction : MonoBehaviour
 
     private void Update()
     {
-        if(transform.name == "123123")
-        {
-            /*Debug.Log("Transform Rotation : " + transform.rotation);
-            Debug.Log("Transform LocalRotation : " + transform.localRotation);
-            Debug.Log("Transform EulerAngles : " + transform.rotation.eulerAngles);
-            Debug.Log("Quaternion Euler (euler angles) : " + Quaternion.Euler(transform.rotation.eulerAngles));
-            Debug.Log("SaveRot : " + SaveRot);*/
-        }
+        
     }
 
     //sendMessage로 호출할거임
@@ -212,8 +205,6 @@ public class ObjectInteraction : MonoBehaviour
             OnMove = true;
             Quaternion q1 = Quaternion.Euler(TargetRot);
 
-            
-
             if (thisMove == false)
             {
 
@@ -260,10 +251,6 @@ public class ObjectInteraction : MonoBehaviour
                     Mathf.Lerp(gm.transform.position.y, transform.position.y, 0.5f),
                     Mathf.Lerp(gm.transform.position.z, transform.position.z, 0.5f));
 
-                /*gm.transform.rotation = new Quaternion(Mathf.Lerp(gm.transform.rotation.x, transform.rotation.x, 0.5f),
-                    Mathf.Lerp(gm.transform.rotation.y, transform.rotation.y, 0.5f),
-                    Mathf.Lerp(gm.transform.rotation.z, transform.rotation.z, 0.5f),
-                    Mathf.Lerp(gm.transform.rotation.w, transform.rotation.w, 0.5f));*/
                 gm.transform.rotation = transform.rotation;
 
                 if (Mathf.Abs(Vector3.Distance(gm.transform.position, transform.position)) <= 0.1f)
