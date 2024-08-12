@@ -33,7 +33,6 @@ public class ObjectInteraction : MonoBehaviour
 
 
     //만일 옷장같은 가구의 문이 열려야 할때 왼쪽 오른쪽 구분해서 스크립트를 작성함
-
     Vector3 SavePos;//원래 Position
     Vector3 SaveRot;//원래 Rotation
 
