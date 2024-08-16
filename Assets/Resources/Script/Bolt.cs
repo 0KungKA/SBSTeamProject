@@ -20,7 +20,19 @@ public class Bolt : MonoBehaviour
 
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.P)) {
+        StartCoroutine("BoltEvent", 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            StartCoroutine("BoltEvent", 2);
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            StartCoroutine("BoltEvent", 3);
+        }
     }
 
     IEnumerator BoltEvent(int value)
