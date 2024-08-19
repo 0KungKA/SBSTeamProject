@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -99,7 +100,7 @@ public class ObjectInteraction : MonoBehaviour
         {
             if(transform.name == "JewelCaseDoor_Pivit" && thisMove == false)
             {
-                StartCoroutine("RotUP",TargetRot);
+                StartCoroutine("RotOpen", TargetRot);
             }
         }
     }
@@ -247,23 +248,26 @@ public class ObjectInteraction : MonoBehaviour
         }
     }
 
-    IEnumerator RotUP(Vector3 TargetRot)//X축 기준으로 위로 열어주는 코드
+    Stack<float> temp1Log = new Stack<float>();
+    Stack<float> temp2Log = new Stack<float>();
+    IEnumerator RotOpen(Vector3 TargetRot)//X축 기준으로 위로 열어주는 코드
     {
         while (true)
         {
             thisMove = true;
 
             float rotX = transform.localEulerAngles.x;
-            rotX = (rotX >= 180) ? transform.localEulerAngles.x - 360 : transform.localEulerAngles.x;
+            rotX = (rotX >= 180) ? rotX - 360 : rotX;
 
-            if (rotX > TargetRot.x)
+            if (rotX <= TargetRot.x)
             {
                 OnMove = true;
+                yield break;
             }
 
-            rotX += Speed.y;
+            //rotX = Speed.y * Time.deltaTime;
 
-            transform.Rotate(new Vector3(0, rotX, 0));
+            transform.Rotate(new Vector3(-10 * Time.deltaTime, 0, 0));
 
             yield return null;
             

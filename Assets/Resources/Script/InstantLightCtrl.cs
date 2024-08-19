@@ -49,7 +49,7 @@ public class InstantLightCtrl : MonoBehaviour
                 transform.Rotate(Rot, Space.World);
 
                 float rotY = transform.localEulerAngles.y;
-                rotY = (rotY >= 180) ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
+                rotY = (rotY >= -180) ? transform.localEulerAngles.y + 360 : transform.localEulerAngles.y;
 
                 if (rotY <= -MaxRot)
                     CMmove = false;
