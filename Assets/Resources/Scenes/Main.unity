@@ -8380,7 +8380,7 @@ GameObject:
   - component: {fileID: 3347571730856640200}
   - component: {fileID: 2497710660479904416}
   m_Layer: 0
-  m_Name: window001
+  m_Name: window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
