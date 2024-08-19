@@ -31,7 +31,6 @@ public class ObjectInteraction : MonoBehaviour
     AudioClip objectInteractionSount;
     AudioSource audioSorce;
 
-
     //만일 옷장같은 가구의 문이 열려야 할때 왼쪽 오른쪽 구분해서 스크립트를 작성함
     Vector3 SavePos;//원래 Position
     Vector3 SaveRot;//원래 Rotation
@@ -94,9 +93,15 @@ public class ObjectInteraction : MonoBehaviour
         SaveRot.z = transform.rotation.z;
     }
 
-    private void Update()
+    public void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if(transform.name == "JewelCaseDoor_Pivit" && thisMove == false)
+            {
+                StartCoroutine("RotUP",TargetRot);
+            }
+        }
     }
 
     //sendMessage로 호출할거임
@@ -239,6 +244,29 @@ public class ObjectInteraction : MonoBehaviour
             }
 
             yield return null;
+        }
+    }
+
+    IEnumerator RotUP(Vector3 TargetRot)//X축 기준으로 위로 열어주는 코드
+    {
+        while (true)
+        {
+            thisMove = true;
+
+            float rotX = transform.localEulerAngles.x;
+            rotX = (rotX >= 180) ? transform.localEulerAngles.x - 360 : transform.localEulerAngles.x;
+
+            if (rotX > TargetRot.x)
+            {
+                OnMove = true;
+            }
+
+            rotX += Speed.y;
+
+            transform.Rotate(new Vector3(0, rotX, 0));
+
+            yield return null;
+            
         }
     }
 
