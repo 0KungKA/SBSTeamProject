@@ -218,8 +218,8 @@ public class ItemManager : MonoBehaviour
 
             GameObject Cgo2 = Manager.Instance.Instantiate(Resources.Load<GameObject>(DefaultPath + "/" + path));
             Cgo2.transform.parent = GameObject.FindWithTag("Target").transform;
-            Cgo2.transform.parent.GetComponent<Testing_Script>().Targetset(Cgo2);
-            /*Cgo2.transform.parent.GetComponent<Testing_Script>().Target = Cgo2.transform.gameObject;
+            Cgo2.transform.parent.GetComponent<RenderViewObj>().Targetset(Cgo2);
+            /*Cgo2.transform.parent.GetComponent<RenderViewObj>().Target = Cgo2.transform.gameObject;
             Cgo2.transform.localPosition = Vector3.zero;
             Cgo2.transform.localScale = Vector3.one;
             Cgo2.transform.localRotation = Quaternion.identity;*/

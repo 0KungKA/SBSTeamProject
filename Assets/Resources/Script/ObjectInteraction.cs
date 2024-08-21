@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [AddComponentMenu("devchanho/ObjectInteraction")]//빠르게 오브젝트에 컴포넌트를 추가하기위해 AddComponent 메뉴에 추가해둠
 public class ObjectInteraction : MonoBehaviour
@@ -24,9 +25,17 @@ public class ObjectInteraction : MonoBehaviour
     [SerializeField]
     bool R;
 
+    [Header("좌우 열림(장농문 류) / 포지션 이동(서랍류) / 위로열림(보석함 류)")]
+    [SerializeField]
+    bool Rot;
+    [SerializeField]
+    bool Move;
+    [SerializeField]
+    bool Open;
+
     [SerializeField]
     [Header("Pos Speed / Rot Speed")]
-    Vector2 Speed = new Vector2(300.0f,80.0f);
+    Vector2 Speed = new Vector2(80.0f,80.0f);
 
     [SerializeField]
     AudioClip objectInteractionSount;
@@ -40,6 +49,9 @@ public class ObjectInteraction : MonoBehaviour
     bool OnMove = false;//움직이고 있는지 아닌지 확인하는 bool 값
 
     bool OnHide = false;//숨은 상태인지 아닌지 확인하는 bool값
+
+    [SerializeField]
+    bool OnTest = false;
 
     /*[Space(20)]
     //만일 옷장같은 숨을수있는 가구와 상호작용할경우 해당 가구 앞쪽에 카메라를 이동시키기 위해 Vector3값으로 포지션 셋팅
@@ -81,26 +93,34 @@ public class ObjectInteraction : MonoBehaviour
                 Debug.Log(gameObject.name + " : 설정값 오류");
         }
 
+        if (transform.name == "L_Door_Pivot")
+        {
+            int a = 10;
+        }
+
         //움직이든 돌리든 어쨋든 다시 원상태로 돌려야하기때문에 두개다 받아줌
         SavePos = transform.localPosition;
 
-        SaveRot.x = transform.rotation.x;
-
-        if (transform.rotation.y >= 180)
-            SaveRot.y = 0;
-        else
-            SaveRot.y = transform.rotation.y;
-
-        SaveRot.z = transform.rotation.z;
+        SaveRot.x = (transform.localEulerAngles.x >= 180) ? transform.localEulerAngles.x - 360 : transform.localEulerAngles.x;
+        SaveRot.y = (transform.localEulerAngles.y >= 180) ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
+        SaveRot.z = (transform.localEulerAngles.z >= 180) ? transform.localEulerAngles.z - 360 : transform.localEulerAngles.z;
     }
 
     public void Update()
     {
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            OnTest = !OnTest;
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            StartCoroutine(Hide());
+        }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if(transform.name == "JewelCaseDoor_Pivit" && thisMove == false)
+            if (OnTest)
             {
-                StartCoroutine("RotOpen", TargetRot);
+                InteractionStart();
             }
         }
     }
@@ -149,12 +169,23 @@ public class ObjectInteraction : MonoBehaviour
                 StartCoroutine(RotL(SaveRot));
             }
         }
-
+        else if(Open)//보석함류 열기 닫기
+        {
+            if (thisMove == false)
+            {
+                StartCoroutine(RotOpen(TargetRot));
+            }
+            else if (thisMove == true)
+            {
+                StartCoroutine(RotClose(SaveRot));
+            }
+        }
     }
 
     IEnumerator MovePos(Vector3 TargetPos)//유동오브젝트 와리가리 해주는 코드
     {
-        while(true)
+        float Posz;
+        while (true)
         {
             OnMove = true;
             if (transform.localPosition == TargetPos)
@@ -163,7 +194,14 @@ public class ObjectInteraction : MonoBehaviour
                 OnMove = false;
                 yield break;
             }
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, TargetPos, Speed.x * Time.deltaTime);
+
+            if (Mathf.Lerp(transform.localPosition.z, TargetPos.z, 0.5f) < 0.01f)
+            {
+                transform.localPosition = TargetPos;
+            }
+
+            Posz = Mathf.Lerp(transform.localPosition.z, TargetPos.z, 0.5f);
+            transform.localPosition = new Vector3(0, 0, Posz);
             yield return null;
         }
     }
@@ -174,22 +212,18 @@ public class ObjectInteraction : MonoBehaviour
         while (true)
         {
             OnMove = true;
-            Quaternion q1 = Quaternion.Euler(TargetRot);
 
-            if (thisMove == true)
+            Vector3 Rot = transform.localEulerAngles;
+            float rotY = transform.localEulerAngles.y % 360;
+
+            if (thisMove == false)
             {
-                if (transform.rotation.y < SaveRot.y)
-                {
-                    thisMove = !thisMove;
-                    OnMove = false;
-                    Debug.Log("End Coroutine RotL F");
-                    yield break;
-                }
-                transform.Rotate(new Vector3(q1.x, -Speed.y * Time.deltaTime, q1.z));
-            }
-            else if (thisMove == false)
-            {
-                if (transform.localRotation.y < q1.y)
+                if (Rot.y >= 180)
+                    rotY = rotY - 360;
+
+                rotY = (rotY > 180) ? rotY - 360 : rotY;
+
+                if (rotY < TargetRot.y)
                 {
                     thisMove = !thisMove;
                     OnMove = false;
@@ -197,13 +231,29 @@ public class ObjectInteraction : MonoBehaviour
                     yield break;
                 }
 
-                transform.Rotate(new Vector3(q1.x, -Speed.y * Time.deltaTime, q1.z));
+                transform.Rotate(new Vector3(0, -Speed.y * Time.deltaTime, 0));
             }
+            else if (thisMove == true)
+            {
+                if (Rot.y >= 180)
+                    rotY = rotY - 360;
 
+                rotY = (rotY > 180) ? rotY - 360 : rotY;
+
+                if (rotY < SaveRot.y)
+                {
+                    thisMove = !thisMove;
+                    OnMove = false;
+                    Debug.Log("End Coroutine RotL F");
+                    yield break;
+                }
+                transform.Rotate(new Vector3(0, -Speed.y * Time.deltaTime, 0));
+            }
             else
             {
                 Debug.Log(transform.name + "Object Interaction Error");
             }
+
             yield return null;
         }
     }
@@ -214,30 +264,41 @@ public class ObjectInteraction : MonoBehaviour
         while (true)
         {
             OnMove = true;
-            Quaternion q1 = Quaternion.Euler(TargetRot);
+
+            Vector3 Rot = transform.localEulerAngles;
+            float rotY = transform.localEulerAngles.y % 360;
 
             if (thisMove == false)
             {
+                if (Rot.y >= 180)
+                    rotY = (rotY * -1) + 180;
 
-                if (transform.localRotation.y > q1.y)
+                rotY = (rotY > 180) ? rotY - 360 : rotY;
+
+                if (rotY > TargetRot.y)
                 {
                     thisMove = !thisMove;
                     OnMove = false;
                     Debug.Log("End Coroutine RotR F");
                     yield break;
                 }
-                transform.Rotate(new Vector3(q1.x, +Speed.y * Time.deltaTime , q1.z)); 
+                transform.Rotate(new Vector3(0, +Speed.y * Time.deltaTime , 0)); 
             }
             else if(thisMove == true)
             {
-                if (transform.rotation.y > SaveRot.y)
+                if (Rot.y >= 180)
+                    rotY = rotY - 360;
+
+                rotY = (rotY > 180) ? rotY - 360 : rotY;
+
+                if (rotY > SaveRot.y)
                 {
                     thisMove = !thisMove;
                     OnMove = false;
                     Debug.Log("End Coroutine RotR S");
                     yield break;
                 }
-                transform.Rotate(new Vector3(q1.x, +Speed.y * Time.deltaTime, q1.z));
+                transform.Rotate(new Vector3(0, +Speed.y * Time.deltaTime, 0));
             }
             else
             {
@@ -248,29 +309,53 @@ public class ObjectInteraction : MonoBehaviour
         }
     }
 
-    Stack<float> temp1Log = new Stack<float>();
-    Stack<float> temp2Log = new Stack<float>();
     IEnumerator RotOpen(Vector3 TargetRot)//X축 기준으로 위로 열어주는 코드
     {
         while (true)
         {
             thisMove = true;
+            Vector3 Rot = transform.localEulerAngles;
+            float rotX = transform.localEulerAngles.x % 360;
 
-            float rotX = transform.localEulerAngles.x;
-            rotX = (rotX >= 180) ? rotX - 360 : rotX;
+            if (Rot.y >= 180)
+                rotX = (rotX * -1) + 180;
 
-            if (rotX <= TargetRot.x)
+            rotX = (rotX > 180) ? rotX - 360 : rotX;
+
+            if(rotX < TargetRot.x)
             {
+                thisMove = false;
                 OnMove = true;
                 yield break;
             }
 
-            //rotX = Speed.y * Time.deltaTime;
-
-            transform.Rotate(new Vector3(-10 * Time.deltaTime, 0, 0));
-
+            transform.Rotate(-(Speed.y * Time.deltaTime), 0, 0);
             yield return null;
-            
+        }
+    }
+
+    IEnumerator RotClose(Vector3 TargetRot)//X축 기준으로 위로 열어주는 코드
+    {
+        while (true)
+        {
+            thisMove = true;
+            Vector3 Rot = transform.localEulerAngles;
+            float rotX = transform.localEulerAngles.x % 360;
+
+            if (Rot.y >= 180)
+                rotX = (rotX * -1) + 180;
+
+            rotX = (rotX > 180) ? rotX - 360 : rotX;
+
+            if (rotX > SaveRot.x)
+            {
+                thisMove = false;
+                OnMove = false;
+                yield break;
+            }
+
+            transform.Rotate(Speed.y * Time.deltaTime, 0, 0);
+            yield return null;
         }
     }
 

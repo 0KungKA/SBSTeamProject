@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UIElements;
 
@@ -82,7 +83,9 @@ public class CameraMove : MonoBehaviour
         //Move();
         //CameraRot();
 
-        if(Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
+        
+
+        if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
         {
             ObjInteraction();
         }
@@ -99,6 +102,11 @@ public class CameraMove : MonoBehaviour
                         hit.transform.GetComponent<ObjectInteraction>().StartCoroutine("Hide");
                     }
                 }
+                /*else if(hit.transform.tag == "CutScene")
+                {
+                    GetComponent<PlayableDirector>().Play();
+                    //hit.transform.GetComponent<TimeLineSystem>().CallTimeline();
+                }*/
             }
         }
     }
@@ -136,7 +144,11 @@ public class CameraMove : MonoBehaviour
                 Debug.Log("Ray : ITObject");
                 hit.transform.GetComponent<ItemInteraction>().SendMessage("ObjectUISpawn",hit.transform.gameObject, SendMessageOptions.DontRequireReceiver);
             }
-            
+            if (hit.transform.tag == "CutScene")
+            {
+                GetComponent<PlayableDirector>().Play();
+            }
+
         }
     }
 

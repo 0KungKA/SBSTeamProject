@@ -29,9 +29,9 @@ public class ItemInteraction : MonoBehaviour
             }
 
             GameObject Cgo2 = Manager.Instance.Instantiate(Resources.Load<GameObject>(DefaultPath + "/" + transform.name));
-            GameObject.FindWithTag("Target").GetComponent<Testing_Script>().Targetset(Cgo2);
+            GameObject.FindWithTag("Target").GetComponent<RenderViewObj>().Targetset(Cgo2);
             /*Cgo2.transform.parent = GameObject.FindWithTag("Target").transform;
-            Cgo2.transform.parent.GetComponent<Testing_Script>().Target = Cgo2.transform.gameObject;
+            Cgo2.transform.parent.GetComponent<RenderViewObj>().Target = Cgo2.transform.gameObject;
             Cgo2.transform.localPosition= Vector3.zero;
             Cgo2.transform.localScale = Vector3.one;
             Cgo2.transform.localRotation = Quaternion.identity;*/
@@ -81,7 +81,7 @@ public class ItemInteraction : MonoBehaviour
 
             GameObject Cgo2 = gameObject;
             Cgo2.transform.parent = GameObject.FindWithTag("Target").transform;
-            Cgo2.transform.parent.GetComponent<Testing_Script>().Target = Cgo2.transform.gameObject;
+            Cgo2.transform.parent.GetComponent<RenderViewObj>().Target = Cgo2.transform.gameObject;
             Cgo2.transform.localPosition = Vector3.zero;
             GameObject gm = GameObject.Find("UI_Item_View");
             gm = gm.transform.Find("Item_Explanation_BGImg").gameObject;
@@ -112,7 +112,7 @@ public class ItemInteraction : MonoBehaviour
     public void ObjectUISpawn(GameObject go)//ITObject태그
     {
         GameObject newGo = Manager.Instance.Instantiate(go);
-        GameObject.FindWithTag("Target").GetComponent<Testing_Script>().Targetset(newGo);
+        GameObject.FindWithTag("Target").GetComponent<RenderViewObj>().Targetset(newGo);
 
         //newGo.transform.localScale = new Vector3(20,20,20);
 
@@ -120,7 +120,7 @@ public class ItemInteraction : MonoBehaviour
             Manager.UIManager_Instance.UIPopup("UI_Item_View");
         else
             Debug.Log(transform.name + "의 레이어가 ViewItem이 아닙니다 설정 확인해주세요");
-        newGo.transform.parent.GetComponent<Testing_Script>().Target = newGo.transform.gameObject;
+        newGo.transform.parent.GetComponent<RenderViewObj>().Target = newGo.transform.gameObject;
 
 
         GameObject sgm = GameObject.Find("UI_Item_View");

@@ -14,6 +14,7 @@ TagManager:
   - OnMouse
   - BoltLight
   - Hide
+  - CutScene
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Testing_Script : MonoBehaviour
+public class RenderViewObj : MonoBehaviour
 {
     [SerializeField]
     public GameObject Target;
