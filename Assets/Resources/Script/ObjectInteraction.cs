@@ -57,7 +57,6 @@ public class ObjectInteraction : MonoBehaviour
     //만일 옷장같은 숨을수있는 가구와 상호작용할경우 해당 가구 앞쪽에 카메라를 이동시키기 위해 Vector3값으로 포지션 셋팅
     [SerializeField]
     Vector3 CameraPos;*/
-
     private void Start()
     {
         if (gameObject.GetComponent<MeshCollider>() == null)//Mesh collider가 없는경우
@@ -115,10 +114,12 @@ public class ObjectInteraction : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.I) && OnHide == true && OnTest == true)
         {
+            Debug.Log("Hide기능 실행");
             StartCoroutine(Hide());
         }
         if (Input.GetKeyDown(KeyCode.P) && OnTest == true)
         {
+            Debug.Log("유동오브젝트 상호작용기능 실행");
             InteractionStart();
         }
     }

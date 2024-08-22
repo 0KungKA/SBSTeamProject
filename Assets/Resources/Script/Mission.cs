@@ -78,14 +78,14 @@ public class Mission : MonoBehaviour
         }
     }
 
-    void FRoomSafeDoorLock()
-    {
-        Manager.UIManager_Instance.UIPopup("UI_C_Safe_Lock");
-    }
-
     public void BRoomClosetLock()
     {
         Manager.UIManager_Instance.UIPopup("UI_B_Closet_Lock");
+    }
+
+    void CRoomSafeDoorLock()
+    {
+        Manager.UIManager_Instance.UIPopup("UI_C_Safe_Lock");
     }
 
     public void MissionClearSelf()

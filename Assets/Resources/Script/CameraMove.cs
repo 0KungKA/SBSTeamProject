@@ -28,6 +28,9 @@ public class CameraMove : MonoBehaviour
     float Vertical;
     Vector3 Movement;
 
+    //테스트 전용
+    float OD;
+
     Rigidbody rb;
 
     [SerializeField]
@@ -38,53 +41,8 @@ public class CameraMove : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    /*protected internal void CameraUpdate()
-    {
-        //WASD 로 카메라 움직이는 코드
-
-        //현재 카메라의 Position을 가져옴
-        Vector3 position = this.transform.position;
-
-        //Axis에서 수직 수평 값 가져옴
-        Horizontal = Input.GetAxis("Horizontal");
-        Vertical = Input.GetAxis("Vertical");
-
-        //수평키가 눌렸을경우에만 실행
-        if(Horizontal != 0)
-            position += transform.right * Horizontal * Time.deltaTime * Speed;
-
-        //수직키가 눌렸을때 실행
-        if(Vertical != 0)
-            position += transform.forward * Vertical * Time.deltaTime * Speed;
-
-        position.y = Hight;//Position의 Y값(높이)을 지정한 Hight로 고정
-
-        //position 적용
-        transform.position = position;
-        //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ//
-
-        //마우스 XY축 얻어오는 코드
-        MouseX = Input.GetAxis("Mouse X");
-        MouseY = Input.GetAxis("Mouse Y");
-
-        //각도를 제한해주면서 시점을 넣어주는 코드
-        transform.Rotate(-MouseY * MouseSensitivity * 10 * Time.deltaTime, 0f, 0);//마우스 Y축으로 시점 조작
-        transform.Rotate(0f,MouseX * MouseSensitivity * 10 * Time.deltaTime, 0, Space.World);//마우스 X축으로 시점 조작
-
-        Vector3 rot = transform.rotation.eulerAngles;
-        rot.x = (rot.x > 180) ? rot.x - 360 : rot.x;
-        rot.x = Mathf.Clamp(rot.x, MinAngle, MaxAngle);
-
-        transform.rotation = Quaternion.Euler(rot.x,rot.y,0);
-    }*/
-
     void Update()
     {
-        //Move();
-        //CameraRot();
-
-        
-
         if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
         {
             ObjInteraction();
@@ -102,11 +60,6 @@ public class CameraMove : MonoBehaviour
                         hit.transform.GetComponent<ObjectInteraction>().StartCoroutine("Hide");
                     }
                 }
-                /*else if(hit.transform.tag == "CutScene")
-                {
-                    GetComponent<PlayableDirector>().Play();
-                    //hit.transform.GetComponent<TimeLineSystem>().CallTimeline();
-                }*/
             }
         }
     }
@@ -142,7 +95,8 @@ public class CameraMove : MonoBehaviour
             else if(hit.transform.tag == "ITObject")//유동X 습득X 없지만 3DIObjectView로 보여줘야하는 오브젝트들
             {
                 Debug.Log("Ray : ITObject");
-                hit.transform.GetComponent<ItemInteraction>().SendMessage("ObjectUISpawn",hit.transform.gameObject, SendMessageOptions.DontRequireReceiver);
+                hit.transform.GetComponent<ItemInteraction>().SendMessage
+                    ("ObjectUISpawn",hit.transform.gameObject, SendMessageOptions.DontRequireReceiver);
             }
             if (hit.transform.tag == "CutScene")
             {
@@ -166,6 +120,55 @@ public class CameraMove : MonoBehaviour
 
     protected internal void CameraRot()
     {
+        //마우스 XY축 얻어오는 코드
+        MouseX = Input.GetAxis("Mouse X");
+        MouseY = Input.GetAxis("Mouse Y");
+
+        //각도를 제한해주면서 시점을 넣어주는 코드
+        transform.Rotate(-MouseY * MouseSensitivity * 10 * Time.deltaTime, 0f, 0);//마우스 Y축으로 시점 조작
+        transform.Rotate(0f, MouseX * MouseSensitivity * 10 * Time.deltaTime, 0, Space.World);//마우스 X축으로 시점 조작
+
+        //특정 각도이상이 되면 시점이 이상한 각도에서 고정되는 문제를 해결하기 위한 코드
+        //정확하겐 eulerAngles 은 0 ~ 180도 까지 반환해주는거라 180도 이상이 되면 제한이 걸려서 360도 빼주면서 clamp로 제한을 걸어둠
+        Vector3 rot = transform.rotation.eulerAngles;
+        rot.x = (rot.x > 180) ? rot.x - 360 : rot.x;
+        rot.x = Mathf.Clamp(rot.x, MinAngle, MaxAngle);
+
+        transform.rotation = Quaternion.Euler(rot.x, rot.y, 0);
+    }
+
+    protected internal void DebugMode()
+    {
+        //포지션 변환
+        Horizontal = Input.GetAxisRaw("Horizontal");
+        Vertical = Input.GetAxisRaw("Vertical");
+        OD = Input.GetAxisRaw("UpDown");
+
+        if(Input.GetKeyDown(KeyCode.Equals))
+        {
+            Speed += 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Minus))
+        {
+            Speed -= 1;
+
+            if(Speed < 0)
+            {
+                Speed = 1;
+            }
+        }
+
+
+        Vector3 pos = Vector3.zero;
+
+        pos.x = Horizontal;
+        pos.y = OD;
+        pos.z = Vertical;
+
+        transform.Translate(pos * Speed ,Space.Self);
+
+        //시점변환
+
         //마우스 XY축 얻어오는 코드
         MouseX = Input.GetAxis("Mouse X");
         MouseY = Input.GetAxis("Mouse Y");

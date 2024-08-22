@@ -35,54 +35,49 @@ public class Synthesis : MonoBehaviour
     }
     public void SynthesisModule()
     {
-        //while (true)
-        //{
-            itemslotTemp = ItemManager.ItemManager_Instance.GetItemSlot();
-            int SynthesisItemCaseSize = SynthesisItemCase.Count();
-            int itemslotTempSize = itemslotTemp.Count();
-            int findSynthesisItem = 0;
+        itemslotTemp = ItemManager.ItemManager_Instance.GetItemSlot();
+        int SynthesisItemCaseSize = SynthesisItemCase.Count();
+        int itemslotTempSize = itemslotTemp.Count();
+        int findSynthesisItem = 0;
 
-            List<string> TargetItemNames = new List<string>();
+        List<string> TargetItemNames = new List<string>();
 
-            if (itemslotTemp != null)
+        if (itemslotTemp != null)
+        {
+            findSynthesisItem = 0;
+            for (int i = 0; i < SynthesisItemCaseSize; i++)
             {
-                findSynthesisItem = 0;
-                for (int i = 0; i < SynthesisItemCaseSize; i++)
+                int RowCount = SynthesisItemCase[i].ItemNameStirngRow.Length;
+                for (int k = 0; k < RowCount;k++)
                 {
-                    int RowCount = SynthesisItemCase[i].ItemNameStirngRow.Length;
-                    for (int k = 0; k < RowCount;k++)
+                    for (int j = 0; j < itemslotTempSize; j++)
                     {
-                        for (int j = 0; j < itemslotTempSize; j++)
+                        if (itemslotTemp[j].transform.childCount != 0)
                         {
-                            if (itemslotTemp[j].transform.childCount != 0)
+                            if (SynthesisItemCase[i].ItemNameStirngRow[k] == itemslotTemp[j].transform.GetChild(0).name)
                             {
-                                if (SynthesisItemCase[i].ItemNameStirngRow[k] == itemslotTemp[j].transform.GetChild(0).name)
-                                {
-                                    findSynthesisItem++;
-                                    TargetItemNames.Add(SynthesisItemCase[i].ItemNameStirngRow[k]);
-                                }
+                                findSynthesisItem++;
+                                TargetItemNames.Add(SynthesisItemCase[i].ItemNameStirngRow[k]);
                             }
                         }
                     }
                 }
-
-                if(findSynthesisItem >= 2)
-                {
-                    foreach(string s in TargetItemNames)
-                    {
-                        ItemManager.ItemManager_Instance.DeleteItem(s);
-                        Debug.Log("합성");
-                    }
-                    if (CaseItem[temp] != null)
-                    {
-                        temp++;
-                        //ItemManager.ItemManager_Instance.CreateItem("B_Rockpick");
-                        ItemManager.ItemManager_Instance.StartCoroutine("ItemViewSpawn", "B_Rockpick");
-                    }
-                }
-
-                //yield return new WaitForSeconds(1.0f);
             }
-        //}
+
+            if(findSynthesisItem >= 2)
+            {
+                foreach(string s in TargetItemNames)
+                {
+                    ItemManager.ItemManager_Instance.DeleteItem(s);
+                    Debug.Log("합성");
+                }
+                if (CaseItem[temp] != null)
+                {
+                    temp++;
+                    ItemManager.ItemManager_Instance.StartCoroutine("ItemViewSpawn", "B_Rockpick");
+                }
+            }
+
+        }
     }
 }

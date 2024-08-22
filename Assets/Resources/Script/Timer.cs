@@ -46,6 +46,13 @@ public class Timer : MonoBehaviour
                 min = (int)setTime / 60;
                 // 60으로 나눠서 생기는 나머지를 초단위로 설정
                 sec = setTime % 60;
+
+                if (sec < 10)
+                {
+                    gameTime.text = min + " : 0" + (int)sec;
+                    yield return null;
+                }
+
                 // UI를 표현해준다
                 gameTime.text = min + " : " + (int)sec;
             }

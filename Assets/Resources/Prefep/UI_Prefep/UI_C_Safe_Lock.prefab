@@ -743,9 +743,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   Vpin: 
-  key: 1011
+  key: 111
   PinBool: 0
 --- !u!114 &9131077895283606877
 MonoBehaviour:
@@ -766,6 +765,7 @@ MonoBehaviour:
   Key: {fileID: 4823727926756095305}
   ClearTarget:
   - {fileID: 8644980964520182542}
+  Test: 0
 --- !u!1 &1539205865239291332
 GameObject:
   m_ObjectHideFlags: 0
@@ -2339,7 +2339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 972226089554739943}
   m_Layer: 6
-  m_Name: 1011
+  m_Name: 111
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -28,22 +28,21 @@ public class RenderViewObj : MonoBehaviour
 
     public void Targetset(GameObject gm)
     {
-        /*RenderCameraTransform.anchoredPosition3D = new Vector3(0, 0, -200);
-        RenderCameraComponent.orthographicSize = 50;
-        Target = transform.GetChild(0).gameObject*/;
         if (transform.childCount != 0)
+        {
             for (int i = 0; i < transform.childCount; i++)
             {
-                //GameObject gm = transform.GetChild(i).gameObject;
-                if(transform.GetChild(i).gameObject != gm)
+                if (transform.GetChild(i).gameObject != gm)
                     Destroy(transform.GetChild(i).gameObject);
             }
+        }
+            
 
         Target = gm.transform.gameObject;
         Target.transform.parent = transform;
         Target.transform.localPosition = Vector3.zero;
-        Target.transform.localScale = Vector3.one;
-        Target.transform.localRotation = Quaternion.identity;
+        //Target.transform.localScale = Vector3.one;
+        //Target.transform.localRotation = Quaternion.identity;
     }
 
     public void Update()

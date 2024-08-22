@@ -112,9 +112,17 @@ public class ItemInteraction : MonoBehaviour
     public void ObjectUISpawn(GameObject go)//ITObject태그
     {
         GameObject newGo = Manager.Instance.Instantiate(go);
-        GameObject.FindWithTag("Target").GetComponent<RenderViewObj>().Targetset(newGo);
+        GameObject[] temp = GameObject.FindGameObjectsWithTag("Target");
 
-        //newGo.transform.localScale = new Vector3(20,20,20);
+        if(temp.Length > 1)
+        {
+            foreach(GameObject go2 in temp)
+            {
+                Debug.Log("태그가 Target으로 설정된 오브젝트 : " + go2.name);
+            }
+        }
+
+        GameObject.FindWithTag("Target").GetComponent<RenderViewObj>().Targetset(newGo);
 
         if (transform.gameObject.layer == (int)Layer_Enum.LayerInfo.ViewItem)
             Manager.UIManager_Instance.UIPopup("UI_Item_View");
