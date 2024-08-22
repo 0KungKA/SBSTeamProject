@@ -27,6 +27,20 @@ public class Mission : MonoBehaviour
 
     public GameObject[] ClearTarget;
 
+    public bool Test = false;
+
+    public void Update()
+    {
+        if(Test)
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                SendMSG();
+            }
+        }
+        
+    }
+
     public void SendMSG()
     {
         if(MissionName != null)
@@ -64,9 +78,14 @@ public class Mission : MonoBehaviour
         }
     }
 
+    void FRoomSafeDoorLock()
+    {
+        Manager.UIManager_Instance.UIPopup("UI_C_Safe_Lock");
+    }
+
     public void BRoomClosetLock()
     {
-        Manager.UIManager_Instance.UIPopup("UI_Lock");
+        Manager.UIManager_Instance.UIPopup("UI_B_Closet_Lock");
     }
 
     public void MissionClearSelf()

@@ -111,17 +111,15 @@ public class ObjectInteraction : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.O))
         {
             OnTest = !OnTest;
+            Debug.Log("모든 유동 오브젝트 테스트 모드 켜짐");
         }
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I) && OnHide == true && OnTest == true)
         {
             StartCoroutine(Hide());
         }
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && OnTest == true)
         {
-            if (OnTest)
-            {
-                InteractionStart();
-            }
+            InteractionStart();
         }
     }
 
@@ -135,7 +133,7 @@ public class ObjectInteraction : MonoBehaviour
             audioSorce.Play();
         }
         
-        if(L != true && R != true)
+        if(L != true && R != true && Open == false)
         {
             if (thisMove == false)
             {
@@ -173,10 +171,12 @@ public class ObjectInteraction : MonoBehaviour
         {
             if (thisMove == false)
             {
+                Debug.Log("Open");
                 StartCoroutine(RotOpen(TargetRot));
             }
             else if (thisMove == true)
             {
+                Debug.Log("Close");
                 StartCoroutine(RotClose(SaveRot));
             }
         }
@@ -184,24 +184,40 @@ public class ObjectInteraction : MonoBehaviour
 
     IEnumerator MovePos(Vector3 TargetPos)//유동오브젝트 와리가리 해주는 코드
     {
-        float Posz;
+        Vector3 Pos;
         while (true)
         {
             OnMove = true;
-            if (transform.localPosition == TargetPos)
+
+            if(Vector3.Distance(transform.localPosition,TargetPos) < 0.01f)
             {
                 thisMove = !thisMove;
                 OnMove = false;
                 yield break;
             }
 
+            if (Mathf.Lerp(transform.localPosition.x, TargetPos.x, 0.5f) < 0.01f)
+            {
+                Pos.x = TargetPos.x;
+            }
+            Pos.x = Mathf.Lerp(transform.localPosition.x, TargetPos.x, Speed.x);
+
+            if (Mathf.Lerp(transform.localPosition.y, TargetPos.y, 0.5f) < 0.01f)
+            {
+                Pos.y = TargetPos.y;
+            }
+            Pos.y = Mathf.Lerp(transform.localPosition.y, TargetPos.y, Speed.x);
+
             if (Mathf.Lerp(transform.localPosition.z, TargetPos.z, 0.5f) < 0.01f)
             {
-                transform.localPosition = TargetPos;
+                Pos.z = TargetPos.z;
             }
+            Pos.z = Mathf.Lerp(transform.localPosition.z, TargetPos.z, Speed.x);
 
-            Posz = Mathf.Lerp(transform.localPosition.z, TargetPos.z, 0.5f);
-            transform.localPosition = new Vector3(0, 0, Posz);
+
+
+            transform.localPosition = new Vector3(Pos.x, Pos.y, Pos.z);
+
             yield return null;
         }
     }
@@ -313,7 +329,7 @@ public class ObjectInteraction : MonoBehaviour
     {
         while (true)
         {
-            thisMove = true;
+            OnMove = true;
             Vector3 Rot = transform.localEulerAngles;
             float rotX = transform.localEulerAngles.x % 360;
 
@@ -324,8 +340,8 @@ public class ObjectInteraction : MonoBehaviour
 
             if(rotX < TargetRot.x)
             {
-                thisMove = false;
-                OnMove = true;
+                thisMove = true;
+                OnMove = false;
                 yield break;
             }
 
@@ -338,7 +354,7 @@ public class ObjectInteraction : MonoBehaviour
     {
         while (true)
         {
-            thisMove = true;
+            OnMove = true;
             Vector3 Rot = transform.localEulerAngles;
             float rotX = transform.localEulerAngles.x % 360;
 

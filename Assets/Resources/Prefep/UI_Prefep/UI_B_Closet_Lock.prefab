@@ -4205,7 +4205,7 @@ GameObject:
   - component: {fileID: 9102713594347982741}
   - component: {fileID: 4651373355656578975}
   m_Layer: 6
-  m_Name: UI_Lock
+  m_Name: UI_B_Closet_Lock
   m_TagString: OnMouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
