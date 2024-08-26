@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -20,15 +21,41 @@ public class Manager : MonoBehaviour
     public static UIManager UIManager_Instance { get { return Instance._UIManager; } }
 
     CameraManager _CameraManager = new CameraManager();
-    public static CameraManager CM_Instance { get { return Instance._CameraManager; } } 
+    public static CameraManager CM_Instance { get { return Instance._CameraManager; } }
 
+    GameObject _OriginObject = null;
+    public static GameObject Origin_Object {
+        get
+        {
+            if (Instance._OriginObject != null)
+                return Instance._OriginObject;
+            else
+                return null;
+        }
+        set
+        {
+            Instance._OriginObject = value;
+        }
+    }
+
+    GameObject[] _CallObject = null;
+    public static GameObject[] Call_Object
+    { 
+        set{ Instance._CallObject = value; }
+
+        get {
+            if (Instance._CallObject != null)
+                return Instance._CallObject;
+            else
+                return null;
+        }
+    }
 
     static GameObject Manager_Obj;//매니저가 추가될 오브젝트
     //public GameObject GetManager() { return Manager_Obj; }
 
     private void Awake()
     {
-        Application.targetFrameRate = 60;
         Init();
         _UIManager.Init();
     }
@@ -94,7 +121,7 @@ public class Manager : MonoBehaviour
 
     public GameObject Instantiate(GameObject got)
     {
-        GameObject go = Object.Instantiate(got);//일단 Instantiate로 만듦
+        GameObject go = UnityEngine.Object.Instantiate(got);//일단 Instantiate로 만듦
         int SCindex = go.name.IndexOf("(Clone)");//이름중에 (Clone) 을 찾아서 몇번쨰 인덱스부터 시작하는지 가져옴
         if (SCindex > 0)//만약 (Clone) 이란 단어가 들어가서 받아온 값이 있으면 아래쪽 코드를 실행
             go.name = go.name.Substring(0, SCindex);//서브스트링으로 (Clone) 단어 시작까지를 짤라서 이름 박아버림

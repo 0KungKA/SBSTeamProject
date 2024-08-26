@@ -146,11 +146,11 @@ public class CameraMove : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Equals))
         {
-            Speed += 1;
+            Speed += 0.1f;
         }
         else if (Input.GetKeyDown(KeyCode.Minus))
         {
-            Speed -= 1;
+            Speed -= 0.1f;
 
             if(Speed < 0)
             {

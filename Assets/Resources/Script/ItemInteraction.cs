@@ -80,9 +80,11 @@ public class ItemInteraction : MonoBehaviour
             }
 
             GameObject Cgo2 = gameObject;
-            Cgo2.transform.parent = GameObject.FindWithTag("Target").transform;
+            RenderViewObj Rvo = GameObject.FindWithTag("Target").GetComponent<RenderViewObj>();
+            Rvo.Targetset(Cgo2);
+            /*Cgo2.transform.parent = GameObject.FindWithTag("Target").transform;
             Cgo2.transform.parent.GetComponent<RenderViewObj>().Target = Cgo2.transform.gameObject;
-            Cgo2.transform.localPosition = Vector3.zero;
+            Cgo2.transform.localPosition = Vector3.zero;*/
             GameObject gm = GameObject.Find("UI_Item_View");
             gm = gm.transform.Find("Item_Explanation_BGImg").gameObject;
             gm = gm.transform.GetChild(0).gameObject;
@@ -111,6 +113,8 @@ public class ItemInteraction : MonoBehaviour
 
     public void ObjectUISpawn(GameObject go)//ITObjectÅÂ±×
     {
+        RenderViewObj Rvo = GameObject.FindWithTag("Target").GetComponent<RenderViewObj>();
+        if (Rvo.GetRenderInteraction() == true) return;
         GameObject newGo = Manager.Instance.Instantiate(go);
         GameObject[] temp = GameObject.FindGameObjectsWithTag("Target");
 
@@ -122,7 +126,7 @@ public class ItemInteraction : MonoBehaviour
             }
         }
 
-        GameObject.FindWithTag("Target").GetComponent<RenderViewObj>().Targetset(newGo);
+        Rvo.Targetset(newGo);
 
         if (transform.gameObject.layer == (int)Layer_Enum.LayerInfo.ViewItem)
             Manager.UIManager_Instance.UIPopup("UI_Item_View");
@@ -140,5 +144,7 @@ public class ItemInteraction : MonoBehaviour
             st[0] = new string(newGo.GetComponent<ItemInfo>().ItemExplanatino);
         else
             st[0] = transform.name;
+    
+    
     }
 }

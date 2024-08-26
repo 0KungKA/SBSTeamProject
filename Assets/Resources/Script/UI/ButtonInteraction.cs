@@ -34,9 +34,9 @@ public class ButtonInteraction : MonoBehaviour
 
     public void ItemRenderClose()
     {
-        GameObject gm = GameObject.FindWithTag("Target").transform.GetChild(0).gameObject;
-        gm.transform.parent = null;
-        Destroy(gm);
+        RenderViewObj gm = GameObject.FindWithTag("Target").GetComponent<RenderViewObj>();
+        gm.DestroyTarget();
+
     }
 
     public void CheckItem()

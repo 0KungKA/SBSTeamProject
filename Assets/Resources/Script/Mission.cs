@@ -45,6 +45,7 @@ public class Mission : MonoBehaviour
     {
         if(MissionName != null)
         {
+            setManager();
             SendMessage(MissionName);
         }
         else
@@ -80,20 +81,29 @@ public class Mission : MonoBehaviour
 
     public void BRoomClosetLock()
     {
+        setManager();
         Manager.UIManager_Instance.UIPopup("UI_B_Closet_Lock");
     }
 
     void CRoomSafeDoorLock()
     {
+        setManager();
         Manager.UIManager_Instance.UIPopup("UI_C_Safe_Lock");
+    }
+
+    private void setManager()
+    {
+        Manager.Origin_Object = transform.gameObject;
+        Manager.Call_Object = ClearTarget;
     }
 
     public void MissionClearSelf()
     {
-        GameObject SelfTarget = GameObject.Find("ClosetLock").gameObject;
-        for (int i = 0; i < SelfTarget.GetComponent<Mission>().ClearTarget.Length; i++)
+        //GameObject SelfTarget = GameObject.Find("ClosetLock").gameObject;
+        GameObject[] SelfTarget = Manager.Call_Object;
+        for (int i = 0; i < SelfTarget.Length; i++)
         {
-            Destroy(SelfTarget.GetComponent<Mission>().ClearTarget[i].gameObject);
+            Destroy(SelfTarget[i]);
         }
         Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
     }

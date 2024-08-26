@@ -53,7 +53,15 @@ public class PrintPinNum : MonoBehaviour
         }
         if(temp == key)
         {
-            GameObject.Find("BRoomClosetLock").GetComponent<Mission>().MissionDelete();
+            GameObject tempgm = Manager.Origin_Object;
+            if (tempgm != null)
+            {
+                tempgm.GetComponent<Mission>().MissionDelete();
+            }
+            else
+            {
+                Debug.Log("PrintPinNum 스크립트 : 메니저 게임오브젝트 null");
+            }
             Manager.UIManager_Instance.CloseUI();
         }
     }

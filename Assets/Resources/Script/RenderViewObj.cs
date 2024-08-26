@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,8 +17,10 @@ public class RenderViewObj : MonoBehaviour
     RectTransform RenderCameraTransform;//렌더 카메라 RectTransform 컴포넌트
     Camera RenderCameraComponent;//카메라 컴포넌트
 
-    public bool RenderInteraction = false;
+    bool RenderInteraction = false;
     public void SetRenderInteraction(bool value) {  RenderInteraction = value; }
+    public bool GetRenderInteraction() { return RenderInteraction; }
+
 
     private void Start()
     {
@@ -28,6 +31,8 @@ public class RenderViewObj : MonoBehaviour
 
     public void Targetset(GameObject gm)
     {
+        RenderCamera.GetComponent<Camera>().orthographicSize = 100;
+        RenderInteraction = true;
         if (transform.childCount != 0)
         {
             for (int i = 0; i < transform.childCount; i++)
@@ -36,26 +41,27 @@ public class RenderViewObj : MonoBehaviour
                     Destroy(transform.GetChild(i).gameObject);
             }
         }
-            
 
         Target = gm.transform.gameObject;
         Target.transform.parent = transform;
         Target.transform.localPosition = Vector3.zero;
-        //Target.transform.localScale = Vector3.one;
-        //Target.transform.localRotation = Quaternion.identity;
+        if(Target.transform.localScale.x <= 1.0f || Target.transform.localScale.y <= 1.0f || Target.transform.localScale.z <= 1.0f)
+        {
+            Target.transform.localScale = Vector3.one;
+        }
     }
 
     public void Update()
     {
-        if(Target != null)
+        if (Target != null)
         {
             float scrolVale = Input.GetAxisRaw("Mouse ScrollWheel");
             float MouseX = Input.GetAxisRaw("Mouse X");
             float MouseY = Input.GetAxisRaw("Mouse Y");
-
+            
             if (Input.GetMouseButton((int)MouseButton.Middle))
             {
-                RenderCameraTransform.anchoredPosition3D += new Vector3(MouseX * -1, MouseY * -1, 0);
+                RenderCameraTransform.anchoredPosition3D += new Vector3(MouseX * -2, MouseY * -2, 0);
             }
             else if (scrolVale != 0)
             {
@@ -64,8 +70,17 @@ public class RenderViewObj : MonoBehaviour
             }
             else if (Input.GetMouseButton((int)MouseButton.Left))
             {
-                Target.transform.Rotate(MouseY * 1 * RotSpeed * Time.deltaTime, MouseX * -1 * RotSpeed * Time.deltaTime, 0,Space.World);
+                Vector3 rot = new Vector3(MouseY * 1 * RotSpeed * Time.deltaTime,MouseX * -1 * RotSpeed * Time.deltaTime, 0);
+
+                Target.transform.Rotate(rot);
             }
         }
+    }
+
+    public void DestroyTarget()
+    {
+        Target.transform.parent = null;
+        Destroy(Target.gameObject);
+        RenderInteraction = false;
     }
 }
