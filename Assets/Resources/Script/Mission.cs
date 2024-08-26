@@ -25,6 +25,9 @@ public class Mission : MonoBehaviour
     [SerializeField]
     private GameObject Key;
 
+    [SerializeField]
+    string keyName;
+
     public GameObject[] ClearTarget;
 
     public bool Test = false;
@@ -89,6 +92,20 @@ public class Mission : MonoBehaviour
     {
         setManager();
         Manager.UIManager_Instance.UIPopup("UI_C_Safe_Lock");
+    }
+
+    void CJewelCaseLock()
+    {
+        if(Key != null)
+        {
+            if (ItemManager.ItemManager_Instance.GetCurrentItem() == Key.name)
+                Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
+        }
+        else if (keyName != null)
+        {
+            if (ItemManager.ItemManager_Instance.GetCurrentItem() == keyName)
+                Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
+        }
     }
 
     private void setManager()

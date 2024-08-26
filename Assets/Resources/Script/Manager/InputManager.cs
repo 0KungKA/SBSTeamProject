@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
     //플레이어 조작
     //예) ESC눌렀을때 일시정지화면 출력같은거 여기서 처리할 예정
 
-    internal GameObject CurrentSelectItem;
+    public GameObject CurrentSelectItem;
 
     void Start()
     {

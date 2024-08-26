@@ -148,6 +148,11 @@ public class ItemManager : MonoBehaviour
 
     }
 
+    internal string GetCurrentItem()
+    {
+        return PC.CurrentSelectItem.name;
+    }
+
     public void SetColor(Image im)
     {
         if (im.color == new Color(48/255f, 48/255f, 48/255f, 255/255f))
