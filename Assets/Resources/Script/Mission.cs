@@ -96,7 +96,12 @@ public class Mission : MonoBehaviour
 
     void CJewelCaseLock()
     {
-        if(Key != null)
+        string CurrentItemName = ItemManager.ItemManager_Instance.GetCurrentItem();
+        if(CurrentItemName == "null")
+        {
+
+        }
+        if (Key != null)
         {
             if (ItemManager.ItemManager_Instance.GetCurrentItem() == Key.name)
                 Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
