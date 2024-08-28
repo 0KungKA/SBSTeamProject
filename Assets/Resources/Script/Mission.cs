@@ -97,19 +97,30 @@ public class Mission : MonoBehaviour
     void CJewelCaseLock()
     {
         string CurrentItemName = ItemManager.ItemManager_Instance.GetCurrentItem();
-        if(CurrentItemName == "null")
-        {
+        if(CurrentItemName == null)
+            Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
 
-        }
-        if (Key != null)
+        else if (Key != null)
         {
             if (ItemManager.ItemManager_Instance.GetCurrentItem() == Key.name)
-                Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
+            {
+                ItemManager.ItemManager_Instance.DeleteItem(Key.name);
+                Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
+                MissionDelete();
+            }
         }
         else if (keyName != null)
         {
             if (ItemManager.ItemManager_Instance.GetCurrentItem() == keyName)
-                Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
+            {
+                ItemManager.ItemManager_Instance.DeleteItem(keyName);
+                Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
+                MissionDelete();
+            }
+        }
+        else
+        {
+            Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
         }
     }
 

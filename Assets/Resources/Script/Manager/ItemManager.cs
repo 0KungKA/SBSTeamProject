@@ -150,7 +150,11 @@ public class ItemManager : MonoBehaviour
 
     internal string GetCurrentItem()
     {
-        return PC.CurrentSelectItem.name;
+        GameObject currentItem = PC.CurrentSelectItem;
+        if (currentItem != null)
+            return currentItem.name;
+        else
+            return null;
     }
 
     public void SetColor(Image im)
