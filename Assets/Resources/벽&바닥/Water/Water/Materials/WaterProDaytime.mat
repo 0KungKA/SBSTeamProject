@@ -45,13 +45,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ReflDistort: 0.44
-    - _RefrDistort: 0.4
+    - _ReflDistort: 0
+    - _RefrDistort: 0
     - _WaveScale: 0.02
     m_Colors:
     - WaveSpeed: {r: 19, g: 9, b: -16, a: -7}
     - _HorizonColor: {r: 0.17254905, g: 0.25247198, b: 0.4627451, a: 0}
-    - _RefrColor: {r: 0.4433962, g: 0, b: 0.029559718, a: 0}
+    - _RefrColor: {r: 0.6745098, g: 0.92156863, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!1002 &2100001
 EditorExtensionImpl:
