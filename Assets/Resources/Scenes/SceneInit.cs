@@ -13,16 +13,32 @@ public class SceneInit : MonoBehaviour
     [SerializeField]
     CanvasRenderer Fade;
 
+    [SerializeField]
+    float fadeTime = 5.0f;
+
+    [SerializeField]
+    float fadeDuration = 0.0f;
+
+
     void Awake()
     {
         StartCoroutine("SceneFade");
     }
 
+    IEnumerator SceneFadeIn()
+    {
+        while (fadeDuration < fadeTime)
+        {
+            Fade.SetAlpha(Mathf.Lerp(1f, 0f, fadeDuration / fadeTime));
+            fadeDuration += Time.deltaTime;
+            yield return null;
+        }
+
+
+    }
+
     IEnumerator SceneFade()
     {
-        float fadeDuration = 0.0f;
-        float fadeTime = 5.0f;
-
         while (fadeDuration < fadeTime)
         {
             Fade.SetAlpha(Mathf.Lerp(1f, 0f, fadeDuration / fadeTime));
