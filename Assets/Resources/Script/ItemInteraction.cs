@@ -151,7 +151,5 @@ public class ItemInteraction : MonoBehaviour
             st[0] = new string(newGo.GetComponent<ItemInfo>().ItemExplanatino);
         else
             st[0] = transform.name;
-    
-    
     }
 }

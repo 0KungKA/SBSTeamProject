@@ -334,7 +334,6 @@ GameObject:
   - component: {fileID: 4259158849652552565}
   - component: {fileID: 1437149894992218943}
   - component: {fileID: 8317887951439973830}
-  - component: {fileID: 7869283724766754753}
   m_Layer: 6
   m_Name: Explanation_Field
   m_TagString: Untagged
@@ -401,12 +400,11 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "\u200B\r\n\r\n\u201C\u3141\u3141\u3141\u201D\uAED8 \uBC1B\uCE60 \uC81C\uBB3C\uC758
-    \uC870\uAC74\u200B\r\n\r\n\u200B\r\n\r\n1 . \uC601\uD63C\uC774 \uBE5B\uB098\uB294
-    \uC790\u200B\r\n\r\n\u200B\r\n\r\n2 . \uD0C0\uC778\uC758 \uC6B4\uBA85\uC5D0 \uAD00\uC5EC\uD55C
-    \uC790\u200B\r\n\r\n\u200B\r\n\r\n3 . \uBD80\uB7EC\uC9C0\uC9C0 \uC54A\uB294 \uC2E0\uB150\uC744
-    \uAC00\uC9C4 \uC790\u200B\r\n\r\n\u200B\r\n\r\n\u2026\u2026\u2026."
+    m_LineSpacing: 4
+  m_Text: "\u200B\u201C\u3141\u3141\u3141\u201D\uAED8 \uBC1B\uCE60 \uC81C\uBB3C\uC758
+    \uC870\uAC74\u200B\r\n\r1 . \uC601\uD63C\uC774 \uBE5B\uB098\uB294 \uC790\u200B\r\n\r2
+    . \uD0C0\uC778\uC758 \uC6B4\uBA85\uC5D0 \uAD00\uC5EC\uD55C \uC790\u200B\r\n3
+    . \uBD80\uB7EC\uC9C0\uC9C0 \uC54A\uB294 \uC2E0\uB150\uC744 \uAC00\uC9C4 \uC790\u200B\r\n\u2026\u2026\u2026."
 --- !u!114 &8317887951439973830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,24 +422,16 @@ MonoBehaviour:
   Skip_delay: 0
   cnt: 0
   fulltext:
-  - aaaaaaaaa
+  - "\u201C\u3141\u3141\u3141\u201D\uAED8 \uBC1B\uCE60 \uC81C\uBB3C\uC758 \uC870\uAC74"
+  - "1 . \uC601\uD63C\uC774 \uBE5B\uB098\uB294 \uC790"
+  - "2 . \uD0C0\uC778\uC758 \uC6B4\uBA85\uC5D0 \uAD00\uC5EC\uD55C \uC790"
+  - "3 . \uBD80\uB7EC\uC9C0\uC9C0 \uC54A\uB294 \uC2E0\uB150\uC744 \uAC00\uC9C4 \uC790"
+  - "\u2026\u2026\u2026."
   dialog_cnt: 5
   text_exit: 0
   text_full: 0
   text_cut: 0
   npcNameTextField: {fileID: 0}
---- !u!114 &7869283724766754753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5679093354464935259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc5a00313b777f54fafd5a8bc6e4dff4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7604443996288825323
 GameObject:
   m_ObjectHideFlags: 0

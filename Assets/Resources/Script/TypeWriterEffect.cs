@@ -29,6 +29,11 @@ public class TypeWriterEffect : MonoBehaviour
     //시작과 동시에 text분류하고 타이핑시작
     void Start()
     {
+        GameObject origin = Manager.Origin_Object;
+        if(origin != null )
+        {
+            origin.GetComponent<>
+        }
         if (fulltext.Length > 1)
         {
             npcName = new string[fulltext.Length];
