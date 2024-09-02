@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class ItemInteraction : MonoBehaviour
 {
     string DefaultPath = "0.UI/Item_UI/Icon";
+
+    Text textField;
+
+    private void Start()
+    {
+        textField = GetComponent<Text>();
+    }
 
     public void ItemUISpawn0()//RenderTexture로 아이템 이미지 띄우는 방식
     {
@@ -109,7 +117,6 @@ public class ItemInteraction : MonoBehaviour
         }
 
     }
-
 
     public void ObjectUISpawn(GameObject go)//ITObject태그
     {

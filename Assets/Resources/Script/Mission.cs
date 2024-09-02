@@ -124,6 +124,86 @@ public class Mission : MonoBehaviour
         }
     }
 
+    void D_Door_Lock()
+    {
+        string CurrentItemName = ItemManager.ItemManager_Instance.GetCurrentItem();
+        if (CurrentItemName == null)
+            Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
+
+        else if (Key != null)
+        {
+            if (ItemManager.ItemManager_Instance.GetCurrentItem() == Key.name)
+            {
+                ItemManager.ItemManager_Instance.DeleteItem(Key.name);
+                Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
+                MissionDelete();
+            }
+        }
+        else if (keyName != null)
+        {
+            if (ItemManager.ItemManager_Instance.GetCurrentItem() == keyName)
+            {
+                ItemManager.ItemManager_Instance.DeleteItem(keyName);
+                Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
+                MissionDelete();
+            }
+        }
+        else
+        {
+            Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
+        }
+
+    }
+
+    void D_SuitCase_Lock()
+    {
+        setManager();
+        Manager.UIManager_Instance.UIPopup("UI_D_SuitCase_Lock");
+    }
+
+    void D_Shelf_Interaction()
+    {
+        setManager();
+        Manager.UIManager_Instance.UIPopup("UI_D_Room_Shelf_Interaction");
+    }
+
+    void D_Document_Interaction()
+    {
+        setManager();
+        Manager.UIManager_Instance.UIPopup("UI_D_Room_Shelf_Interaction");
+    }
+
+    void Clear_Pice()
+    {
+        string CurrentItemName = ItemManager.ItemManager_Instance.GetCurrentItem();
+
+        if (CurrentItemName == null)
+            Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
+
+        else if (Key != null)
+        {
+            if (ItemManager.ItemManager_Instance.GetCurrentItem() == Key.name)
+            {
+                ItemManager.ItemManager_Instance.DeleteItem(Key.name);
+                Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
+                MissionDelete();
+            }
+        }
+        else if (keyName != null)
+        {
+            if (ItemManager.ItemManager_Instance.GetCurrentItem() == keyName)
+            {
+                ItemManager.ItemManager_Instance.DeleteItem(keyName);
+                Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
+                MissionDelete();
+            }
+        }
+        else
+        {
+            Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
+        }
+    }
+
     private void setManager()
     {
         Manager.Origin_Object = transform.gameObject;

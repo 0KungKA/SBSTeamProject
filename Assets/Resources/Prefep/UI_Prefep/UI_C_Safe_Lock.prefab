@@ -763,6 +763,7 @@ MonoBehaviour:
   FalseMissionInfo: 
   CompleteMissionInfo: 
   Key: {fileID: 4823727926756095305}
+  keyName: 
   ClearTarget:
   - {fileID: 8644980964520182542}
   Test: 0
@@ -4250,6 +4251,7 @@ GameObject:
   - component: {fileID: 7487014248196735874}
   - component: {fileID: 8294202526137597969}
   - component: {fileID: 2239246200257996029}
+  - component: {fileID: 9036003507144651025}
   m_Layer: 6
   m_Name: Explanation_Field
   m_TagString: Untagged
@@ -4343,6 +4345,18 @@ MonoBehaviour:
   text_full: 0
   text_cut: 0
   npcNameTextField: {fileID: 0}
+--- !u!114 &9036003507144651025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8917174596901102310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc5a00313b777f54fafd5a8bc6e4dff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8949826402763696048
 GameObject:
   m_ObjectHideFlags: 0

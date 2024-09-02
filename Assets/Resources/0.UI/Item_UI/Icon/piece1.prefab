@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 32902467658458456}
   - component: {fileID: 2420684719790467419}
   m_Layer: 9
-  m_Name: Test_Key
+  m_Name: piece1
   m_TagString: Slot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,4 +85,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c5dd9360b674c44abce1967d2bce0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemExplanatino: "\uC11C\uC7AC\uB97C \uC5F4\uC218\uC788\uB294 \uC5F4\uC1E0\uB2E4."
+  ItemExplanatino: "\uC9C0\uAD6C\uBCF8\uC758 \uBE44\uC5B4\uC788\uB294 \uBD80\uBD84\uACFC
+    \uC77C\uCE58\uD558\uB294 \uC870\uAC01\uC778\uB4EF \uD558\uB2E4."
