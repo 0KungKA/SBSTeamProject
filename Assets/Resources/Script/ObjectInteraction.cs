@@ -110,16 +110,11 @@ public class ObjectInteraction : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.O))
         {
             OnTest = !OnTest;
-            Debug.Log("모든 유동 오브젝트 테스트 모드 켜짐");
-        }
-        if (Input.GetKeyDown(KeyCode.I) && OnHide == true && OnTest == true)
-        {
-            Debug.Log("Hide기능 실행");
-            StartCoroutine(Hide());
+            Manager.ErrorInfo_Instance.ErrorEnqueue("모든 유동 오브젝트 테스트 모드 켜짐");
         }
         if (Input.GetKeyDown(KeyCode.P) && OnTest == true)
         {
-            Debug.Log("유동오브젝트 상호작용기능 실행");
+            Manager.ErrorInfo_Instance.ErrorEnqueue("모든 유동 오브젝트 테스트 모드 켜짐");
             InteractionStart();
         }
     }

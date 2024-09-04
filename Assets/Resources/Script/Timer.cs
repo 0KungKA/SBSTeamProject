@@ -10,6 +10,7 @@ public class Timer : MonoBehaviour
     [SerializeField]
     Text gameTime;
 
+    [SerializeField]
     float setTime = 1200;
 
     int min = 0;
@@ -63,11 +64,11 @@ public class Timer : MonoBehaviour
             if (setTime < 60f)
             {
                 // 분 단위는 필요없어지므로 초단위만 남도록 설정
-                if (sec < 10)
+                /*if (sec < 10)
                 {
                     gameTime.text = min + " : 0" + (int)setTime;
                     yield return null;
-                }
+                }*/
                 gameTime.text = ((int)setTime).ToString();
             }
 
