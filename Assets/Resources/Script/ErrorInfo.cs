@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ErrorInfo : MonoBehaviour
 {
@@ -9,9 +12,37 @@ public class ErrorInfo : MonoBehaviour
     public void ErrorEnqueue(string errorInfo)//에러 내용 집어넣기
     {
         errorInfo = errorInfo.Replace("\\n", "\n");
+
         ErrorCode.Clear();
         ErrorCode.Enqueue(errorInfo);
-        Manager.UIManager_Instance.UIPopup("UI_Instant_Popup");
+
+        GameObject go = GameObject.Find("UI_Instant_Popup");
+        string go_string = null;
+        if (go != null)
+        {
+            go_string = go.transform.Find("Field").GetComponent<Text>().text;
+        }
+
+        if (go_string == null)
+        {
+            if (go_string == errorInfo)
+                return;
+
+            if (ErrorCode.Count > 0)
+            {
+                StartCoroutine(ErrorInput());
+            }
+            else
+                Manager.UIManager_Instance.UIPopup("UI_Instant_Popup");
+        }
+        else
+            return;
+
+        /* GameObject go = GameObject.Find("UI_Instant_Popup");
+         if (go == null)
+             Manager.UIManager_Instance.UIPopup("UI_Instant_Popup");
+         else
+             StartCoroutine(ErrorInput());*/
     }
 
     //에러 내용 리턴해주고 삭제
@@ -25,6 +56,21 @@ public class ErrorInfo : MonoBehaviour
     {
         return ErrorCode.Peek();
     }*/
+
+    IEnumerator ErrorInput()
+    {
+        while(true)
+        {
+            GameObject go = GameObject.Find("UI_Instant_Popup");
+            if (go == null)
+            {
+                Manager.UIManager_Instance.UIPopup("UI_Instant_Popup");
+                yield break;
+            }
+            else
+                yield return null;
+        }
+    }
 
     public int ErrorCount { get { return ErrorCode.Count; } }
 }
