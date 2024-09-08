@@ -740,12 +740,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PinText:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4234512156777501309}
+  - {fileID: 2081582161385455393}
+  - {fileID: 4571960426976967121}
   Vpin: 
-  key: 1011
+  key: 111
   PinBool: 0
 --- !u!114 &9131077895283606877
 MonoBehaviour:
@@ -1838,7 +1837,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 
 --- !u!114 &2727329814024358916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2011,7 +2010,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 
 --- !u!114 &6975188129743153647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4144,7 +4143,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 
 --- !u!114 &6958569806900950916
 MonoBehaviour:
   m_ObjectHideFlags: 0
