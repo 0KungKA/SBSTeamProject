@@ -13911,12 +13911,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SynthesisItemCase:
-  - SynthesisItem: {fileID: 0}
+  - SynthesisItem: {fileID: 4076040031624064797, guid: 4fb3258603a4d574db40bbec9c62ca76, type: 3}
     ItemNameStirngRow:
-    - 
-    - 
+    - B_Hairpin
+    - B_BentHairpin
     AutoSynthesis: 1
-    SynthesisCheck: 0
 --- !u!114 &930398092
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class ErrorInfo : MonoBehaviour
 
         GameObject go = GameObject.Find("UI_Instant_Popup");
         string go_string = null;
+
         if (go != null)
         {
             go_string = go.transform.Find("Field").GetComponent<Text>().text;
