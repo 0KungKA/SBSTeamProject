@@ -65,9 +65,9 @@ public class Mission : MonoBehaviour
         }
     }
 
-    void BRoomDoorLock()
+    void ItemCheck()
     {
-        if(GameObject.FindWithTag("MainCamera").GetComponent<InputManager>().CurrentSelectItem != null)
+        if (GameObject.FindWithTag("MainCamera").GetComponent<InputManager>().CurrentSelectItem != null)
         {
             if (GameObject.FindWithTag("MainCamera").GetComponent<InputManager>().CurrentSelectItem.name == Key.name)
             {
@@ -82,10 +82,20 @@ public class Mission : MonoBehaviour
         }
     }
 
+    void BRoomDoorLock()
+    {
+        ItemCheck();
+    }
+
     public void BRoomClosetLock()
     {
         setManager();
         Manager.UIManager_Instance.UIPopup("UI_B_Closet_Lock");
+    }
+
+    void CRoomDoorLock()
+    {
+        ItemCheck();
     }
 
     void CRoomSafeDoorLock()
