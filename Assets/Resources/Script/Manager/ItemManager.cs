@@ -41,12 +41,10 @@ public class ItemManager : MonoBehaviour
                 if (SelectItemSlot[temp] == false)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    //SetColor(itemSlot[temp].transform.parent.GetComponent<Image>());
                 }
                 else if(SelectItemSlot[temp] == true)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    //SetColor(itemSlot[temp].transform.parent.GetComponent<Image>());
                 }
             }
         }
@@ -60,12 +58,10 @@ public class ItemManager : MonoBehaviour
                 if (SelectItemSlot[temp] == false)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    //SetColor(itemSlot[temp].transform.parent.GetComponent<Image>());
                 }
                 else if (SelectItemSlot[temp] == true)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    //SetColor(itemSlot[temp].transform.parent.GetComponent<Image>());
                 }
             }
         }
@@ -79,12 +75,10 @@ public class ItemManager : MonoBehaviour
                 if (SelectItemSlot[temp] == false)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    //SetColor(itemSlot[temp].transform.parent.GetComponent<Image>());
                 }
                 else if (SelectItemSlot[temp] == true)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    //SetColor(itemSlot[temp].transform.parent.GetComponent<Image>());
                 }
             }
         }
@@ -98,12 +92,10 @@ public class ItemManager : MonoBehaviour
                 if (SelectItemSlot[temp] == false)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    //SetColor(itemSlot[temp].transform.parent.GetComponent<Image>());
                 }
                 else if (SelectItemSlot[temp] == true)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    //SetColor(itemSlot[temp].transform.parent.GetComponent<Image>());
                 }
             }
         }
@@ -117,12 +109,10 @@ public class ItemManager : MonoBehaviour
                 if (SelectItemSlot[temp] == false)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    //SetColor(itemSlot[temp].transform.parent.GetComponent<Image>());
                 }
                 else if (SelectItemSlot[temp] == true)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    //SetColor(itemSlot[temp].transform.parent.GetComponent<Image>());
                 }
             }
         }
@@ -136,12 +126,10 @@ public class ItemManager : MonoBehaviour
                 if (SelectItemSlot[temp] == false)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    //SetColor(itemSlot[temp].transform.parent.GetComponent<Image>());
                 }
                 else if (SelectItemSlot[temp] == true)
                 {
                     SelectItemSlot[temp] = !SelectItemSlot[temp];
-                    //SetColor(itemSlot[temp].transform.parent.GetComponent<Image>());
                 }
             }
         }

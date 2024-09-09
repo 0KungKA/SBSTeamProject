@@ -30,6 +30,8 @@ public class Mission : MonoBehaviour
 
     public GameObject[] ClearTarget;
 
+    public GameObject[] OnEnableTarge;
+
     public bool Test = false;
 
     public void Update()
@@ -87,16 +89,18 @@ public class Mission : MonoBehaviour
         ItemCheck();
     }
 
+    void CRoomDoorLock()
+    {
+        ItemCheck();
+    }
+
     public void BRoomClosetLock()
     {
         setManager();
         Manager.UIManager_Instance.UIPopup("UI_B_Closet_Lock");
     }
 
-    void CRoomDoorLock()
-    {
-        ItemCheck();
-    }
+    
 
     void CRoomSafeDoorLock()
     {
@@ -196,6 +200,7 @@ public class Mission : MonoBehaviour
             {
                 ItemManager.ItemManager_Instance.DeleteItem(Key.name);
                 Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
+                MissionOnEnable();
                 MissionDelete();
             }
         }
@@ -205,6 +210,7 @@ public class Mission : MonoBehaviour
             {
                 ItemManager.ItemManager_Instance.DeleteItem(keyName);
                 Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
+                MissionOnEnable();
                 MissionDelete();
             }
         }
@@ -220,15 +226,27 @@ public class Mission : MonoBehaviour
         Manager.Call_Object = ClearTarget;
     }
 
+    
+
     public void MissionClearSelf()
     {
-        //GameObject SelfTarget = GameObject.Find("ClosetLock").gameObject;
         GameObject[] SelfTarget = Manager.Call_Object;
         for (int i = 0; i < SelfTarget.Length; i++)
         {
             Destroy(SelfTarget[i]);
         }
         Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
+    }
+
+    public void MissionOnEnable()
+    {
+        if(OnEnableTarge != null)
+        {
+            for (int i = 0; i < OnEnableTarge.Length; i++)
+            {
+                OnEnableTarge[i].active = true;
+            }
+        }
     }
 
     public void MissionDelete()

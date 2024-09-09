@@ -68,7 +68,6 @@ public class Synthesis : MonoBehaviour
                 ItemManager.ItemManager_Instance.StartCoroutine("ItemViewSpawn", itemCase.SynthesisItem.name);//해당 아이템 지급
 
             }
-
         }
     }
 }

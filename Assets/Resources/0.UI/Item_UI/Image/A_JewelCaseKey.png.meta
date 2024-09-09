@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e1c56817ded61744b857198fc2da2c3a
+guid: 1cfa8834244ae6d499828d7a90bf4747
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 0.001
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,106 +121,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Anthony_icon_009_1_0
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 184
-        width: 231
-        height: 174
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 185976689173b9e4a9238cd66db88c0e
-      internalID: 1381587920
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Anthony_icon_009_1_1
-      rect:
-        serializedVersion: 2
-        x: 327
-        y: 183
-        width: 242
-        height: 175
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d6987e7cb5314af4b95749184bbbfe84
-      internalID: -771985207
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Anthony_icon_009_1_2
-      rect:
-        serializedVersion: 2
-        x: 92
-        y: 18
-        width: 233
-        height: 167
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d3b83cfb8c256fc4cb999db96e802a31
-      internalID: -518602549
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Anthony_icon_009_1_3
-      rect:
-        serializedVersion: 2
-        x: 325
-        y: 19
-        width: 235
-        height: 164
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 60780bc60b932b544bf8ef35735dea0c
-      internalID: 1463500061
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: b8c66ce09999dda438b69cf3fc89301c
-    internalID: 990293686
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Anthony_icon_009_1_0: 1381587920
-      Anthony_icon_009_1_1: -771985207
-      Anthony_icon_009_1_2: -518602549
-      Anthony_icon_009_1_3: 1463500061
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

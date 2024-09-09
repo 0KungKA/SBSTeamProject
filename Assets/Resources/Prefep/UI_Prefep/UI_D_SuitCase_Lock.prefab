@@ -766,6 +766,7 @@ MonoBehaviour:
   keyName: 
   ClearTarget:
   - {fileID: 8644980964520182542}
+  OnEnableTarge: []
   Test: 0
 --- !u!1 &1539205865239291332
 GameObject:
