@@ -1,39 +1,9 @@
 fileFormatVersion: 2
-guid: 7d6a568be0948d94d8ced4b2c6d7b3b0
+guid: 4d29b5b5575979a4493a267ff56d4ddc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ba-1
-    second: {fileID: 2100000, guid: 065201de0e4af33479f70210f5912f43, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ba-2
-    second: {fileID: 2100000, guid: 20bd7caa0d805334d9f24346f7e4ae27, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ba-3
-    second: {fileID: 2100000, guid: 2d2755d2fddf25d45b5c70e53df776b8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: gs
-    second: {fileID: 2100000, guid: f5ccc6e68b27f6d45a19308ef0144c83, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ha
-    second: {fileID: 2100000, guid: 1b95e39e91fecbf46a1100a97165c0d9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: la
-    second: {fileID: 2100000, guid: 41c096b473261a04b837b462430061a5, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -108,7 +78,7 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
-  importAnimation: 0
+  importAnimation: 1
   humanDescription:
     serializedVersion: 3
     human: []

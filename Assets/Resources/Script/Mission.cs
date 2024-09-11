@@ -220,6 +220,12 @@ public class Mission : MonoBehaviour
         }
     }
 
+    void F_Room_Watch()
+    {
+        setManager();
+        Manager.UIManager_Instance.UIPopup("");
+    }
+
     private void setManager()
     {
         Manager.Origin_Object = transform.gameObject;

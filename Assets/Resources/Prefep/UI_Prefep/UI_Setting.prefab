@@ -1407,6 +1407,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Close
       objectReference: {fileID: 0}
+    - target: {fileID: 8301111740689364710, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dc911ffd782a5ff4eb20eed2ae0c06a6, type: 3}
     - target: {fileID: 8869505314558564188, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1438,6 +1442,18 @@ PrefabInstance:
     - target: {fileID: 8869505314558564188, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8869505314558564188, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.61991
+      objectReference: {fileID: 0}
+    - target: {fileID: 8869505314558564188, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.61991
+      objectReference: {fileID: 0}
+    - target: {fileID: 8869505314558564188, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.61991
       objectReference: {fileID: 0}
     - target: {fileID: 8869505314558564188, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
       propertyPath: m_LocalPosition.x
