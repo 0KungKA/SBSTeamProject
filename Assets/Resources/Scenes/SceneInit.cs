@@ -25,18 +25,6 @@ public class SceneInit : MonoBehaviour
         StartCoroutine("SceneFade");
     }
 
-    IEnumerator SceneFadeIn()
-    {
-        while (fadeDuration < fadeTime)
-        {
-            Fade.SetAlpha(Mathf.Lerp(1f, 0f, fadeDuration / fadeTime));
-            fadeDuration += Time.deltaTime;
-            yield return null;
-        }
-
-
-    }
-
     IEnumerator SceneFade()
     {
         while (fadeDuration < fadeTime)

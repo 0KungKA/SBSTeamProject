@@ -145,15 +145,6 @@ public class ItemManager : MonoBehaviour
             return null;
     }
 
-    /*public void SetColor(Image im)
-    {
-        if (im.color == new Color(48/255f, 48/255f, 48/255f, 255/255f))
-            im.color = Color.white;
-
-        else
-            im.color = new Color(48/255f, 48/255f, 48/255f, 255/255f);
-    }*/
-
     public GameObject GetNullItemSlot()
     {
         foreach (GameObject item in itemSlot)

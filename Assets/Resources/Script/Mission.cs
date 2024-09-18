@@ -100,8 +100,6 @@ public class Mission : MonoBehaviour
         Manager.UIManager_Instance.UIPopup("UI_B_Closet_Lock");
     }
 
-    
-
     void CRoomSafeDoorLock()
     {
         setManager();
@@ -223,7 +221,19 @@ public class Mission : MonoBehaviour
     void F_Room_Watch()
     {
         setManager();
-        Manager.UIManager_Instance.UIPopup("");
+        Manager.UIManager_Instance.UIPopup("UI_F_GrandfatherClock");
+    }
+
+    void F_Telephone()
+    {
+        setManager();
+        Manager.UIManager_Instance.UIPopup("UI_F_Telephone");
+    }
+
+    void F_Drop_Key()
+    {
+        MissionOnEnable();
+        //GameObject.Find("EventSystem").GetComponent<Synthesis>().SelectItemSynthesis("");
     }
 
     private void setManager()
@@ -231,8 +241,6 @@ public class Mission : MonoBehaviour
         Manager.Origin_Object = transform.gameObject;
         Manager.Call_Object = ClearTarget;
     }
-
-    
 
     public void MissionClearSelf()
     {

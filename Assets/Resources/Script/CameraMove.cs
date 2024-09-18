@@ -43,7 +43,11 @@ public class CameraMove : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
+        GameObject anithing = GameObject.FindWithTag("OnMouse");
+        if (anithing != null)
+            return;
+
+            if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
         {
             ObjInteraction();
         }
