@@ -13,8 +13,6 @@ public class Detail//스트링 테이블 이름+내용
 
     public Detail(string name, string detail) { _name = name; _detail = detail; }
 }
-
-
 public class BGDetail//배경 오브젝트 테이블 내용
 {
     public int _OriginIndex;//고유번호
@@ -58,13 +56,16 @@ public class DataManager : MonoBehaviour
 
     ChatData chatList = new ChatData();
 
-    //스트링 테이블 S
+    //스트링 테이블 Start
     List<Detail> KOobjectName = new List<Detail>();
     List<Detail> KOCharacterName = new List<Detail>();
     List<Detail> KOInteractionDetail = new List<Detail>();
     List<Detail> KOchatDetail = new List<Detail>();
     List<Detail> KOUIDetail = new List<Detail>();
-    //스트링 테이블 E
+    //스트링 테이블 End
+
+    Sprite[] CutSceneLists;
+    public Sprite[] GetCutSceneLists() {  return CutSceneLists; }
 
     List<BGDetail> bGDetails = new List<BGDetail>();
 
@@ -84,6 +85,7 @@ public class DataManager : MonoBehaviour
         SetBGObjectTable();
         //배경오브젝트 테이블 끝
 
+        SetCutSceneIMG();//컷씬 스프라이트 가져오기
     }
 
     //스트링테이블 시작
@@ -204,6 +206,13 @@ public class DataManager : MonoBehaviour
     //캐릭터 이름
     //캐릭터 대화 내용
     //UI
+
+    //CutScene 테이블 가져오기
+    public void SetCutSceneIMG()
+    {
+        CutSceneLists = null;
+        CutSceneLists = Resources.LoadAll<Sprite>("0.UI/UITex/CutScene");
+    }
 
     //GetDataObject 한글이름 가지고 오는 부분 = 삭제예정
     public string ReturnObjName(string objName)

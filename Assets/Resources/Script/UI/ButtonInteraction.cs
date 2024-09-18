@@ -46,14 +46,14 @@ public class ButtonInteraction : MonoBehaviour
         GameObject.Find("EventSystem").GetComponent<Synthesis>().SynthesisModule();
     }
 
+    int H = 0;
+    int M = 0;
+
     public void ClockBTN()
     {
         GameObject H_Obj = GameObject.Find("H_Pivot").gameObject;
         GameObject M_Obj = GameObject.Find("M_Pivot").gameObject;
         float RotateAngles = 30;
-
-        int H = 0;
-        int M = 0;
 
         if(this.name == "H_P")
         {
@@ -71,21 +71,29 @@ public class ButtonInteraction : MonoBehaviour
         {
             M_Obj.transform.Rotate(0, 0, -RotateAngles);
         }
+    }
 
-        H = Mathf.FloorToInt(H_Obj.transform.rotation.eulerAngles.z % 30);
-        M = Mathf.FloorToInt(M_Obj.transform.rotation.eulerAngles.z % 3);
+    public void ClockCheck()
+    {
+        H = Mathf.FloorToInt(GameObject.Find("H_Pivot").gameObject.transform.rotation.eulerAngles.z / 30);
+        M = Mathf.FloorToInt(GameObject.Find("M_Pivot").gameObject.transform.rotation.eulerAngles.z / 6);
 
-        if (H >= 13) H = 0;
-        if (M >= 13) M = 0;
+        H = (H >= 13) ? H = 1 : H;
+        M = (M >= 13) ? M = 10 : M;
 
-        if( H == 10 && M == 10)
+        if (H == 10 && M == 10)
         {
-            for(int i = 0; i < Manager.Call_Object.Length; i ++)
-            {
-                Destroy(Manager.Call_Object[i]);
-                Manager.Call_Object = null;
-            }
+            Manager.Origin_Object.GetComponent<Mission>().MissionOnEnable();
+            Manager.Origin_Object.GetComponent<Mission>().MissionDelete();
         }
-        //Manager.Call_Object;
+        else
+        {
+            Manager.Origin_Object.GetComponent<Mission>().MissionFail();
+        }
+    }
+
+    public void OnCamera()
+    {
+        GameObject.FindWithTag("MainCamera").transform.GetChild(0).gameObject.SetActive(true);
     }
 }

@@ -19,10 +19,9 @@ public class SceneInit : MonoBehaviour
     [SerializeField]
     float fadeDuration = 0.0f;
 
-
-    void Awake()
+    void Start()
     {
-        StartCoroutine("SceneFade");
+
     }
 
     IEnumerator SceneFade()
@@ -40,7 +39,6 @@ public class SceneInit : MonoBehaviour
         Manager.UIManager_Instance.UIPopup("UI_ChatNPC");
 
         //뭔가 더 추가할것들 추가하기
-
         Destroy(Fade.transform.parent);
         yield break;
     }

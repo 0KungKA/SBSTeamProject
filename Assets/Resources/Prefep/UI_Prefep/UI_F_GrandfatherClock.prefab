@@ -693,7 +693,7 @@ GameObject:
   - component: {fileID: 740398487108894956}
   m_Layer: 6
   m_Name: UI_F_GrandfatherClock
-  m_TagString: OnMouse
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -799,7 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61fb49ef1b046b49a87711d4a1cddec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseClose: 0
+  MouseClose: 1
 --- !u!1 &6043452955074552063
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,8 +1298,60 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 4931854399187643654}
+    - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 4931854399187643654}
+    - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Close
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: ClockCheck
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ButtonInteraction, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: ButtonInteraction, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8869505314558564188, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
       propertyPath: m_Pivot.x
@@ -1403,3 +1455,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8869505314558564188, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
   m_PrefabInstance: {fileID: 6636984967985617473}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4931854399187643654 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1759282205120870215, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+  m_PrefabInstance: {fileID: 6636984967985617473}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8384495be101f0e4ca51d221a3a4e18d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

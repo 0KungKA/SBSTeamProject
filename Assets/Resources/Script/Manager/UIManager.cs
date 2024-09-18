@@ -145,7 +145,6 @@ public class UIManager : MonoBehaviour
 
         if(go !=null)
         {
-            StopAllCoroutines();
             Destroy(go);
         }
     }

@@ -68,6 +68,14 @@ public class CameraMove : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.name == "B_Trigger_CutScene")
+        {
+            GameObject.Find("EventSystem").GetComponent<SceneInit>().StartCoroutine("SceneFade");
+        }
+    }
+
     private void ObjInteraction()
     {
         RaycastHit hit;
@@ -106,7 +114,6 @@ public class CameraMove : MonoBehaviour
             {
                 GetComponent<PlayableDirector>().Play();
             }
-
         }
     }
 

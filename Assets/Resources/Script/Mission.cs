@@ -43,7 +43,6 @@ public class Mission : MonoBehaviour
                 SendMSG();
             }
         }
-        
     }
 
     public void SendMSG()
@@ -221,19 +220,19 @@ public class Mission : MonoBehaviour
     void F_Room_Watch()
     {
         setManager();
+        GameObject.FindWithTag("MainCamera").transform.GetChild(0).gameObject.SetActive(false);
         Manager.UIManager_Instance.UIPopup("UI_F_GrandfatherClock");
     }
 
     void F_Telephone()
     {
         setManager();
-        Manager.UIManager_Instance.UIPopup("UI_F_Telephone");
+        Manager.UIManager_Instance.UIPopup("UI_F_Phone");
     }
 
     void F_Drop_Key()
     {
         MissionOnEnable();
-        //GameObject.Find("EventSystem").GetComponent<Synthesis>().SelectItemSynthesis("");
     }
 
     private void setManager()
@@ -258,9 +257,14 @@ public class Mission : MonoBehaviour
         {
             for (int i = 0; i < OnEnableTarge.Length; i++)
             {
-                OnEnableTarge[i].active = true;
+                OnEnableTarge[i].SetActive(true);
             }
         }
+    }
+
+    public void MissionFail()
+    {
+        Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
     }
 
     public void MissionDelete()
@@ -270,6 +274,5 @@ public class Mission : MonoBehaviour
             Destroy(ClearTarget[i].gameObject);
         }
         Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
-        //Destroy(transform.gameObject);
     }
 }
