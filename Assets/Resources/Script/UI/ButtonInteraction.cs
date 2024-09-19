@@ -24,6 +24,11 @@ public class ButtonInteraction : MonoBehaviour
         SceneManager.LoadScene(OpenPrefepPath);
     }
 
+    public void OpenLobby()
+    {
+        Destroy(GameObject.Find("@Manager").gameObject);
+    }
+
     public void Close()
     {
         Manager.UIManager_Instance.CloseUI();

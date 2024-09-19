@@ -21,13 +21,14 @@ public class SceneInit : MonoBehaviour
 
     void Start()
     {
-
+        
     }
 
     IEnumerator SceneFade()
     {
         while (fadeDuration < fadeTime)
         {
+            Debug.Log(transform.name + "while ÀÛµ¿Áß");
             Fade.SetAlpha(Mathf.Lerp(1f, 0f, fadeDuration / fadeTime));
             fadeDuration += Time.deltaTime;
             yield return null;

@@ -22,7 +22,11 @@ public class ErrorInfo : MonoBehaviour
             go_string = go.transform.Find("Field").GetComponent<Text>().text;
         }
 
-        if (go_string == null)
+        if (go_string != errorInfo)
+        {
+            StartCoroutine(ErrorInput());
+        }
+        else if (go_string == null)
         {
             if (go_string == errorInfo)
                 return;
@@ -34,6 +38,7 @@ public class ErrorInfo : MonoBehaviour
             else
                 Manager.UIManager_Instance.UIPopup("UI_Instant_Popup");
         }
+        
         else
             return;
 
@@ -47,7 +52,18 @@ public class ErrorInfo : MonoBehaviour
     //에러 내용 리턴해주고 삭제
     public string ErrorDequeue()
     {
-        return ErrorCode.Dequeue();
+        string temp = "";
+        if (ErrorCode.Count > 0)
+        {
+            temp = ErrorCode.Dequeue();
+        }
+        
+        if (temp != null)
+        {
+            return temp;
+        }
+        else
+            return "";
     }
 
     //에러 내용 리턴 (현상황에선 안씀)

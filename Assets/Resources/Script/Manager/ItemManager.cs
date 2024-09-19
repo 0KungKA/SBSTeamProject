@@ -139,6 +139,7 @@ public class ItemManager : MonoBehaviour
     internal string GetCurrentItem()
     {
         GameObject currentItem = PC.CurrentSelectItem;
+
         if (currentItem != null)
             return currentItem.name;
         else

@@ -32,8 +32,11 @@ public class TypeWriterEffect : MonoBehaviour
         GameObject origin = Manager.Origin_Object;
         if(origin != null )
         {
-            if(origin.GetComponent<ItemInfo>().ItemExplanatino != null)
+            string originText = origin.GetComponent<ItemInfo>().ItemExplanatino;
+            if (originText != null || originText != "")
+            {
                 fulltext[0] = origin.GetComponent<ItemInfo>().ItemExplanatino;
+            }
         }
         if (fulltext.Length > 1)
         {

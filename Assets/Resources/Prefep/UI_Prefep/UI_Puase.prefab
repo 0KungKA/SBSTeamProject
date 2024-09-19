@@ -514,6 +514,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5324185022174295934}
     m_Modifications:
+    - target: {fileID: 1759282205120870215, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: OpenPrefepPath
+      value: UI_ExitLobby
+      objectReference: {fileID: 0}
     - target: {fileID: 3107018430610033802, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
       propertyPath: m_Text
       value: "\uC885\uB8CC"

@@ -79,7 +79,7 @@ public class CameraMove : MonoBehaviour
     private void ObjInteraction()
     {
         RaycastHit hit;
-        float MaxDistance = 10.0f;
+        float MaxDistance = 20.0f;
 
         if(Physics.Raycast(transform.position, transform.forward, out hit, MaxDistance))
         {
@@ -101,6 +101,7 @@ public class CameraMove : MonoBehaviour
                 Debug.Log("Ray : GetItem");
                 if(hit.transform.GetComponent<ItemInteraction>() != null)
                 {
+                    Manager.Origin_Object = hit.transform.gameObject;
                     hit.transform.GetComponent<ItemInteraction>().SendMessage("ItemUISpawn", SendMessageOptions.DontRequireReceiver);
                 }
             }

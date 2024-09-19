@@ -269,7 +269,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3312619542709084681}
         m_TargetAssemblyTypeName: ButtonInteraction, Assembly-CSharp
-        m_MethodName: Exit
+        m_MethodName: OpenLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8384495be101f0e4ca51d221a3a4e18d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OpenPrefepPath: 
+  OpenPrefepPath: SLobby
 --- !u!1 &3750703076065927836
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 8530933595803912626}
   - component: {fileID: 92976160391294876}
   m_Layer: 6
-  m_Name: UI_ExitCheck
+  m_Name: UI_ExitLobby
   m_TagString: OnMouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -615,7 +615,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 612853d46214d57488637807c46762e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d16aa54d2404fa478fb3c731df84653, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -690,7 +690,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ce381e494badda34d88b4422a51debbb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9261087f8ef41844ebcdee0e2a1716d6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -29,9 +29,21 @@ public class RenderViewObj : MonoBehaviour
         RenderCameraComponent = RenderCamera.GetComponent<Camera>();
     }
 
+    private void Setting()
+    {
+        RenderCamera.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, -260.0f);
+        RenderCameraComponent.orthographicSize = 100;
+        
+    }
+
     public void Targetset(GameObject gm)
     {
-        RenderCamera.GetComponent<Camera>().orthographicSize = 100;
+        Setting();//일단 초기값으로 셋팅
+
+        if (Target != null)
+            gm.transform.LookAt(RenderCamera.transform.position);
+
+        RenderCameraComponent.orthographicSize += gm.GetComponent<ItemInfo>().AddRenderCameraSize;
         RenderInteraction = true;
         if (transform.childCount != 0)
         {
@@ -55,6 +67,8 @@ public class RenderViewObj : MonoBehaviour
     {
         if (Target != null)
         {
+            //RenderCameraComponent.orthographicSize = 100 + Target.GetComponentInChildren<ItemInfo>().AddRenderCameraSize;
+
             float scrolVale = Input.GetAxisRaw("Mouse ScrollWheel");
             float MouseX = Input.GetAxisRaw("Mouse X");
             float MouseY = Input.GetAxisRaw("Mouse Y");

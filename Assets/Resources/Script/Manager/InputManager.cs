@@ -26,12 +26,12 @@ public class InputManager : MonoBehaviour
 
     public void SelectItem(GameObject item)
     {
-        if (CurrentSelectItem == item)
+        /*if (CurrentSelectItem == item)
         {
             CurrentSelectItem = null;
             return;
         }
-        else
+        else*/
             CurrentSelectItem = item;
 
         if(item.GetComponent<ItemInfo>() != null)

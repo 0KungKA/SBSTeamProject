@@ -80,6 +80,12 @@ public class ItemInteraction : MonoBehaviour
             Cgo.transform.parent = Pgo.transform;
             Cgo.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
             Cgo.GetComponent<RectTransform>().localScale = Vector3.one;
+            string str = Cgo.GetComponent<ItemInfo>().ItemExplanatino;
+            if (str != null)
+            {
+                str = Manager.Origin_Object.GetComponent<ItemInfo>().ItemExplanatino;
+                Cgo.GetComponent<ItemInfo>().ItemExplanatino = str;
+            }
 
             if (transform.gameObject.layer == (int)Layer_Enum.LayerInfo.ViewItem)
             {
@@ -152,7 +158,8 @@ public class ItemInteraction : MonoBehaviour
         string[] st = sgm.GetComponent<TypeWriterEffect>().fulltext;
 
         if (newGo.GetComponent<ItemInfo>() != null)
-            st[0] = new string(newGo.GetComponent<ItemInfo>().ItemExplanatino);
+            st[0] = Manager.Origin_Object.GetComponent<ItemInfo>().ItemExplanatino;
+            //st[0] = new string(newGo.GetComponent<ItemInfo>().ItemExplanatino);
         else
             st[0] = transform.name;
     }

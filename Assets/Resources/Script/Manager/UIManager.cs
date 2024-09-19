@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,7 +30,14 @@ public class UIManager : MonoBehaviour
     protected internal void Init()
     {
         string SystemUIName = "Scene_UI/" + "UI_Scene_" + SceneManager.GetActiveScene().name;
-        UIPopup(SystemUIName);
+        if (SystemUIName == "Scene_UI/UI_Scene_/SLobby")
+        {
+            UIPopup("Scene_UI/UI_Scene_/Lobby");
+        }
+        else
+        {
+            UIPopup(SystemUIName);
+        }
     }
 
     public GameObject SpawnUI(GameObject prefepPath)
@@ -130,6 +138,7 @@ public class UIManager : MonoBehaviour
     {
         while( UIListsStack.Count > 0 )
         {
+            Debug.Log(transform.name + "while 작동중");
             GameObject go = UIListsStack.Pop();
             Destroy(go);
         }
@@ -145,6 +154,8 @@ public class UIManager : MonoBehaviour
 
         if(go !=null)
         {
+            //Debug.Log(transform.name + "StopAllCoroutines 작동");
+            //StopAllCoroutines();
             Destroy(go);
         }
     }

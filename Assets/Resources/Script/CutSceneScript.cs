@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,6 +47,7 @@ public class CutSceneScript : MonoBehaviour
                 EdCutScenes.Add(CutSceneLists[i]);
             }
         }
+        NumberingClassify();
     }
 
     public void StartCutScene(string Tag)
@@ -56,18 +58,22 @@ public class CutSceneScript : MonoBehaviour
         }
     }
 
-    private void NumberingClassify()
+    private void NumberingClassify()//오프닝 컷씬 순서대로 정렬
     {
-        List<Sprite> temp;
+        List<Sprite> temp = new List<Sprite>();
 
-        temp = null;
         for(int i = 0; i < OpCutScenes.Count; i++)
         {
-            for(int j = 0; j < OpCutScenes.Count; j ++  )
+            for (int j = 0; j < OpCutScenes.Count; j++) 
             {
-                if (OpCutScenes[j].name.Contains(j.ToString()))
+                string demper = Regex.Replace(OpCutScenes[j].name, @"\D", "");
+
+                bool Search = (i == int.Parse(demper)) ? true : false;
+
+                if (Search)
                 {
                     temp.Add(OpCutScenes[j]);
+                    break;
                 }
             }
         }
@@ -91,8 +97,10 @@ public class CutSceneScript : MonoBehaviour
     {
         while (number < OpCutScenes.Count)
         {
-            while(CutDuration < CutTime)
+            Debug.Log(transform.name + "while 작동중");
+            while (CutDuration < CutTime)
             {
+                Debug.Log(transform.name + "while 작동중");
                 Canvas.transform.GetChild(0).GetComponent<Image>().sprite = OpCutScenes[number];
                 CutDuration += Time.deltaTime;
                 yield return null;

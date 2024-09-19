@@ -14,18 +14,25 @@ public class InstantPopupScript : MonoBehaviour
     {
         if(text == null)
             text = transform.GetComponent<Text>();
-        SetText();
-        Invoke("AutoClose", 2f);
+
+        if(text != null)
+        {
+            SetText();
+            Invoke("AutoClose", 2f);
+        }
     }
 
     private void SetText()
     {
         text.text = Manager.ErrorInfo_Instance.ErrorDequeue();
+        if(text == null || text.text == "")
+        {
+            AutoClose();
+        }
     }
 
     void AutoClose()
     {
         Destroy(transform.parent.gameObject);
-        //Manager.UIManager_Instance.CloseUI();
     }
 }

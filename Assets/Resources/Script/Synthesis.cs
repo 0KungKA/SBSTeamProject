@@ -23,6 +23,7 @@ public class Synthesis : MonoBehaviour
     {
         while (true)
         {
+            Debug.Log(transform.name + "while ¿€µø¡ﬂ");
             if (itemslotTemp == null)
                 itemslotTemp = ItemManager.ItemManager_Instance.GetItemSlot();
             else if (itemslotTemp != null) 

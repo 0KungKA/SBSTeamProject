@@ -36,7 +36,7 @@ public class Mission : MonoBehaviour
 
     public void Update()
     {
-        if(Test)
+        if (Test)
         {
             if (Input.GetKeyDown(KeyCode.P))
             {
@@ -47,7 +47,7 @@ public class Mission : MonoBehaviour
 
     public void SendMSG()
     {
-        if(MissionName != null)
+        if (MissionName != null)
         {
             setManager();
             SendMessage(MissionName);
@@ -60,7 +60,7 @@ public class Mission : MonoBehaviour
 
     public void stringCall()
     {
-        if(anyString != null)
+        if (anyString != null)
         {
             Manager.ErrorInfo_Instance.ErrorEnqueue(anyString);
         }
@@ -70,11 +70,25 @@ public class Mission : MonoBehaviour
     {
         if (GameObject.FindWithTag("MainCamera").GetComponent<InputManager>().CurrentSelectItem != null)
         {
-            if (GameObject.FindWithTag("MainCamera").GetComponent<InputManager>().CurrentSelectItem.name == Key.name)
+            if(Key != null)
             {
-                ItemManager.ItemManager_Instance.DeleteItem(Key.name);
-                Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
-                MissionDelete();
+                if (GameObject.FindWithTag("MainCamera").GetComponent<InputManager>().CurrentSelectItem.name == Key.name)
+                {
+                    ItemManager.ItemManager_Instance.DeleteItem(Key.name);
+                    Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
+                    MissionOnEnable();
+                    MissionDelete();
+                }
+            }
+            else if (keyName != null)
+            {
+                if (GameObject.FindWithTag("MainCamera").GetComponent<InputManager>().CurrentSelectItem.name == keyName)
+                {
+                    ItemManager.ItemManager_Instance.DeleteItem(keyName);
+                    Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
+                    MissionOnEnable();
+                    MissionDelete();
+                }
             }
         }
         else
@@ -107,37 +121,9 @@ public class Mission : MonoBehaviour
 
     void CJewelCaseLock()
     {
-        string CurrentItemName = ItemManager.ItemManager_Instance.GetCurrentItem();
-        if(CurrentItemName == null)
-            Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
+        ItemCheck();
 
-        else if (Key != null)
-        {
-            if (ItemManager.ItemManager_Instance.GetCurrentItem() == Key.name)
-            {
-                ItemManager.ItemManager_Instance.DeleteItem(Key.name);
-                Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
-                MissionDelete();
-            }
-        }
-        else if (keyName != null)
-        {
-            if (ItemManager.ItemManager_Instance.GetCurrentItem() == keyName)
-            {
-                ItemManager.ItemManager_Instance.DeleteItem(keyName);
-                Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
-                MissionDelete();
-            }
-        }
-        else
-        {
-            Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
-        }
-    }
-
-    void D_Door_Lock()
-    {
-        string CurrentItemName = ItemManager.ItemManager_Instance.GetCurrentItem();
+        /*string CurrentItemName = ItemManager.ItemManager_Instance.GetCurrentItem();
         if (CurrentItemName == null)
             Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
 
@@ -162,7 +148,38 @@ public class Mission : MonoBehaviour
         else
         {
             Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
+        }*/
+    }
+
+    void D_Door_Lock()
+    {
+        ItemCheck();
+        /*string CurrentItemName = ItemManager.ItemManager_Instance.GetCurrentItem();
+        if (CurrentItemName == null)
+            Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
+
+        else if (Key != null)
+        {
+            if (ItemManager.ItemManager_Instance.GetCurrentItem() == Key.name)
+            {
+                ItemManager.ItemManager_Instance.DeleteItem(Key.name);
+                Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
+                MissionDelete();
+            }
         }
+        else if (keyName != null)
+        {
+            if (ItemManager.ItemManager_Instance.GetCurrentItem() == keyName)
+            {
+                ItemManager.ItemManager_Instance.DeleteItem(keyName);
+                Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
+                MissionDelete();
+            }
+        }
+        else
+        {
+            Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
+        }*/
 
     }
 
@@ -186,7 +203,8 @@ public class Mission : MonoBehaviour
 
     void Clear_Pice()
     {
-        string CurrentItemName = ItemManager.ItemManager_Instance.GetCurrentItem();
+        ItemCheck();
+        /*string CurrentItemName = ItemManager.ItemManager_Instance.GetCurrentItem();
 
         if (CurrentItemName == null)
             Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
@@ -214,7 +232,12 @@ public class Mission : MonoBehaviour
         else
         {
             Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
-        }
+        }*/
+    }
+
+    void F_RoomDoor_Mission()
+    {
+        ItemCheck();
     }
 
     void F_Room_Watch()

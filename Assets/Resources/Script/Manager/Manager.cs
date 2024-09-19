@@ -62,7 +62,6 @@ public class Manager : MonoBehaviour
 
     static void Init()
     {
-
         if (M_instance == null)
         {
             Manager_Obj = GameObject.Find("@Managers");
@@ -71,6 +70,7 @@ public class Manager : MonoBehaviour
                 Manager_Obj = new GameObject { name = "@Managers" };
                 Manager_Obj.AddComponent<Manager>();
             }
+
             DontDestroyOnLoad(Manager_Obj);
             M_instance = Manager_Obj.GetComponent<Manager>();
         }
@@ -111,6 +111,7 @@ public class Manager : MonoBehaviour
     {//제대로 실행되는지 확인함
         if(_UIManager.GetUILisetStackCount() >= 1)
             _UIManager.CloseAllUI();
+        _UIManager.Init();
     }
 
     void OnDisable()

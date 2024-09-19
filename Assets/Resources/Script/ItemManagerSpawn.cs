@@ -42,7 +42,8 @@ public class ItemManagerSpawn : MonoBehaviour
         int Rvalue = 0;
         while (true) 
         {
-            if(Rvalue >= gmItemSlot.Length)
+            Debug.Log(transform.name + "while ÀÛµ¿Áß");
+            if (Rvalue >= gmItemSlot.Length)
                 break;
             else
             {
