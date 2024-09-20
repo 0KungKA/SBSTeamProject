@@ -68,6 +68,7 @@ public class Manager : MonoBehaviour
             if (Manager_Obj == null)
             {
                 Manager_Obj = new GameObject { name = "@Managers" };
+                Manager_Obj.tag = "Managets";
                 Manager_Obj.AddComponent<Manager>();
             }
 

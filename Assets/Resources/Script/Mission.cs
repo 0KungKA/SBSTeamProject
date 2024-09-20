@@ -255,6 +255,8 @@ public class Mission : MonoBehaviour
 
     void F_Drop_Key()
     {
+        setManager();
+        MissionClearSelf();
         MissionOnEnable();
     }
 

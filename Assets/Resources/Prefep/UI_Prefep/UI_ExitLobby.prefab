@@ -269,7 +269,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3312619542709084681}
         m_TargetAssemblyTypeName: ButtonInteraction, Assembly-CSharp
-        m_MethodName: OpenLevel
+        m_MethodName: OpenLobby
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8384495be101f0e4ca51d221a3a4e18d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OpenPrefepPath: SLobby
+  OpenPrefepPath: 
 --- !u!1 &3750703076065927836
 GameObject:
   m_ObjectHideFlags: 0

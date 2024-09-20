@@ -23,6 +23,7 @@ public class ItemManager : MonoBehaviour
 
     public void Awake()
     {
+        transform.tag = "Managers";
         PC = GameObject.FindWithTag("MainCamera").GetComponent<InputManager>();
 
         if (M_ItemManager == null)

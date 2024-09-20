@@ -19,11 +19,12 @@ public class ChatData : MonoBehaviour
 
     string NPCpath = "Assets/Resources/Material/ObjectTexture/NPC/";
 
-    CharacterData CharacterData;
+    //CharacterData CharacterData;
+    CharacterData CharacterData = new CharacterData();
 
     private void Start()
     {
-        CharacterData = new CharacterData();
+        //CharacterData = new CharacterData();
         CharacterData.Init();
     }
 

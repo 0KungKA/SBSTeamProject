@@ -77,6 +77,7 @@ public class Timer : MonoBehaviour
             {
                 // UI 텍스트를 0초로 고정시킴.
                 gameTime.text = "0";
+                Manager.UIManager_Instance.UIPopup("Scene_UI/UI_Scene_GameOver");
                 yield break;
             }
             yield return null;

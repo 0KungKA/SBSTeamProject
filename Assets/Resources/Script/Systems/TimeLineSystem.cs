@@ -8,6 +8,7 @@ public class TimeLineSystem : MonoBehaviour
 {
     public void CallTimeline()
     {
+        GameObject.FindWithTag("NPC").AddComponent<NPCM_AI_Ctrl>();
         PlayCutScene();
     }
 

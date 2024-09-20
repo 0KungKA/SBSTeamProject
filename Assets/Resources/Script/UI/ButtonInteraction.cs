@@ -26,7 +26,17 @@ public class ButtonInteraction : MonoBehaviour
 
     public void OpenLobby()
     {
-        Destroy(GameObject.Find("@Manager").gameObject);
+        GameObject render = GameObject.Find("UI_Item_Render");
+        if (render != null)
+            Destroy(render);
+
+        GameObject[] @Obj = GameObject.FindGameObjectsWithTag("Managers");
+        foreach (GameObject obj in @Obj)
+        {
+            Destroy(obj);
+        }
+
+        SceneManager.LoadScene("Lobby");
     }
 
     public void Close()

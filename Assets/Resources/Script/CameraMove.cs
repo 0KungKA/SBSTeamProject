@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.SocialPlatforms;
 using UnityEngine.UIElements;
 
 public class CameraMove : MonoBehaviour
@@ -47,7 +47,7 @@ public class CameraMove : MonoBehaviour
         if (anithing != null)
             return;
 
-            if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
+        if (Input.GetMouseButtonDown((int)UnityEngine.UIElements.MouseButton.LeftMouse)) 
         {
             ObjInteraction();
         }
@@ -65,14 +65,6 @@ public class CameraMove : MonoBehaviour
                     }
                 }
             }
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.name == "B_Trigger_CutScene")
-        {
-            GameObject.Find("EventSystem").GetComponent<SceneInit>().StartCoroutine("SceneFade");
         }
     }
 
@@ -102,6 +94,11 @@ public class CameraMove : MonoBehaviour
                 if(hit.transform.GetComponent<ItemInteraction>() != null)
                 {
                     Manager.Origin_Object = hit.transform.gameObject;
+
+                    if(hit.transform.GetComponent<ItemInfo>().effectSound != null)
+                    {
+                        GameObject.FindWithTag("Effect").GetComponent<EffectSound>().EffectSoundPlay(hit.transform.GetComponent<ItemInfo>().effectSound);
+                    }
                     hit.transform.GetComponent<ItemInteraction>().SendMessage("ItemUISpawn", SendMessageOptions.DontRequireReceiver);
                 }
             }
@@ -152,6 +149,7 @@ public class CameraMove : MonoBehaviour
     protected internal void DebugMode()
     {
         //포지션 변환
+        Debug.Log("CameraMove 디버그 모드");
         Horizontal = Input.GetAxisRaw("Horizontal");
         Vertical = Input.GetAxisRaw("Vertical");
         OD = Input.GetAxisRaw("UpDown");
@@ -196,5 +194,26 @@ public class CameraMove : MonoBehaviour
         rot.x = Mathf.Clamp(rot.x, MinAngle, MaxAngle);
 
         transform.rotation = Quaternion.Euler(rot.x, rot.y, 0);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "B_Trigger_CutScene")
+        {
+            GameObject.Find("EventSystem").GetComponent<SceneInit>().StartCoroutine("SceneFade");
+        }
+
+        else if (other.gameObject.name == "Speed_UP")
+        {
+            Speed += 0.1f;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "Speed_UP")
+        {
+            Speed -= 0.1f;
+        }
     }
 }
