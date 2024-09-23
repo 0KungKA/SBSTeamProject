@@ -12,4 +12,6 @@ public class ItemInfo : MonoBehaviour
 
     [SerializeField]
     public AudioClip effectSound;
+
+    
 }

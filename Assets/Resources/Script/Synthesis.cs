@@ -67,7 +67,18 @@ public class Synthesis : MonoBehaviour
                     Debug.Log("합성");
                 }
 
-                ItemManager.ItemManager_Instance.StartCoroutine("ItemViewSpawn", itemCase.SynthesisItem.name);//해당 아이템 지급
+                if (itemCase.RenderObj == null)
+                {
+                    object[] param = new object[2];
+                    param[0] = itemCase.SynthesisItem.name;
+                    param[1] = itemCase.RenderObj;
+
+                    ItemManager.ItemManager_Instance.StartCoroutine("ItemViewSpawn", param);//해당 아이템 지급
+                }
+                else if (itemCase.RenderObj != null)
+                {
+                    ItemManager.ItemManager_Instance.StartCoroutine("ItemViewSpawn", itemCase.SynthesisItem.name);
+                }
             }
         }
     }

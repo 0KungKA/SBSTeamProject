@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
@@ -11,6 +12,8 @@ public class NPCM_AI_Ctrl : MonoBehaviour
         AttackMove,
         Move
     }
+
+    public bool saveMove = true;//C랑 D방을 안들어가도록 설정해주는 bool값
 
     [SerializeField]
     [Tooltip("NPC가 플레이어를 인식할수있는 최대 거리")]
@@ -48,14 +51,29 @@ public class NPCM_AI_Ctrl : MonoBehaviour
 
     //agent.destination 목표지점까지 이동
     GameObject Player;
-    Vector3 TargetPos;
+    GameObject Target;
     
-    bool ChoiceTarget = false;
+    bool ChoiceTarget = false;//타겟을 지정할때 분기점으로 씀
+    bool OnMove = false;
 
     Vector3 YameOriginVector;
 
+    Animator anim;
+
     public void Start()
     {
+        MaxRayDistance = Manager.DataManager_Instance.GetBalanceValue(6);
+        MaxWaitingTime = Manager.DataManager_Instance.GetBalanceValue(10);
+
+        //Todo:공격 거리에 대한 데이터 테이블 수정필요함
+        attackRange = Manager.DataManager_Instance.GetBalanceValue(11);
+        attackRange = 10.0f;
+        VecOffSet = 3.0f;
+
+        anim = GetComponent<Animator>();
+        anim.SetBool("Attack", false);
+        anim.SetBool("Move", true);
+
         YameOriginVector = transform.position;
 
         agent = GetComponent<NavMeshAgent>();
@@ -68,21 +86,50 @@ public class NPCM_AI_Ctrl : MonoBehaviour
             Ways[i] = wayP.transform.GetChild(i).gameObject;
         }
 
-        FWays = new GameObject[wayP.transform.childCount-1];
-        for (int i = 0; i < wayP.transform.childCount; i++)
-        {
-            if(i == 1)
-                continue;
-
-            Ways[i] = wayP.transform.GetChild(i).gameObject;
-        }
-        state = StateInfo.State;
+        state = StateInfo.AttackMove;
     }
 
     internal void YameSetting()
     {
-        state = StateInfo.State;
+        state = StateInfo.AttackMove;
         transform.position = YameOriginVector;
+    }
+
+    /// <summary>
+    /// 0 = State / 1 = Move / 2 = AttackMove
+    /// </summary>
+    /// <param name="value"></param>
+    public void SetState(int value)
+    {
+        switch (value)
+        {
+            case 0:
+                waitingDuration = 0.0f;
+                state = StateInfo.State;
+                Target = transform.gameObject;
+                break;
+
+            case 1:
+                state = StateInfo.Move;
+                waitingDuration = MaxWaitingTime + Time.deltaTime;
+                break;
+
+            case 2:
+                state = StateInfo.AttackMove;
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    /// <summary>
+    /// true = 안전모드() / false = 모든방 뒤짐
+    /// </summary>
+    /// <param name="value"></param>
+    public void SetSaveState(bool value)
+    {
+        saveMove = value;
     }
 
     public void Update()
@@ -92,9 +139,20 @@ public class NPCM_AI_Ctrl : MonoBehaviour
 
         if (Physics.Raycast(offsetpos, (Player.transform.position - offsetpos), out hit, MaxRayDistance))
         {
+            Debug.Log(hit.transform.name);
+            Debug.DrawLine(offsetpos, (Player.transform.position - offsetpos) * MaxRayDistance, Color.blue, 0.1f);
+
             if (hit.transform.tag == "MainCamera")
             {
                 state = StateInfo.AttackMove;
+            }
+            else if(OnMove == false)
+            {
+                state = StateInfo.State;
+            }
+            else
+            {
+                state = StateInfo.Move;
             }
         }
 
@@ -105,30 +163,27 @@ public class NPCM_AI_Ctrl : MonoBehaviour
                 waitingDuration += Time.deltaTime;//duration을 더해주고 만일 대기시간이 지났을때 다른곳 순찰하러감
                 if (waitingDuration > MaxWaitingTime)
                 {
+                    OnMove = true;
+                    waitingDuration = 0;
                     state = StateInfo.Move;
-                    ChoiceTarget = false;
                 }
                 break;
 
             case StateInfo.Move:
                 Debug.Log("State : Move");
+                //OnMove = true;
 
                 if (ChoiceTarget == false)
                 {
-                    if(GameObject.Find("First_Safe").gameObject != null)
-                    {
-                        TargetPos = FWays[Random.Range(0, Ways.Length)].transform.position;
-                    }
-                    else
-                    {
-                        TargetPos = Ways[Random.Range(0, Ways.Length)].transform.position;
-                    }
+                    Target = selectTarget();
                     ChoiceTarget = true;
                 }
-                agent.destination = TargetPos;
 
-                if (Vector3.Distance(offsetpos, TargetPos) < VecOffSet)
+                agent.destination = Target.transform.position;
+                if (agent.remainingDistance < VecOffSet)
                 {
+                    OnMove = false;
+                    ChoiceTarget = false;
                     state = StateInfo.State;
                 }
                 break;
@@ -138,15 +193,50 @@ public class NPCM_AI_Ctrl : MonoBehaviour
 
                 agent.destination = Player.transform.position;
 
-                if (Vector3.Distance(offsetpos, Player.transform.position) < attackRange)
+                if (agent.remainingDistance < attackRange)
                 {
-                    Debug.Log("Attack");
+                    anim.SetBool("Attack", true);
+                    anim.SetBool("Move", false);
+
+                    Debug.Log("남자 Attack부분 ui예외처리함 나중에 켜주기");
                     //Manager.UIManager_Instance.UIPopup("Scene_UI/UI_Scene_GameOver");
+                }
+
+                else
+                {
+                    anim.SetBool("Attack", true);
+                    anim.SetBool("Move", false);
                 }
                 break;
 
             default:
                 break;
         }
+    }
+
+    private GameObject selectTarget()
+    {
+        if(saveMove)
+        {
+            GameObject temp = Ways[Random.Range(0, Ways.Length - 1)];
+
+            while (temp == Target && temp.name != "C")
+            {
+                temp = Ways[Random.Range(0, Ways.Length - 1)];
+            }
+            return temp;
+        }
+        else
+        {
+            GameObject temp = Ways[Random.Range(0, Ways.Length - 1)];
+
+            while (temp == Target)
+            {
+                temp = Ways[Random.Range(0, Ways.Length - 1)];
+            }
+            return temp;
+        }
+
+
     }
 }

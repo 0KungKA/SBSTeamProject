@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 
 public class CameraMove : MonoBehaviour
 {
+    //Todo:나중에 데이터 테이블로 수치값 지정하기
     [SerializeField]
     float Hight = 8f;//카메라 높이
 
@@ -24,14 +25,22 @@ public class CameraMove : MonoBehaviour
     [SerializeField]
     float MinAngle = -40;
 
+    float MaxDistance = 13.0f;
+    public float GetMaxDistance() { return MaxDistance; }
+
     float Horizontal;
     float Vertical;
     Vector3 Movement;
 
-    //테스트 전용
+    //Todo:테스트 전용
     float OD;
 
     Rigidbody rb;
+
+    [SerializeField]
+    AudioSource audio;
+    GameObject[] npcs;
+    public bool PlayHeart = false;
 
     [SerializeField]
     float Speed = 1.0f;
@@ -39,7 +48,10 @@ public class CameraMove : MonoBehaviour
     protected internal void Init()
     {
         rb = GetComponent<Rigidbody>();
+        Manager.Effect_SoundPlayer = transform.GetComponentInChildren<EffectSoundPlayer>();
     }
+
+    
 
     void Update()
     {
@@ -47,6 +59,35 @@ public class CameraMove : MonoBehaviour
         if (anithing != null)
             return;
 
+        if(PlayHeart)
+        {
+            npcs = GameObject.FindGameObjectsWithTag("NPC");
+            if (npcs.Length != 0)
+            {
+                Vector3 closestPosition = Vector3.zero;
+                float closestDistance = Mathf.Infinity;
+
+                for (int i = 0; i < npcs.Length; i++)
+                {
+                    float distance = Vector3.Distance(transform.position, npcs[i].transform.position);
+
+                    if (distance < closestDistance)
+                    {
+                        closestPosition = npcs[i].transform.position;
+                        closestDistance = distance;
+                    }
+                }
+
+                if (closestDistance < 30)
+                {
+                    audio.pitch = 1.3f;
+                    audio.pitch = -closestDistance * 0.1f;
+                    if (audio.isPlaying == false)
+                        audio.Play();
+                }
+            }
+        }
+        
         if (Input.GetMouseButtonDown((int)UnityEngine.UIElements.MouseButton.LeftMouse)) 
         {
             ObjInteraction();
@@ -54,7 +95,6 @@ public class CameraMove : MonoBehaviour
         else
         {
             RaycastHit hit;
-            float MaxDistance = 10.0f;
             if (Physics.Raycast(transform.position, transform.forward, out hit, MaxDistance))
             {
                 if (hit.transform.tag == "Hide")
@@ -66,16 +106,23 @@ public class CameraMove : MonoBehaviour
                 }
             }
         }
+        
     }
 
     private void ObjInteraction()
     {
         RaycastHit hit;
-        float MaxDistance = 20.0f;
+        int layerMask = (-1) - (1 << LayerMask.NameToLayer("Glass"));
 
-        if(Physics.Raycast(transform.position, transform.forward, out hit, MaxDistance))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, MaxDistance, layerMask))
         {
-            if(hit.transform.GetComponent<Mission>() != null)
+            if (hit.transform.GetComponent<ItemInfo>() != null)
+            {
+                if(hit.transform.GetComponent<ItemInfo>().effectSound)
+                    Manager.Effect_SoundPlayer.EffectSoundPlay(hit.transform.GetComponent<ItemInfo>().effectSound);
+            }
+
+            if (hit.transform.GetComponent<Mission>() != null)
             {
                 hit.transform.GetComponent<Mission>().SendMSG();
             }
@@ -84,21 +131,15 @@ public class CameraMove : MonoBehaviour
                 Debug.Log("Ray : IObject");
                 //SendMessage로 함수를 호출해주고 반환은 필요없으니까 안하는옵션을 넣어줌
                 hit.transform.GetComponent<ObjectInteraction>().SendMessage("InteractionStart", SendMessageOptions.DontRequireReceiver);
-
-                if(hit.transform.GetComponent<SoundPlayer>() != null)
-                    hit.transform.GetComponent<SoundPlayer>().SendMessage("PlaySound",SendMessageOptions.DontRequireReceiver);
             }
-            else if(hit.transform.tag == "GetItem")//
+            else if(hit.transform.tag == "GetItem")//아이템 습득
             {
                 Debug.Log("Ray : GetItem");
                 if(hit.transform.GetComponent<ItemInteraction>() != null)
                 {
                     Manager.Origin_Object = hit.transform.gameObject;
 
-                    if(hit.transform.GetComponent<ItemInfo>().effectSound != null)
-                    {
-                        GameObject.FindWithTag("Effect").GetComponent<EffectSound>().EffectSoundPlay(hit.transform.GetComponent<ItemInfo>().effectSound);
-                    }
+                    
                     hit.transform.GetComponent<ItemInteraction>().SendMessage("ItemUISpawn", SendMessageOptions.DontRequireReceiver);
                 }
             }
@@ -120,6 +161,10 @@ public class CameraMove : MonoBehaviour
         Horizontal = Input.GetAxisRaw("Horizontal");
         Vertical = Input.GetAxisRaw("Vertical");
 
+        if(transform == null)
+        {
+
+        }
         Movement = transform.forward * Vertical;
         Movement += transform.right * Horizontal;
         Movement.y = 0;
@@ -148,7 +193,7 @@ public class CameraMove : MonoBehaviour
 
     protected internal void DebugMode()
     {
-        //포지션 변환
+        //Todo:테스트 전용
         Debug.Log("CameraMove 디버그 모드");
         Horizontal = Input.GetAxisRaw("Horizontal");
         Vertical = Input.GetAxisRaw("Vertical");
@@ -203,9 +248,22 @@ public class CameraMove : MonoBehaviour
             GameObject.Find("EventSystem").GetComponent<SceneInit>().StartCoroutine("SceneFade");
         }
 
-        else if (other.gameObject.name == "Speed_UP")
+        if(other.gameObject.name == "First_Safe")
         {
-            Speed += 0.1f;
+            GameObject[] npcs = GameObject.FindGameObjectsWithTag("NPC");
+            npcs[0].AddComponent<NPCM_AI_Ctrl>();
+            PlayHeart = true;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.name == "Speed_UP")
+        {
+            Speed += 0.25f;
+        }
+
+        if( other.gameObject.name == "Step_UP")
+        {
+            Hight = 13.0f;
         }
     }
 
@@ -213,7 +271,13 @@ public class CameraMove : MonoBehaviour
     {
         if (other.gameObject.name == "Speed_UP")
         {
-            Speed -= 0.1f;
+            Speed = 0.24f;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.name == "Step_UP")
+        {
+            Hight = 9.0f;
         }
     }
 }

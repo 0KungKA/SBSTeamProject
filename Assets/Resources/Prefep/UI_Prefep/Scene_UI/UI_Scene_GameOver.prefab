@@ -375,7 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61fb49ef1b046b49a87711d4a1cddec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseClose: 1
+  MouseClose: 0
 --- !u!1 &5584042049341497119
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,6 +448,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2833434875074152491}
     m_Modifications:
+    - target: {fileID: 1759282205120870215, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: OpenPrefepPath
+      value: Main
+      objectReference: {fileID: 0}
     - target: {fileID: 6523081713618010078, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
       propertyPath: m_Name
       value: Restart
@@ -464,6 +468,10 @@ PrefabInstance:
       propertyPath: m_SpriteState.m_PressedSprite
       value: 
       objectReference: {fileID: 21300000, guid: 58a9540ae8291cd4dbb3e6d560f29b85, type: 3}
+    - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Restart
+      objectReference: {fileID: 0}
     - target: {fileID: 8301111740689364710, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -582,6 +590,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2833434875074152491}
     m_Modifications:
+    - target: {fileID: 1759282205120870215, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: OpenPrefepPath
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6523081713618010078, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
       propertyPath: m_Name
       value: Lobby
@@ -598,6 +610,10 @@ PrefabInstance:
       propertyPath: m_SpriteState.m_PressedSprite
       value: 
       objectReference: {fileID: 21300000, guid: 47509ca2ea87a2147b950dbb3fd4a322, type: 3}
+    - target: {fileID: 8179660334248639379, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenLobby
+      objectReference: {fileID: 0}
     - target: {fileID: 8301111740689364710, guid: d6cb0100c599dce4986b9a0ecfaef5bf, type: 3}
       propertyPath: m_Sprite
       value: 

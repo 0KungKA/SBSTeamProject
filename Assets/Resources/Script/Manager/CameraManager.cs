@@ -9,6 +9,8 @@ public class CameraManager : MonoBehaviour
     bool MoveState = true;
     bool RotState = true;
 
+    public bool OnHide = false;
+
     [SerializeField]//디버그 전용
     bool DebugMode = false;
 
@@ -19,9 +21,7 @@ public class CameraManager : MonoBehaviour
 
     public void Start()
     {
-        OffMouseCursor();
-
-        CM = CM = GameObject.FindWithTag("MainCamera").gameObject.GetComponent<CameraMove>();
+        CM = GameObject.Find("Player_Camera").gameObject.GetComponent<CameraMove>();
         CM.Init();
     }
 
@@ -47,7 +47,10 @@ public class CameraManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
             DebugMode = !DebugMode;
 
-        if(DebugMode == true)
+        if (CM == null)
+            CM = GameObject.Find("Player_Camera").gameObject.GetComponent<CameraMove>();
+
+        if (DebugMode == true)
         {
             CM.DebugMode();
         }

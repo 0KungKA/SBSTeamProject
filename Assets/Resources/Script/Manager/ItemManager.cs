@@ -236,4 +236,54 @@ public class ItemManager : MonoBehaviour
             Manager.ErrorInfo_Instance.ErrorEnqueue("더이상 물건을 집을 손이 없어...");
         }
     }
+
+    public void CreateItem(string path ,GameObject obj)
+    {
+        GameObject Pgo = GetNullItemSlot();
+        if (Pgo != null)
+        {
+            GameObject Cgo = Manager.Instance.Instantiate(Resources.Load<GameObject>(DefaultPath + "/" + path));
+            Cgo.transform.parent = Pgo.transform;
+            Cgo.GetComponent<Transform>().localPosition = Vector3.zero;
+
+            Cgo.transform.localRotation = Quaternion.identity;
+            if (Cgo.transform.gameObject.layer == (int)Layer_Enum.LayerInfo.ViewItem)
+            {
+                Manager.UIManager_Instance.UIPopup("UI_Item_View");
+            }
+            else
+            {
+                Debug.Log(transform.name + " 의 레이어가 ViewItem이 아닙니다. 설정 확인해주세요");
+            }
+
+            GameObject Cgo2 = Manager.Instance.Instantiate(obj);
+            Cgo2.transform.parent = GameObject.FindWithTag("Target").transform;
+            Cgo2.transform.parent.GetComponent<RenderViewObj>().Targetset(Cgo2);
+            /*Cgo2.transform.parent.GetComponent<RenderViewObj>().Target = Cgo2.transform.gameObject;
+            Cgo2.transform.localPosition = Vector3.zero;
+            Cgo2.transform.localScale = Vector3.one;
+            Cgo2.transform.localRotation = Quaternion.identity;*/
+
+            GameObject gm = GameObject.Find("UI_Item_View");
+            gm = gm.transform.Find("Item_Explanation_BGImg").gameObject;
+            gm = gm.transform.GetChild(0).gameObject;
+            string[] st = gm.GetComponent<TypeWriterEffect>().fulltext;
+            if (Cgo2.GetComponent<ItemInfo>() != null)
+            {
+                st[0] = new string(Cgo2.GetComponent<ItemInfo>().ItemExplanatino);
+            }
+            /*gameObject.layer = (int)Layer_Enum.LayerInfo.ViewItem;
+            gameObject.transform.parent = GameObject.FindWithTag("Target").transform;
+            gameObject.transform.localPosition = Vector3.zero;*/
+            //아래 디스트로이로 지우긴하는데 지우기보단 오브젝트를 타겟으로 옮겨서 렌더타깃시킬려고했는데 크기가 너무 작음
+            //크기를 자동으로 설정해주는 코드를 짜야할듯
+
+            Debug.Log("ItemInteraction 코드 수정 필요");
+            //Destroy(gameObject);
+        }
+        else
+        {
+            Manager.ErrorInfo_Instance.ErrorEnqueue("더이상 물건을 집을 손이 없어...");
+        }
+    }
 }

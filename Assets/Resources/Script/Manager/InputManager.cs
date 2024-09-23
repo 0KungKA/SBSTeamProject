@@ -10,6 +10,9 @@ public class InputManager : MonoBehaviour
 
     public GameObject CurrentSelectItem;
 
+    bool OnMap = false;
+    public void StartOnMap() { OnMap = true; }
+
     void Start()
     {
         CurrentSelectItem = null;
@@ -20,19 +23,21 @@ public class InputManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            Manager.UIManager_Instance.UIPopup("UI_Puase");
+            GameObject npcTalk = GameObject.Find("UI_ChatNPC");
+            GameObject Fade = GameObject.Find("_Canvas");
+
+            if (npcTalk == null && Fade == null)
+                Manager.UIManager_Instance.UIPopup("UI_Puase");
+        }
+        else if(Input.GetKeyDown(KeyCode.M) && OnMap)
+        { 
+            Manager.UIManager_Instance.UIPopup("UI_Map");
         }
     }
 
     public void SelectItem(GameObject item)
     {
-        /*if (CurrentSelectItem == item)
-        {
-            CurrentSelectItem = null;
-            return;
-        }
-        else*/
-            CurrentSelectItem = item;
+        CurrentSelectItem = item;
 
         if(item.GetComponent<ItemInfo>() != null)
         {

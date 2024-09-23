@@ -11,7 +11,9 @@ using static UnityEngine.UI.CanvasScaler;
 public class SceneInit : MonoBehaviour
 {
     [SerializeField]
-    CanvasRenderer Fade;
+    GameObject Fade;
+    CanvasRenderer _Fade;
+    //CanvasRenderer Fade;
 
     [SerializeField]
     float fadeTime = 5.0f;
@@ -21,15 +23,19 @@ public class SceneInit : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     IEnumerator SceneFade()
     {
+        GameObject go = Instantiate(Fade).gameObject;
+        go.gameObject.SetActive(true);
+        _Fade = go.GetComponent<CanvasRenderer>();
+
+        fadeDuration = 0;
         while (fadeDuration < fadeTime)
         {
-            Debug.Log(transform.name + "while 작동중");
-            Fade.SetAlpha(Mathf.Lerp(1f, 0f, fadeDuration / fadeTime));
+            _Fade.SetAlpha(Mathf.Lerp(1f, 0f, fadeDuration / fadeTime));
             fadeDuration += Time.deltaTime;
             yield return null;
         }
@@ -37,10 +43,11 @@ public class SceneInit : MonoBehaviour
         Manager.Instance.Setting();
         transform.GetComponent<Synthesis>().Init();
         Manager.UIManager_Instance.SpawnRenderView();
-        Manager.UIManager_Instance.UIPopup("UI_ChatNPC");
+        GameObject.Find("EventSystem").GetComponent<NPCTalk>().StartNPCTalk(1);
 
         //뭔가 더 추가할것들 추가하기
-        Destroy(Fade.transform.parent);
+
+        Destroy(go.gameObject);
         yield break;
     }
 }

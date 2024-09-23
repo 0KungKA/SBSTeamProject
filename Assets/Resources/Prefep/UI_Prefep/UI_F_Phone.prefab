@@ -528,6 +528,10 @@ MonoBehaviour:
   ClearTarget:
   - {fileID: 8644980964520182542}
   OnEnableTarge: []
+  OnDisableAndEnableTarge: []
+  StartAudioClip: {fileID: 0}
+  effectSoundEnd: {fileID: 0}
+  GM: {fileID: 0}
   Test: 0
 --- !u!1 &1539205865239291332
 GameObject:
@@ -3182,7 +3186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61fb49ef1b046b49a87711d4a1cddec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseClose: 1
+  MouseClose: 0
 --- !u!1 &8714498003840490797
 GameObject:
   m_ObjectHideFlags: 0

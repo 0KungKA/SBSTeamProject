@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 [AddComponentMenu("devchanho/ObjectInteraction")]//빠르게 오브젝트에 컴포넌트를 추가하기위해 AddComponent 메뉴에 추가해둠
 public class ObjectInteraction : MonoBehaviour
 {
+    int interactionGaugeValue;
+
     [Header("주의 : 로컬포지션으로 밀어버림")]
     [SerializeField]
     [Header("오브젝트를 상호작용할때 목표로 잡은 포지션")]
@@ -32,6 +34,8 @@ public class ObjectInteraction : MonoBehaviour
     bool Move;
     [SerializeField]
     bool Open;
+    [SerializeField]
+    bool hide;
 
     [SerializeField]
     [Header("Pos Speed / Rot Speed")]
@@ -45,11 +49,12 @@ public class ObjectInteraction : MonoBehaviour
     Vector3 SavePos;//원래 Position
     Vector3 SaveRot;//원래 Rotation
 
-    bool thisMove = false;//이게 이미 움직인 오브젝트인가에 대한 bool 값
+    public bool thisMove = false;//이게 이미 움직인 오브젝트인가에 대한 bool 값
     bool OnMove = false;//움직이고 있는지 아닌지 확인하는 bool 값
 
     bool OnHide = false;//숨은 상태인지 아닌지 확인하는 bool값
 
+    //Todo:테스트 전용
     [SerializeField]
     bool OnTest = false;
 
@@ -59,6 +64,8 @@ public class ObjectInteraction : MonoBehaviour
     Vector3 CameraPos;*/
     private void Start()
     {
+        interactionGaugeValue = Manager.DataManager_Instance.GetBalanceValue(3);//데이터 테이블에서 상호작용시 얼마나 차는지 가져옴
+
         if (gameObject.GetComponent<MeshCollider>() == null)//Mesh collider가 없는경우
         {
             //Mesh Collider를 추가해야하지만 피봇이 어긋나서 MT로 따로 잡아준 경우가 있으니 예외처리
@@ -76,25 +83,25 @@ public class ObjectInteraction : MonoBehaviour
         {
             audioSorce = transform.GetComponent<AudioSource>();
             if(audioSorce == null)
+            {
                 audioSorce = transform.AddComponent<AudioSource>();
+                //Todo:여기 볼륨설정 나중에 설정창이랑 연동할꺼면 데이터 저장 로드기능 구현이랑 그거 환경설정에 적용하고 환경설정값 가져와야함
+                audioSorce.volume = 1.0f;
+            }
 
+            audioSorce.loop = false;
             audioSorce.playOnAwake = false;
-            audioSorce.maxDistance = 10.0f;
             audioSorce.clip = objectInteractionSount;
+            audioSorce.maxDistance = 20.0f;
         }
 
-        if(TargetPos ==  Vector3.zero && TargetRot == Vector3.zero)
+        if (TargetPos ==  Vector3.zero && TargetRot == Vector3.zero)
         {
             if(transform.parent != null)
                 Debug.Log(transform.parent.name + " " + gameObject.name + " : 설정값 오류");
 
             else if (transform.parent != null)
                 Debug.Log(gameObject.name + " : 설정값 오류");
-        }
-
-        if (transform.name == "L_Door_Pivot")
-        {
-            int a = 10;
         }
 
         //움직이든 돌리든 어쨋든 다시 원상태로 돌려야하기때문에 두개다 받아줌
@@ -107,14 +114,13 @@ public class ObjectInteraction : MonoBehaviour
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.O))
+        //Todo:테스트 전용 삭제할것
+        if (Input.GetKeyDown(KeyCode.O))
         {
             OnTest = !OnTest;
-            Manager.ErrorInfo_Instance.ErrorEnqueue("모든 유동 오브젝트 테스트 모드 켜짐");
         }
         if (Input.GetKeyDown(KeyCode.P) && OnTest == true)
         {
-            Manager.ErrorInfo_Instance.ErrorEnqueue("모든 유동 오브젝트 테스트 모드 켜짐");
             InteractionStart();
         }
     }
@@ -124,12 +130,15 @@ public class ObjectInteraction : MonoBehaviour
     {
         if (OnMove) return;//오브젝트가 이미 상호작용을 해서 움직이고있는 상태이면 리턴박아서 더 못들어오게 설정
 
-        if(audioSorce != null)
+        if(GameObject.Find("EventSystem").GetComponent<NPC_GaugeUI>().GetOnGauge())
+            GameObject.Find("EventSystem").GetComponent<NPC_GaugeUI>().UpGauge(interactionGaugeValue);
+
+        if (audioSorce != null)
         {
             audioSorce.Play();
         }
         
-        if(L != true && R != true && Open == false)
+        if(Move)
         {
             if (thisMove == false)
             {
@@ -140,27 +149,29 @@ public class ObjectInteraction : MonoBehaviour
                 StartCoroutine(MovePos(SavePos));
             }
         }
-        else if(L)
+        else if(Rot)
         {
-            if (thisMove == false)
+            if (L) 
             {
-                StartCoroutine(RotL(TargetRot));//힌지가 왼쪽에 있으니까 열릴떄는 RotL 닫힐때는 RotR
+                if (thisMove == false)
+                {
+                    StartCoroutine(RotL(TargetRot));//힌지가 왼쪽에 있으니까 열릴떄는 RotL 닫힐때는 RotR
+                }
+                else if (thisMove == true)
+                {
+                    StartCoroutine(RotR(SaveRot));
+                }
             }
-            else if (thisMove == true)
+            else if (R)
             {
-                StartCoroutine(RotR(SaveRot));
-            }
-            
-        }
-        else if(R)
-        {
-            if (thisMove == false)//힌지가 오른쪽에 있으니까 열릴떄는 RotR 닫힐때는 RotL
-            {
-                StartCoroutine(RotR(TargetRot));
-            }
-            else if (thisMove == true)
-            {
-                StartCoroutine(RotL(SaveRot));
+                if (thisMove == false)//힌지가 오른쪽에 있으니까 열릴떄는 RotR 닫힐때는 RotL
+                {
+                    StartCoroutine(RotR(TargetRot));
+                }
+                else if (thisMove == true)
+                {
+                    StartCoroutine(RotL(SaveRot));
+                }
             }
         }
         else if(Open)//보석함류 열기 닫기
@@ -176,6 +187,7 @@ public class ObjectInteraction : MonoBehaviour
                 StartCoroutine(RotClose(SaveRot));
             }
         }
+        
     }
 
     IEnumerator MovePos(Vector3 TargetPos)//유동오브젝트 와리가리 해주는 코드
@@ -391,6 +403,7 @@ public class ObjectInteraction : MonoBehaviour
                 {
                     gm.transform.Rotate(new Vector3(0, 90, 0));
                     OnHide = true;
+                    Manager.CM_Instance.OnHide = OnHide;
                 }
                 yield return null;
             }
@@ -409,6 +422,7 @@ public class ObjectInteraction : MonoBehaviour
                     {
                         Manager.CM_Instance.SetMoveState(true);
                         OnHide = false;
+                        Manager.CM_Instance.OnHide = OnHide;
                         yield break;
                     }
                 }

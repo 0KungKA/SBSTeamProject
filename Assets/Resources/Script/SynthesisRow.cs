@@ -17,4 +17,7 @@ public class SynthesisRow
 
     [Tooltip("합성 여부 (합성 했을시 True로 바꾸고 더이상 합성 안함)")]
     internal bool Check = false;
+
+    [Tooltip("여기에 오브젝트 넣으면 이걸 3D 뷰로 보여줌")]
+    public GameObject RenderObj;
 }

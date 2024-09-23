@@ -46,8 +46,7 @@ GameObject:
   - component: {fileID: 1042323761450368548}
   - component: {fileID: 8243859108762826976}
   - component: {fileID: 5400743969382668514}
-  - component: {fileID: 5149066660543119217}
-  - component: {fileID: 6001330219347790299}
+  - component: {fileID: -3999114289588013513}
   m_Layer: 6
   m_Name: UI_ChatNPC
   m_TagString: OnMouse
@@ -142,7 +141,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5149066660543119217
+--- !u!114 &-3999114289588013513
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,19 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61fb49ef1b046b49a87711d4a1cddec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseClose: 1
---- !u!114 &6001330219347790299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1672782357205379371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d0cb1ef39c9a749b7019f45c76ad15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  MouseClose: 0
 --- !u!1 &2079261560524008420
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +166,7 @@ GameObject:
   - component: {fileID: 3307547063010782612}
   - component: {fileID: 5259670179284174100}
   m_Layer: 0
-  m_Name: Text (Legacy)
+  m_Name: NameField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,14 +291,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.57254905}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 78515b4f453451e49a789a787ad3f75b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -596,8 +583,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2588387809571201781}
-        m_TargetAssemblyTypeName: TypeWriterEffect, Assembly-CSharp
+      - m_Target: {fileID: 9202359114314763958}
+        m_TargetAssemblyTypeName: NPCTalkTypingScript, Assembly-CSharp
         m_MethodName: End_Typing
         m_Mode: 1
         m_Arguments:
@@ -694,8 +681,8 @@ GameObject:
   - component: {fileID: 6934243021809155797}
   - component: {fileID: 6122987640091920718}
   - component: {fileID: 7548951395144647767}
-  - component: {fileID: 2588387809571201781}
   - component: {fileID: 19213950844837305}
+  - component: {fileID: 9202359114314763958}
   m_Layer: 0
   m_Name: Chat_Field
   m_TagString: Untagged
@@ -764,45 +751,6 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "1\uC904\uC5D0 35\uAE00\uC790 x 5\uC904 = 175\uAE00\uC790"
---- !u!114 &2588387809571201781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6837005630785793100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 040f053e82d1f864db115b41b2a91765, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectAudio: {fileID: 19213950844837305}
-  delay: 0.05
-  Skip_delay: 0
-  cnt: 0
-  fulltext:
-  - "\uC544\uADF8\uB124\uC2A4:\uC5EC\uBCF4 \uC774\uBC88\uC5D0 \uB370\uB824\uC628
-    \uC544\uC774\uAC00 \uB9C8\uC9C1\uB9C9\uC778\uAC70 \uD655\uC2E4\uD55C\uAC70\uC8E0?\uC624\uBA74
-    \uD611\uC0C1\uC744 \uD55C\uBC88 \uD574\uBD10\uC57C\uACA0\uC5B4\uC694."
-  - "\uCF00\uC77C\uB7FD:\uB2F9\uC5F0\uD558\uC8E0. \uC800 \uC544\uC774\uAC00 \uB9C8\uC9C0\uB9C9\uC774\uC5D0\uC694."
-  - "\uC544\uADF8\uB124\uC2A4:\uB9C8\uC9C0\uB9C9\uC778 \uB9CC\uD07C \uC880 \uC58C\uC804\uD55C
-    \uC544\uC774\uC600\uC73C\uBA74 \uC88B\uACA0\uC5B4\uC694.\\n\uC800\uBC88 \uC544\uC774\uCC98\uB7FC
-    \uADF8\uB7EC\uBA74(\uD55C\uC228)......"
-  - "\uCF00\uC77C\uB7FD:\uC800\uB3C4 \uADF8\uB7F0 \uC544\uC774\uB77C\uBA74 \uC774\uBC88\uC5D0\uB294
-    \uC870\uC6A9\uD788 \uB118\uC5B4\uAC00\uB294 \uAC74 \uD798\uB4E4 \uAC83 \uAC19\uB124\uC694."
-  - "\uC544\uADF8\uB124\uC2A4:20\uBD84 \uB4A4\uBA74 \uC544\uC774\uB97C \uBC14\uCCD0\uC57C
-    \uD558\uB2C8 \uC800\uB294 \uC900\uBE44\uB97C \uD558\uB7EC \uAC00\uBCFC\uAC8C\uC694."
-  - "\uCF00\uC77C\uB7FD:\uBC8C\uC368 \uC2DC\uAC04\uC774 \uADF8\uB807\uAC8C \uB410\uAD70\uC694?\\n
-    \uB9C8\uC9C0\uB9C9 \uC544\uC774\uC778 \uB9CC\uD07C \uC800\uB3C4 \uC544\uC774\uB97C
-    \uB2E4\uC2DC \uB9CC\uB0A0 \uC900\uBE44\uB97C \uD574\uC57C\uACA0\uB124\uC694"
-  - "\uB098:\uD070\uC77C\uC774\uB2E4!\\n\uC774\uB300\uB85C\uC788\uB2E4\uAC04 \uB0A9\uCE58\uBC94\uB4E4\uC774
-    \uB098\uB97C \uD314\uC544\uBC84\uB9B4 \uAC70\uC57C.\\n\uC5C5\uC790\uAC00 \uC624\uAE30\uC804\uC5D0
-    \uD0C8\uCD9C\uD574\uC57C \uD574."
-  dialog_cnt: 7
-  text_exit: 0
-  text_full: 0
-  text_cut: 0
-  npcNameTextField: {fileID: 5259670179284174100}
 --- !u!82 &19213950844837305
 AudioSource:
   m_ObjectHideFlags: 0
@@ -899,6 +847,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &9202359114314763958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6837005630785793100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f812a700fce22b54485a7b43be6fd7fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectAudio: {fileID: 0}
+  delay: 0.0459
+  Skip_delay: 0
+  PObject: {fileID: 1672782357205379371}
+  LeftNPC: {fileID: 6155954588805424027}
+  RightNPC: {fileID: 7331130732152338302}
+  text_exit: 0
+  text_full: 0
+  text_cut: 0
+  npcNameTextField: {fileID: 5259670179284174100}
 --- !u!1 &7331130732152338302
 GameObject:
   m_ObjectHideFlags: 0

@@ -72,30 +72,34 @@ public class UIManager : MonoBehaviour
     /// <param name="UI_Path"></param>
     public void UIPopup(string UI_Path)
     {
-        
         GameObject prefep = Resources.Load<GameObject>(defualPath + UI_Path);
-        if (prefep != null)
+        GameObject go = GameObject.Find(prefep.name);
+        if (go == null)
         {
-            foreach(GameObject obj in UIListsStack)//혹시모를 상황을 대비해서 같은이름으로 UI가 들어오면 바로 return박아버림
+            if (prefep != null)
             {
-                if(obj != null)
-                    if(obj.name == prefep.name)//이럴려고 위에서 스폰할때(Clone)지움
+                foreach (GameObject obj in UIListsStack)//혹시모를 상황을 대비해서 같은이름으로 UI가 들어오면 바로 return박아버림
+                {
+                    if (obj != null)
+                        if (obj.name == prefep.name)//이럴려고 위에서 스폰할때(Clone)지움
+                            return;
+                }
+                if (prefep.name == "UI_Instant_Popup") //ErrorInfo쪽에서 들어오는 UI는 자동삭제되기때문에 따로Push안해줌
+                {
+                    if (GameObject.Find("UI_Instant_Popup"))
                         return;
-            }
-            if (prefep.name == "UI_Instant_Popup") //ErrorInfo쪽에서 들어오는 UI는 자동삭제되기때문에 따로Push안해줌
-            {
-                if (GameObject.Find("UI_Instant_Popup"))
+
+                    SpawnUI(prefep);
                     return;
+                }
+                UIListsStack.Push(SpawnUI(prefep));//스택 Push
 
-                SpawnUI(prefep);
-                return;
             }
-            UIListsStack.Push(SpawnUI(prefep));//스택 Push
-
+            else
+                Debug.Log("UIPopup : " + "Error path" + UI_Path);//프리팹을 못찾으면 어떤 프리팹을 못찾았는지 확인하기위해 주소전체를 디버그로그에 출력함
         }
-        else
-            Debug.Log("UIPopup : " + "Error path" + UI_Path);//프리팹을 못찾으면 어떤 프리팹을 못찾았는지 확인하기위해 주소전체를 디버그로그에 출력함
     }
+
     /// <summary>
     /// UI가 Popup을 거치지 않고 생성된 경우 호출하는 함수
     /// </summary>
@@ -122,6 +126,24 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+        if(UIListsStack.Count > 1)
+        {
+            foreach (GameObject obj in UIListsStack)
+                if (obj == null)
+                {
+                    UIListsStack.Pop();
+                }
+                /*else if(obj)
+                {
+                    if (UIListsStack.Peek().gameObject.GetComponent<UIBase>().MouseClose == true)
+                    {
+                        Manager.CM_Instance.OffMouseCursor();
+                    }
+                    else
+                        Manager.CM_Instance.OnMouseCursor();
+                }*/
+        }
+        
         //Debug.Log(UIListsStack.Count);
     }
 
@@ -151,12 +173,14 @@ public class UIManager : MonoBehaviour
             return;
 
         GameObject go = UIListsStack.Pop();
+        Destroy(go);
 
-        if(go !=null)
+        if (UIListsStack.Peek().gameObject.GetComponent<UIBase>().MouseClose == true)
         {
-            //Debug.Log(transform.name + "StopAllCoroutines 작동");
-            //StopAllCoroutines();
-            Destroy(go);
+            Manager.CM_Instance.OffMouseCursor();
         }
+        else
+            Manager.CM_Instance.OnMouseCursor();
+
     }
 }

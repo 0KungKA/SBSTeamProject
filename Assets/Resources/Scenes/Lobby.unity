@@ -123,6 +123,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &21062659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 711777964187176587, guid: 95e3e180eb475e3419bedd48252a0e94, type: 3}
+  m_PrefabInstance: {fileID: 1361423758}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &21062664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21062659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f824a1cca9c7f842927bffb7be159c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CSVPath: Script/Systems/CSV_File/
 --- !u!1 &213028935
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,8 +297,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896103050}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -638,7 +656,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 711777964187176587, guid: 95e3e180eb475e3419bedd48252a0e94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 21062664}
   m_SourcePrefab: {fileID: 100100000, guid: 95e3e180eb475e3419bedd48252a0e94, type: 3}
 --- !u!1001 &1474680144
 PrefabInstance:
@@ -2419,6 +2440,10 @@ MonoBehaviour:
   keyName: 
   ClearTarget: []
   OnEnableTarge: []
+  OnDisableAndEnableTarge: []
+  StartAudioClip: {fileID: 0}
+  effectSoundEnd: {fileID: 0}
+  GM: {fileID: 0}
   Test: 0
 --- !u!1 &1169484592529852939
 GameObject:
@@ -9812,6 +9837,10 @@ MonoBehaviour:
   keyName: 
   ClearTarget: []
   OnEnableTarge: []
+  OnDisableAndEnableTarge: []
+  StartAudioClip: {fileID: 0}
+  effectSoundEnd: {fileID: 0}
+  GM: {fileID: 0}
   Test: 0
 --- !u!23 &8334550348672382202
 MeshRenderer:
@@ -10880,8 +10909,8 @@ MeshFilter:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 213028937}
   - {fileID: 896103053}
+  - {fileID: 213028937}
   - {fileID: 1584305979}
   - {fileID: 5063145718585784996}
   - {fileID: 939274783}

@@ -9,7 +9,7 @@ public class UIBase : MonoBehaviour
 {
     [SerializeField]
     [Header("True = Æ÷ÀÎÅÍ ¼û±è / False = Æ÷ÀÎÅÍ ¾È¼û±è (±âº» True)")]
-    private bool MouseClose = true;
+    public bool MouseClose = true;
     public void Start()
     {
         if (gameObject.layer == (int)Layer_Enum.LayerInfo.System_UI)
@@ -33,12 +33,14 @@ public class UIBase : MonoBehaviour
     {
         if(MouseClose)
         {
-            if (Manager.UIManager_Instance.GetUILisetStackCount() >= 1)
+            /*if (Manager.UIManager_Instance.GetUILisetStackCount() >= 1)
             {
                 if (Manager.UIManager_Instance.UIListsStackReturn().Peek().transform.tag != "OnMouse" )
                     Manager.CM_Instance.OffMouseCursor();
-            }
 
+                //if(Manager.UIManager_Instance.)
+            }
+*/
             if (gameObject.layer != (int)Layer_Enum.LayerInfo.System_UI)
                 Manager.UIManager_Instance.CloseUI();
         }

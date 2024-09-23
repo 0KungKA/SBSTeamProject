@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
@@ -11,7 +12,7 @@ public class Manager : MonoBehaviour
     static Manager M_instance;
     public static Manager Instance { get { return M_instance; } }
 
-    DataManager _DataManager = new DataManager();
+    DataManager _DataManager;
     public static DataManager DataManager_Instance { get { return Instance._DataManager; } }
 
     ErrorInfo _errorInfo = new ErrorInfo();
@@ -32,10 +33,24 @@ public class Manager : MonoBehaviour
             else
                 return null;
         }
-        set
+        set { Instance._OriginObject = value; }
+    }
+
+    EffectSoundPlayer _EffectSoundPlayer;
+    public static EffectSoundPlayer Effect_SoundPlayer
+    {
+
+        get
         {
-            Instance._OriginObject = value;
+            if (Instance._EffectSoundPlayer != null)
+                return Instance._EffectSoundPlayer;
+            else
+            {
+                return GameObject.Find("EffectSound").GetComponent<EffectSoundPlayer>();
+            }
         }
+
+        set { Instance._EffectSoundPlayer = value; }
     }
 
     GameObject[] _CallObject = null;
@@ -57,7 +72,7 @@ public class Manager : MonoBehaviour
     private void Awake()
     {
         Init();
-        _UIManager.Init();
+        //_UIManager.Init();
     }
 
     static void Init()
@@ -77,6 +92,7 @@ public class Manager : MonoBehaviour
         }
 
         Instance._errorInfo = Instance.GetComponent<ErrorInfo>();
+        Instance._DataManager = Instance.GetComponent<DataManager>();
 
         if (Instance._UIManager == null)
             Instance._UIManager = Manager_Obj.AddComponent<UIManager>();
@@ -110,8 +126,10 @@ public class Manager : MonoBehaviour
     // 호출을 예약해서 이 함수는 매 씬마다 호출된다.
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {//제대로 실행되는지 확인함
+
         if(_UIManager.GetUILisetStackCount() >= 1)
             _UIManager.CloseAllUI();
+
         _UIManager.Init();
     }
 

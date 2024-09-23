@@ -7,114 +7,113 @@ using UnityEngine.UI;
 
 public class CutSceneScript : MonoBehaviour
 {
-    Sprite[] CutSceneLists;
+    List<CutSceneClass> cutScenes = new List<CutSceneClass>();
 
     List<Sprite> OpCutScenes = new List<Sprite>();
+    List<AudioClip> OpAudioClip = new List<AudioClip>();
+
     List<Sprite> EdCutScenes = new List<Sprite>();
+    List<AudioClip> EdAudioClip = new List<AudioClip>();
+
 
     [SerializeField]
-    float CutTime = 5.0f;
+    float CutTime = 3.0f;
     [SerializeField]
     float CutDuration = 0.0f;
 
     [SerializeField]
-    GameObject Canvas;
-
-    int number = 0;
+    GameObject _Canvas;
 
     private void Start()
     {
-        CutSceneLists = GameObject.Find("EventSystem").GetComponent<DataManager>().GetCutSceneLists();
-        ClassifyCutScene();//컷씬 분류작업 실행
-        StartCoroutine(OpCutScene());
+        cutScenes = Manager.DataManager_Instance.GetCutSceneLists();
+        PlayeCutScene(1);
     }
 
-    private void CreateCutSceneCanvas()
+    /// <summary>
+    /// 1 = 오프닝 , 2 = 엔딩
+    /// </summary>
+    /// <param name="value"></param>
+    public void PlayeCutScene(int value)
     {
-        Instantiate(Canvas);
+        StartCoroutine(CutScene(value));
     }
 
-    private void ClassifyCutScene()//컷신 분류작업
+    IEnumerator CutScene(int value)
     {
-        for (int i = 0; i < CutSceneLists.Length; i++)
+        int startPoint = -1;
+        int number = 0;
+        int cutSceneCount = 0;
+
+        GameObject canvas = Instantiate(_Canvas);
+        canvas.gameObject.SetActive(true);
+        canvas.transform.SetAsLastSibling();
+
+        // Canvas의 Image 컴포넌트를 미리 캐싱
+        Image cutSceneImage = canvas.transform.GetChild(0).GetComponent<Image>();
+
+        EffectSoundPlayer soundPlayer = Manager.Effect_SoundPlayer;
+
+        // cutScenes에서 주어진 value 타입의 컷신 찾기
+        for (int i = 0; i < cutScenes.Count; i++)
         {
-            if (CutSceneLists[i].name.Contains("Op"))
+            if (cutScenes[i].type == value)
             {
-                OpCutScenes.Add(CutSceneLists[i]);
-            }
-            else if (CutSceneLists[i].name.Contains("Ed"))
-            {
-                EdCutScenes.Add(CutSceneLists[i]);
-            }
-        }
-        NumberingClassify();
-    }
-
-    public void StartCutScene(string Tag)
-    {
-        if(Tag == "Op")
-        {
-            StartCoroutine(OpCutScene());
-        }
-    }
-
-    private void NumberingClassify()//오프닝 컷씬 순서대로 정렬
-    {
-        List<Sprite> temp = new List<Sprite>();
-
-        for(int i = 0; i < OpCutScenes.Count; i++)
-        {
-            for (int j = 0; j < OpCutScenes.Count; j++) 
-            {
-                string demper = Regex.Replace(OpCutScenes[j].name, @"\D", "");
-
-                bool Search = (i == int.Parse(demper)) ? true : false;
-
-                if (Search)
-                {
-                    temp.Add(OpCutScenes[j]);
-                    break;
-                }
+                if (startPoint == -1)
+                    startPoint = i; // 첫 번째로 일치하는 인덱스 저장
+                cutSceneCount++;
             }
         }
-        OpCutScenes = temp;
 
-        temp = null;
-        for (int i = 0; i < EdCutScenes.Count; i++)
+        // 예외 처리: 해당 타입의 컷신이 없는 경우 코루틴 종료
+        if (cutSceneCount == 0)
         {
-            for (int j = 0; j < EdCutScenes.Count; j++)
-            {
-                if (EdCutScenes[j].name.Contains(j.ToString()))
-                {
-                    temp.Add(EdCutScenes[j]);
-                }
-            }
+            yield break;
         }
-        EdCutScenes = temp;
-    }
 
-    IEnumerator OpCutScene()
-    {
-        while (number < OpCutScenes.Count)
+        // 컷신 재생 루프
+        while (number < cutSceneCount)
         {
-            Debug.Log(transform.name + "while 작동중");
+            // 각 컷신이 끝날 때까지 시간 경과 처리
+            cutSceneImage.sprite = cutScenes[startPoint + number].img;
+
+            if(cutScenes[startPoint + number].soundSource.name != "")
+                soundPlayer.EffectSoundPlay(cutScenes[startPoint + number].soundSource);
+
             while (CutDuration < CutTime)
             {
-                Debug.Log(transform.name + "while 작동중");
-                Canvas.transform.GetChild(0).GetComponent<Image>().sprite = OpCutScenes[number];
-                CutDuration += Time.deltaTime;
-                yield return null;
+
+                // Space 키로 컷신 스킵 처리
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    CutDuration = CutTime + Time.deltaTime;
+                }
+                else
+                {
+                    CutDuration += Time.deltaTime;
+                }
+
+                yield return null;  // 다음 프레임으로 넘기기
             }
+
+            // 다음 컷신으로 넘어가기
             number++;
-            CutDuration = 0.0f;
-            yield return null;
+            CutDuration = 0.0f;  // 다음 컷신을 위해 초기화
+            yield return null;  // 한 프레임 대기
         }
 
-        transform.GetComponent<Synthesis>().Init();
-        GetComponent<SceneInit>().StartCoroutine("SceneFade");
+        if(value == 1)
+        {
+            transform.GetComponent<Synthesis>().Init();
+            GetComponent<SceneInit>().StartCoroutine("SceneFade");
+        }
+        else if(value == 2)
+        {
+            Debug.Log("엔딩 크레딩 넣어주기");
+        }
 
-        //뭔가 더 추가할것들 추가하기
-        Destroy(Canvas);
-        yield break;
+        // Canvas 삭제
+        Destroy(canvas);
+        yield break;  // 코루틴 종료
     }
 }

@@ -39,6 +39,12 @@ public class ButtonInteraction : MonoBehaviour
         SceneManager.LoadScene("Lobby");
     }
 
+    public void Restart()
+    {
+        OpenLobby();
+        SceneManager.LoadScene("Main");
+    }
+
     public void Close()
     {
         Manager.UIManager_Instance.CloseUI();

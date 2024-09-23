@@ -90,6 +90,7 @@ public class ItemInteraction : MonoBehaviour
             if (transform.gameObject.layer == (int)Layer_Enum.LayerInfo.ViewItem)
             {
                 Manager.UIManager_Instance.UIPopup("UI_Item_View");
+                Manager.Effect_SoundPlayer.EffectSoundPlay(Cgo.GetComponent<ItemInfo>().effectSound);
             }
             else
             {
@@ -99,9 +100,6 @@ public class ItemInteraction : MonoBehaviour
             GameObject Cgo2 = gameObject;
             RenderViewObj Rvo = GameObject.FindWithTag("Target").GetComponent<RenderViewObj>();
             Rvo.Targetset(Cgo2);
-            /*Cgo2.transform.parent = GameObject.FindWithTag("Target").transform;
-            Cgo2.transform.parent.GetComponent<RenderViewObj>().Target = Cgo2.transform.gameObject;
-            Cgo2.transform.localPosition = Vector3.zero;*/
             GameObject gm = GameObject.Find("UI_Item_View");
             gm = gm.transform.Find("Item_Explanation_BGImg").gameObject;
             gm = gm.transform.GetChild(0).gameObject;
@@ -110,12 +108,10 @@ public class ItemInteraction : MonoBehaviour
             if (Cgo2.GetComponent<ItemInfo>() != null)
             {
                 st[0] = new string(Cgo2.GetComponent<ItemInfo>().ItemExplanatino);
-                //Manager.ErrorInfo_Instance.ErrorEnqueue(st[0]);
             }
 
             //아래 디스트로이로 지우긴하는데 지우기보단 오브젝트를 타겟으로 옮겨서 렌더타깃시킬려고했는데 크기가 너무 작음
             //크기를 자동으로 설정해주는 코드를 짜야할듯
-
             Debug.Log("ItemInteraction 코드 수정 필요");
             //Destroy(gameObject);
         }

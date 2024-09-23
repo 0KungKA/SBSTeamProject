@@ -85,4 +85,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c5dd9360b674c44abce1967d2bce0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemExplanatino: "\uC11C\uC7AC\uB97C \uC5F4\uC218\uC788\uB294 \uC5F4\uC1E0\uB2E4."
+  ItemExplanatino: "\uAC70\uC2E4\uC744 \uC5F4\uC218\uC788\uB294 \uC5F4\uC1E0\uB2E4."
+  AddRenderCameraSize: 0
+  effectSound: {fileID: 0}

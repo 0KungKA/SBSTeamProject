@@ -11,10 +11,16 @@ public class Timer : MonoBehaviour
     Text gameTime;
 
     [SerializeField]
-    float setTime = 1200;
+    float setTime;
 
     int min = 0;
     float sec = 0;
+
+    private void Start()
+    {
+        setTime = Manager.DataManager_Instance.GetBalanceValue(1);
+        StartTimer();
+    }
 
     internal void StartTimer()
     {
@@ -38,6 +44,12 @@ public class Timer : MonoBehaviour
     {
         while (true)
         {
+            
+            if (GameObject.Find("UI_ChatNPC") != null || GameObject.Find("_Canvas") != null)
+            {
+                yield return null;
+            }
+
             setTime -= Time.deltaTime;
 
             // 전체 시간이 60초 보다 클 때
@@ -77,7 +89,7 @@ public class Timer : MonoBehaviour
             {
                 // UI 텍스트를 0초로 고정시킴.
                 gameTime.text = "0";
-                Manager.UIManager_Instance.UIPopup("Scene_UI/UI_Scene_GameOver");
+                GameObject.Find("EventSystem").GetComponent<NPCTalk>().StartNPCTalk(3);
                 yield break;
             }
             yield return null;

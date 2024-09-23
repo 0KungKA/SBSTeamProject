@@ -799,7 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61fb49ef1b046b49a87711d4a1cddec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseClose: 1
+  MouseClose: 0
 --- !u!1 &6043452955074552063
 GameObject:
   m_ObjectHideFlags: 0

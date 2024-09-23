@@ -86,3 +86,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemExplanatino: "\uC11C\uC7AC\uB97C \uC5F4\uC218\uC788\uB294 \uC5F4\uC1E0\uB2E4."
+  AddRenderCameraSize: 0
+  effectSound: {fileID: 0}

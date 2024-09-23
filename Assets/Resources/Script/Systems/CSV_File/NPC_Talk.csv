@@ -1,0 +1,22 @@
+번호,화자 캐릭터,화자 캐릭터 이름,사용 파트,대화 텍스트,좌측 2D 일러스트 파일명,좌측 2D 일러스트 강조,우측 2D 일러스트 파일명,우측 2D 일러스트 강조,사운드 파일명,기획자 참조용,,,,
+Idx,Speaker,SpeakerCharName,SceneUsePart,DialogText,Left2DFileName,Left2DHighlight,Right2DFileName,Right2DHighlight,SoundFileName,,,,,
+Int,Int,String,Int,String,String,Int,String,Int,String,,,,,
+1,20002,Char_info_003,1,Dlg_text_001,NPC_JSB_M1,0,NPC_JSB_F1,1,,여보 이번에 데려온 아이가 마지막인거 확실한거죠?,,컬럼명,자료형,설명
+2,20001,Char_info_002,1,Dlg_text_002,NPC_JSB_M1,1,NPC_JSB_F1,0,,당연하죠. 저 아이가 마지막이에요.,,Idx,Int,항목 번호
+3,20002,Char_info_003,1,Dlg_text_003,NPC_JSB_M2,0,NPC_JSB_F2,1,,마지막인 만큼 좀 얌전한 아이였으면 좋겠어요. 저번 아이처럼 그러면(한숨)......,,Speaker,Int,화자 캐릭터의 고유번호(캐릭터 테이블)
+4,20001,Char_info_002,1,Dlg_text_004,NPC_JSB_M2,1,NPC_JSB_F2,0,,저도 그런 아이라면 이번에는 조용히 넘어가는 건 힘들 것 같네요.,,SpeakerCharName,String,화자 캐릭터의 이름(스트링 테이블)
+5,20002,Char_info_003,1,Dlg_text_005,NPC_JSB_M3,0,NPC_JSB_F3,1,,20분 뒤면 아이를 바쳐야 하니 저는 준비를 하러 가볼게요.,,DialogText,String,대화 출력 텍스트(스트링 테이블)
+6,20001,Char_info_002,1,Dlg_text_006,NPC_JSB_M3,1,NPC_JSB_F3,0,,벌써 시간이 그렇게 됐군요?\n 마지막 아이인 만큼 저도 아이를 다시 만날 준비를 해야겠네요,,Left2DFileName,String,좌측에 표시할 2D 캐릭터 일러스트
+7,10001,Char_info_001,1,Dlg_text_007,NPC_JSB_M3,0,NPC_JSB_F3,0,,큰일이다!\n이대로 있다간 납치범에게 당하고 말거야\n얼른 탈출해야 해.,,Left2DHighlight,Int,좌측 2D 캐릭터 일러스트의 강조 여부
+8,20001,Char_info_002,2,Dlg_text_008,NPC_JSB_M1,1,Null,0,,너 뭐야?!!!!,,Right2DFileName,String,우측에 표시할 2D 캐릭터 일러스트
+9,20001,Char_info_002,2,Dlg_text_009,NPC_JSB_M1,1,Null,0,,"분명히 방문을 잠가 뒀는데, 너... 어떻게 나왔지",,Right2DHighlight,Int,우측 2D 캐릭터 일러스트의 강조 여부
+10,10001,Char_info_001,2,Dlg_text_010,NPC_JSB_M1,0,Null,0,,"이런, 문이 잠겨 있잖아! 숨을 곳을 찾자",,SoundFileName,String,대화 출력 시 출력할 사운드 파일명
+11,20002,Char_info_003,2,Dlg_text_011,NPC_JSB_M1,0,NPC_JSB_F1,1,,무슨 일이에요? 큰 소리가 들리던데,,,,
+12,20001,Char_info_002,2,Dlg_text_012,NPC_JSB_M1,1,NPC_JSB_F1,0,,제물이 방에서 도망쳤어요. 이 방으로 숨은 거 같은데...,,,,
+13,20002,Char_info_003,2,Dlg_text_013,NPC_JSB_M1,0,NPC_JSB_F1,1,,잡는 건 시간 문제죠. 천천히 뒤져볼까요?,,,,
+14,10001,Char_info_001,2,Dlg_text_014,NPC_JSB_M1,0,NPC_JSB_F1,0,,제물이라니 무슨 말이지...? \n일단 붙잡히기 전에 숨을 곳을 찾자,,,,
+15,20001,Char_info_002,2,Dlg_text_015,NPC_JSB_M1,1,NPC_JSB_F1,0,,음.... 기도 시간이군. 잠시 다녀올까요.,,,,
+16,20002,Char_info_003,2,Dlg_text_016,NPC_JSB_M1,0,NPC_JSB_F1,1,,그래요. 어차피 독 안에 든 쥐니까 문을 잠그고 가면 될 거에요.,,,,
+17,10001,Char_info_001,2,Dlg_text_017,NPC_JSB_M1,0,NPC_JSB_F1,0,,한 숨 돌렸네 서둘러 이집에서 탈출해야 해. \n우선 안방 문부터 열어야겠지,,,,
+18,20001,Char_info_002,3,Dlg_text_018,NPC_JSB_M1,1,NPC_JSB_F1,0,,이번 제물은 실패했군.\n기대가 컸는데 말이야.,,,,
+19,20002,Char_info_003,3,Dlg_text_019,NPC_JSB_M1,0,NPC_JSB_F1,1,,그러게요...\n아쉽지만 이번 제물은 폐기해야겠네요.,,,,

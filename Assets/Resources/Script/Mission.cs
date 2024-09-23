@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class Mission : MonoBehaviour
 {
-
-
     [SerializeField]
     string MissionName;
 
@@ -28,9 +26,22 @@ public class Mission : MonoBehaviour
     [SerializeField]
     string keyName;
 
+    [Tooltip("삭제시킬때 씀")]
     public GameObject[] ClearTarget;
-
+    [Tooltip("활성화만 할떄 씀")]
     public GameObject[] OnEnableTarge;
+    [Tooltip("활성 비활성 둘다 되야할때 씀")]
+    public GameObject[] OnDisableAndEnableTarge;
+
+    [Tooltip("미션 오브젝트 시작할때 효과음")]
+    public AudioClip StartAudioClip;
+
+    [Tooltip("미션 오브젝트 끝날때 효과음")]
+    public AudioClip effectSoundEnd;
+
+    [SerializeField]
+    [Tooltip("게임 가이드 미션 바꿀때 사용함")]
+    GameObject GM;
 
     public bool Test = false;
 
@@ -45,10 +56,15 @@ public class Mission : MonoBehaviour
         }
     }
 
+#pragma warning disable IDE0051 // 사용되지 않는 private 멤버 제거
+
     public void SendMSG()
     {
         if (MissionName != null)
         {
+            if(StartAudioClip != null)
+                Manager.Effect_SoundPlayer.EffectSoundPlay(StartAudioClip);
+
             setManager();
             SendMessage(MissionName);
         }
@@ -260,6 +276,38 @@ public class Mission : MonoBehaviour
         MissionOnEnable();
     }
 
+    void H_Door001_Massion()
+    {
+        ItemCheck();
+        MissionGMChanged();
+    }
+
+    void H_Door002_Massion()
+    {
+        ItemCheck();
+    }
+
+    void H_Mannequin_Popup()
+    {
+        setManager();
+        Manager.UIManager_Instance.UIPopup("UI_H_Mannequin");
+    }
+
+    void G_MainGate_Door_Mittion()
+    {
+        setManager();
+        ItemCheck();
+    }
+#pragma warning disable IDE0051
+
+    void MissionGMChanged()
+    {
+        if(GM!=null)
+        {
+            GM.GetComponent<LevelGuideSetting>().GMChanged();
+        }
+    }
+
     private void setManager()
     {
         Manager.Origin_Object = transform.gameObject;
@@ -268,11 +316,9 @@ public class Mission : MonoBehaviour
 
     public void MissionClearSelf()
     {
-        GameObject[] SelfTarget = Manager.Call_Object;
-        for (int i = 0; i < SelfTarget.Length; i++)
-        {
-            Destroy(SelfTarget[i]);
-        }
+        MissionOnEnable();
+        MissionDelete();
+
         Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
     }
 
@@ -287,17 +333,76 @@ public class Mission : MonoBehaviour
         }
     }
 
+    public void TableTool_Mission()
+    {
+        ItemCheck();
+    }
+
+    //아이탬의 활성화 비활성화를 비교하여 선택적으로 함수를 실행해주는 함수
+    //아이템 비활성 이후 활성할때 여기로 들어옴
+    //아이템을 들고있어야하며 활성화 시키면 아이템이 삭제됨
+    //아이템을 습득해야하는 상황이면 습득시킴
+    public void MissionSelectOnDisableAndEnable()
+    {
+        string selectItemName = ItemManager.ItemManager_Instance.GetCurrentItem();
+        GameObject[] itemslot = ItemManager.ItemManager_Instance.GetItemSlot();
+
+        for(int i = 0; i <  itemslot.Length; i++)
+        {
+            for (int j = 0; i < OnDisableAndEnableTarge.Length; j++)
+            {
+                if (itemslot[i].name == OnDisableAndEnableTarge[j].name)
+                {
+                    if (OnDisableAndEnableTarge[j].transform.name == selectItemName)
+                    {
+                        OnDisableAndEnableTarge[j].SetActive(!OnDisableAndEnableTarge[j].activeSelf);
+                        MissionClearPrint();
+                        return;
+                    }
+                }
+            }
+        }
+
+        MissionFail();
+    }
+
+    /*public void MissionSelectOnEnable(string itemName)
+    {
+        for (int i = 0; i < OnDisableTarge.Length; i++)
+        {
+            if (OnDisableTarge[i].transform.name == itemName)
+                OnDisableTarge[i].SetActive(true);
+        }
+    }
+
+    public void MissionSelectOnDisable(string itemName)
+    {
+        for(int i = 0; i < OnDisableTarge.Length; i++)
+        {
+            if(OnDisableTarge[i].transform.name == itemName)
+                OnDisableTarge[i].SetActive(false);
+        }
+    }*/
+
     public void MissionFail()
     {
         Manager.ErrorInfo_Instance.ErrorEnqueue(FalseMissionInfo);
     }
+    public void MissionClearPrint()
+    {
+        Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
+    }
 
     public void MissionDelete()
     {
-        for(int i = 0; i < ClearTarget.Length;i++)
+        GameObject[] SelfTarget = Manager.Call_Object;
+
+        for (int i = 0; i < SelfTarget.Length;i++)
         {
-            Destroy(ClearTarget[i].gameObject);
+            Destroy(SelfTarget[i].gameObject);
         }
+        if(effectSoundEnd != null)
+            Manager.Effect_SoundPlayer.EffectSoundPlay(effectSoundEnd);
         Manager.ErrorInfo_Instance.ErrorEnqueue(CompleteMissionInfo);
     }
 }
