@@ -12,8 +12,8 @@ Int,Int,String,Int,String,String,Int,String,Int,String,,,,,
 9,20001,Char_info_002,2,Dlg_text_012,NPC_JSB_M1,1,NPC_JSB_F1,0,,제물이 방에서 도망쳤어요. 이 방으로 숨은 거 같은데...,,Right2DHighlight,Int,우측 2D 캐릭터 일러스트의 강조 여부
 10,20002,Char_info_003,2,Dlg_text_013,NPC_JSB_M1,0,NPC_JSB_F1,1,,잡는 건 시간 문제죠. 천천히 뒤져볼까요?,,SoundFileName,String,대화 출력 시 출력할 사운드 파일명
 11,10001,Char_info_001,2,Dlg_text_014,NPC_JSB_M1,0,NPC_JSB_F1,0,,제물이라니 무슨 말이지...? \n일단 붙잡히기 전에 숨을 곳을 찾자,,,,
-12,20001,Char_info_002,2,Dlg_text_015,NPC_JSB_M1,1,NPC_JSB_F1,0,,음.... 기도 시간이군. 잠시 다녀올까요.,,,,
-13,20002,Char_info_003,2,Dlg_text_016,NPC_JSB_M1,0,NPC_JSB_F1,1,,그래요. 어차피 독 안에 든 쥐니까 문을 잠그고 가면 될 거에요.,,,,
-14,10001,Char_info_001,2,Dlg_text_017,NPC_JSB_M1,0,NPC_JSB_F1,0,,한 숨 돌렸네 서둘러 이집에서 탈출해야 해. \n우선 안방 문부터 열어야겠지,,,,
+12,20001,Char_info_002,4,Dlg_text_015,NPC_JSB_M1,1,NPC_JSB_F1,0,,음.... 기도 시간이군. 잠시 다녀올까요.,,,,
+13,20002,Char_info_003,4,Dlg_text_016,NPC_JSB_M1,0,NPC_JSB_F1,1,,그래요. 어차피 독 안에 든 쥐니까 문을 잠그고 가면 될 거에요.,,,,
+14,10001,Char_info_001,4,Dlg_text_017,NPC_JSB_M1,0,NPC_JSB_F1,0,,한 숨 돌렸네 서둘러 이집에서 탈출해야 해. \n우선 안방 문부터 열어야겠지,,,,
 15,20001,Char_info_002,3,Dlg_text_018,NPC_JSB_M1,1,NPC_JSB_F1,0,,이번 제물은 실패했군.\n기대가 컸는데 말이야.,,,,
 16,20002,Char_info_003,3,Dlg_text_019,NPC_JSB_M1,0,NPC_JSB_F1,1,,그러게요...\n아쉽지만 이번 제물은 폐기해야겠네요.,,,,
