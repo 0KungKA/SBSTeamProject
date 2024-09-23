@@ -8,3 +8,6 @@ https://github.com/0KungKA/SBSTeamProject/tree/main/Assets/Resources/Material/Ob
 
 테스트 폴더
 https://github.com/0KungKA/SBSTeamProject/tree/main/Assets/Resources/Material/ObjectTexture/TEST
+
+CSV폴더
+https://github.com/0KungKA/SBSTeamProject/tree/main/Assets/Resources/Script/Systems/CSV_File
