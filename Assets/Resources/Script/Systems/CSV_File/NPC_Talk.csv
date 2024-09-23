@@ -3,9 +3,9 @@ Idx,Speaker,SpeakerCharName,SceneUsePart,DialogText,Left2DFileName,Left2DHighlig
 Int,Int,String,Int,String,String,Int,String,Int,String,,,,,
 1,20002,Char_info_003,1,Dlg_text_001,NPC_JSB_M1,0,NPC_JSB_F1,1,,여보 이번에 데려온 아이가 마지막인거 확실한거죠?,,컬럼명,자료형,설명
 2,20001,Char_info_002,1,Dlg_text_002,NPC_JSB_M1,1,NPC_JSB_F1,0,,당연하죠. 저 아이가 마지막이에요.,,Idx,Int,항목 번호
-3,20002,Char_info_003,1,Dlg_text_003,NPC_JSB_M2,0,NPC_JSB_F2,1,,마지막인 만큼 좀 얌전한 아이였으면 좋겠어요. 저번 아이처럼 그러면(한숨)......,,Speaker,Int,화자 캐릭터의 고유번호(캐릭터 테이블)
+3,20002,Char_info_003,1,Dlg_text_003,NPC_JSB_M1,0,NPC_JSB_F2,1,,마지막인 만큼 좀 얌전한 아이였으면 좋겠어요. 저번 아이처럼 그러면(한숨)......,,Speaker,Int,화자 캐릭터의 고유번호(캐릭터 테이블)
 4,20001,Char_info_002,1,Dlg_text_004,NPC_JSB_M2,1,NPC_JSB_F2,0,,저도 그런 아이라면 이번에는 조용히 넘어가는 건 힘들 것 같네요.,,SpeakerCharName,String,화자 캐릭터의 이름(스트링 테이블)
-5,20002,Char_info_003,1,Dlg_text_005,NPC_JSB_M3,0,NPC_JSB_F3,1,,20분 뒤면 아이를 바쳐야 하니 저는 준비를 하러 가볼게요.,,DialogText,String,대화 출력 텍스트(스트링 테이블)
+5,20002,Char_info_003,1,Dlg_text_005,NPC_JSB_M2,0,NPC_JSB_F3,1,,20분 뒤면 아이를 바쳐야 하니 저는 준비를 하러 가볼게요.,,DialogText,String,대화 출력 텍스트(스트링 테이블)
 6,20001,Char_info_002,1,Dlg_text_006,NPC_JSB_M3,1,NPC_JSB_F3,0,,벌써 시간이 그렇게 됐군요?\n 마지막 아이인 만큼 저도 아이를 다시 만날 준비를 해야겠네요,,Left2DFileName,String,좌측에 표시할 2D 캐릭터 일러스트
 7,10001,Char_info_001,1,Dlg_text_007,NPC_JSB_M3,0,NPC_JSB_F3,0,,큰일이다!\n이대로 있다간 납치범에게 당하고 말거야\n얼른 탈출해야 해.,,Left2DHighlight,Int,좌측 2D 캐릭터 일러스트의 강조 여부
 8,20002,Char_info_003,2,Dlg_text_011,NPC_JSB_M1,0,NPC_JSB_F1,1,,무슨 일이에요? 큰 소리가 들리던데,,Right2DFileName,String,우측에 표시할 2D 캐릭터 일러스트
