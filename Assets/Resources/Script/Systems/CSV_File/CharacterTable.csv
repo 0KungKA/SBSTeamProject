@@ -1,7 +1,14 @@
-﻿번호,고유번호,캐릭터 타입,캐릭터 이름,캐릭터 3D 모델링 파일명,캐릭터 2D 일러스트 파일명1,캐릭터 2D 일러스트 파일명2,캐릭터 2D 일러스트 파일명3,캐릭터 애니메이션,캐릭터 보이스,기획자 참조용,,,,
-Idx,OriginNum,CharacterType,CharacterName,Char3DFileName,Char2DFileName1,Char2DFileName2,Char2DFileName3,CharacterAnimation,CharacterVoice,,,,,
-Int,Int,Int,String,String,String,String,String,String,String,,,,,
-1,10001,1,Char_info_001,Null,Null,Null,Null,,,앤서니,,,,
-2,20001,2,Char_info_002,NPC_CM_M,NPC_JSB_M1,NPC_JSB_M2,NPC_JSB_M3,,,케일럽,,,,
-3,20002,2,Char_info_003,NPC_CM_F,NPC_JSB_F1,NPC_JSB_F2,NPC_JSB_F3,,,아그네스,,,,
+번호,고유번호,캐릭터 타입,캐릭터 이름,캐릭터 3D 모델링 파일명,캐릭터 2D 일러스트 파일명1,캐릭터 2D 일러스트 파일명2,캐릭터 2D 일러스트 파일명3,캐릭터 이동속도,캐릭터 사운드,기획자 참조용,,,,
+Idx,OriginNum,CharacterType,CharacterName,Char3DFileName,Char2DFileName1,Char2DFileName2,Char2DFileName3,CharacterSpeed,CharacterSound,,,,,
+Int,Int,Int,String,String,String,String,String,Int,String,,,,,
+1,10001,1,Char_info_001,NULL,NULL,NULL,NULL,1.5,NULL,앤서니,,컬럼명,자료형,설명
+2,20001,2,Char_info_002,NPC_CM_M,NPC_JSB_M1,NPC_JSB_M2,NPC_JSB_M3,1,NULL,케일럽,,Idx,Int,항목 번호
+3,20002,2,Char_info_003,NPC_CM_F,NPC_JSB_F1,NPC_JSB_F2,NPC_JSB_F3,1,NULL,아그네스,,OriginNum,Int,각 캐릭터의 고유번호
+,,,,,,,,,,,,CharacterType,Int,"캐릭터 종류
+1:PC (플레이어 캐릭터)
+2:NPC"
 ,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,CharacterName,String,캐릭터 이름의 키 텍스트(스트링 테이블)
+,,,,,,,,,,,,Char3DFileName,String,캐릭터 3D 모델링의 파일명
+,,,,,,,,,,,,Char2DFileName,String,캐릭터 2D 일러스트의 파일명
