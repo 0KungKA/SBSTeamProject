@@ -78,7 +78,7 @@ public class CutSceneScript : MonoBehaviour
             // 각 컷신이 끝날 때까지 시간 경과 처리
             cutSceneImage.sprite = cutScenes[startPoint + number].img;
 
-            if(cutScenes[startPoint + number].soundSource.name != "")
+            if(cutScenes[startPoint + number].soundSource.name != "NULL")
                 soundPlayer.EffectSoundPlay(cutScenes[startPoint + number].soundSource);
 
             while (CutDuration < CutTime)

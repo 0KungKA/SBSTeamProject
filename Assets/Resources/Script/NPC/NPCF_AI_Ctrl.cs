@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -57,15 +58,15 @@ public class NPCF_AI_Ctrl : MonoBehaviour
     {
         GameObject.Find("EventSystem").GetComponent<NPC_GaugeUI>().SetOnGauge(false);
 
+        transform.GetComponent<NavMeshAgent>().speed = Speed;
+
         //Todo:탐지 거리에 대한 데이터 테이블 수정필요함
         MaxRayDistance = Manager.DataManager_Instance.GetBalanceValue(6);
-        MaxRayDistance = 45;
 
         MaxWaitingTime = Manager.DataManager_Instance.GetBalanceValue(9);
 
         //Todo:공격 거리에 대한 데이터 테이블 수정필요함
         attackRange = Manager.DataManager_Instance.GetBalanceValue(11);
-        attackRange = 10.0f;
 
         VecOffSet = 10.0f;
 
@@ -78,8 +79,12 @@ public class NPCF_AI_Ctrl : MonoBehaviour
         Player = GameObject.Find("Player_Camera").gameObject;//맨처음 플레이어의 게임오브젝트를 가져옴 / 후에 플레이어 추격에 쓰임
 
         agent.destination = Player.transform.position;
+        Target = Player;
+        ChoiceTarget = true;
 
-        state = StateInfo.AttackMove;
+        OnMove = true;
+
+        state = StateInfo.Move;
     }
 
     public void Update()
@@ -97,9 +102,8 @@ public class NPCF_AI_Ctrl : MonoBehaviour
         {
             if (hit.transform.name == "Player_Camera")
             {
-                Debug.DrawRay(offsetpos, (Player.transform.position - offsetpos) * hit.distance, Color.red, 5.0f);
                 state = StateInfo.AttackMove;
-                ChoiceTarget = true;
+                Target = Player;
             }
 
             else if (OnMove == false)

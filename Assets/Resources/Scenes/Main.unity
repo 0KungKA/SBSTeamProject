@@ -9007,7 +9007,7 @@ MonoBehaviour:
   - {fileID: 781305165}
   - {fileID: 1687188788}
   matGroup:
-  - {fileID: 2100000, guid: ffd48da7ee4807744ac5bdc54cd96a53, type: 2}
+  - {fileID: 2100000, guid: 7350b65a6431f604a8496c39db1ac9c5, type: 2}
   Clips:
   - {fileID: 8300000, guid: 62759720b9326b64fb18aad9bb0170e4, type: 3}
   - {fileID: 8300000, guid: 178f14227de6f944bb00d6864e565622, type: 3}

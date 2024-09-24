@@ -442,9 +442,9 @@ public class DataManager : MonoBehaviour
 
             for (int j = 0; j < audioclipArr.Length; j++)
             {
-                if(Data[i]["사운드 파일명"].ToString() == "null" || Data[i]["사운드 파일명"].ToString() == "Null" || Data[i]["사운드 파일명"].ToString() == "")
+                if(Data[i]["사운드 파일명"].ToString() == "NULL")
                 {
-                    audioclipArr[j].name = "";
+                    audioclipArr[j].name = "NULL";
                     break;
                 }
                 if (audioclipArr[j].name == Data[i]["사운드 파일명"].ToString())
