@@ -97,9 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c5dd9360b674c44abce1967d2bce0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemExplanatino: "\uC5F4\uC1E0 \uC870\uAC01\uC774 \uD569\uCCD0\uC84C\uB2E4. \uC774
-    \uC5F4\uC1E0\uB85C \uBCF4\uC11D\uD568\uC744 \uC5F4 \uC218 \uC788\uC744 \uAC83
-    \uAC19\uB2E4."
+  ItemExplanatino: "\uBCF4\uC11D\uD568\uC744 \uC5F4 \uC218 \uC788\uB294 \uC5F4\uC1E0\uB2E4."
   AddRenderCameraSize: -98
   effectSound: {fileID: 0}
 --- !u!114 &8105450237549839498

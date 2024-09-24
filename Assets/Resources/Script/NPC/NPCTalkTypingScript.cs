@@ -77,10 +77,7 @@ public class NPCTalkTypingScript : MonoBehaviour
 
     public void StartTalk(List<NPCTalkClass> _npcTalks, int _type,GameObject _go)//,int _talkSize
     {
-        //Manager.UIManager_Instance.UIPush(_go);
-        Manager.CM_Instance.SetMoveState(false);
-        Manager.CM_Instance.SetRotState(false);
-        Manager.CM_Instance.OnMouseCursor();
+        type = _type;
 
         for (int i = 0; i < _npcTalks.Count; i++)
         {
@@ -143,19 +140,20 @@ public class NPCTalkTypingScript : MonoBehaviour
         if (text_exit == true && this != null)
         {
             Debug.Log("코루틴 중지");
-            Manager.CM_Instance.SetMoveState(true);
-            Manager.CM_Instance.SetRotState(true);
-            Manager.CM_Instance.OffMouseCursor();
+            if(Manager.CM_Instance.OnHide == false)
+            {
+                Manager.CM_Instance.SetMoveState(true);
+                Manager.CM_Instance.SetRotState(true);
+            }
 
             if(type == 1)
             {
-                //연출 추가할것 넣어주기
+                GameObject.Find("UI_Scene_Main").transform.Find("Timer").GetComponent<Timer>().StartTimer();
+                //추가할것 넣어주기
             }
             else if (type == 2)
             {
-                ObjectInteraction objI = GameObject.Find("C_Room_Door_Pivot").GetComponent<ObjectInteraction>();
-                if (objI.thisMove)
-                    objI.SendMessage("InteractionStart");
+
             }
             else if (type == 3)
             {
@@ -214,6 +212,17 @@ public class NPCTalkTypingScript : MonoBehaviour
         Debug.Log("텍스트 출력");
         //모든텍스트 종료
 
+        if (npcTalks[temp + cnt].Left2DSprite != null)
+        {
+            if (LeftNPC.GetComponent<Image>().sprite.name != npcTalks[temp + cnt].Left2DSprite.name)
+            {
+                LeftNPC.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                LeftNPC.GetComponent<Image>().sprite = npcTalks[temp + cnt].Left2DSprite;
+            }
+        }
+        else
+            LeftNPC.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+
         if (npcTalks[temp + cnt].LeftHighlight == 1)
             LeftNPC.GetComponent<Image>().color = Color.white;
         else
@@ -233,16 +242,7 @@ public class NPCTalkTypingScript : MonoBehaviour
         }
         else
         {
-            if (npcTalks[temp + cnt].Left2DSprite != null)
-            {
-                if (LeftNPC.GetComponent<Image>().sprite.name != npcTalks[temp + cnt].Left2DSprite.name)
-                {
-                    LeftNPC.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                    LeftNPC.GetComponent<Image>().sprite = npcTalks[temp + cnt].Left2DSprite;
-                }
-            }
-            else
-                LeftNPC.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+            
 
             if (npcTalks[temp + cnt].Right2DSprite != null)
             {

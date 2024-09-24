@@ -19,7 +19,7 @@ public class Timer : MonoBehaviour
     private void Start()
     {
         setTime = Manager.DataManager_Instance.GetBalanceValue(1);
-        StartTimer();
+        //StartTimer();
     }
 
     internal void StartTimer()
@@ -44,8 +44,7 @@ public class Timer : MonoBehaviour
     {
         while (true)
         {
-            
-            if (GameObject.Find("UI_ChatNPC") != null || GameObject.Find("_Canvas") != null)
+            if (GameObject.Find("UI_ChatNPC") != null && GameObject.Find("_Canvas") != null && GameObject.Find("UI_CutScene") != null)
             {
                 yield return null;
             }
@@ -89,7 +88,9 @@ public class Timer : MonoBehaviour
             {
                 // UI 텍스트를 0초로 고정시킴.
                 gameTime.text = "0";
-                GameObject.Find("EventSystem").GetComponent<NPCTalk>().StartNPCTalk(3);
+                if(Manager.CM_Instance.GetDebugFalse())
+                    GameObject.Find("EventSystem").GetComponent<NPCTalk>().StartNPCTalk(3);
+
                 yield break;
             }
             yield return null;

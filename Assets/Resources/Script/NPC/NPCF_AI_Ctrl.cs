@@ -36,7 +36,7 @@ public class NPCF_AI_Ctrl : MonoBehaviour
 
     [SerializeField]
     [Tooltip("NPC 이동속도")]
-    float Speed = 3.0f;
+    float Speed = 5.0f;
 
     NavMeshAgent agent;
 
@@ -45,7 +45,7 @@ public class NPCF_AI_Ctrl : MonoBehaviour
     StateInfo state;//현재 상태
 
     //agent.destination 목표지점까지 이동
-    Vector3 PlayerPos;
+    GameObject Player;
     GameObject Target;
 
     bool ChoiceTarget = false;//타겟을 지정할때 분기점으로 씀
@@ -53,152 +53,117 @@ public class NPCF_AI_Ctrl : MonoBehaviour
 
     Animator anim;
 
-    Vector3 YameOriginVector;
-
     public void Start()
     {
+        GameObject.Find("EventSystem").GetComponent<NPC_GaugeUI>().SetOnGauge(false);
+
+        //Todo:탐지 거리에 대한 데이터 테이블 수정필요함
         MaxRayDistance = Manager.DataManager_Instance.GetBalanceValue(6);
+        MaxRayDistance = 45;
+
         MaxWaitingTime = Manager.DataManager_Instance.GetBalanceValue(9);
 
         //Todo:공격 거리에 대한 데이터 테이블 수정필요함
         attackRange = Manager.DataManager_Instance.GetBalanceValue(11);
-        VecOffSet = 3.0f;
+        attackRange = 10.0f;
+
+        VecOffSet = 10.0f;
 
         anim = GetComponent<Animator>();
         anim.SetBool("Attack", false);
         anim.SetBool("Move", true);
 
-        PlayerPos = GameObject.Find("Player_Camera").transform.position;
 
         agent = GetComponent<NavMeshAgent>();
-        agent.destination = PlayerPos;
+        Player = GameObject.Find("Player_Camera").gameObject;//맨처음 플레이어의 게임오브젝트를 가져옴 / 후에 플레이어 추격에 쓰임
+
+        agent.destination = Player.transform.position;
 
         state = StateInfo.AttackMove;
-    }
-
-    internal void YameSetting()
-    {
-        state = StateInfo.AttackMove;
-        transform.position = YameOriginVector;
-    }
-
-    /// <summary>
-    /// 0 = State / 1 = Move / 2 = AttackMove
-    /// </summary>
-    /// <param name="value"></param>
-    public void SetState(int value)
-    {
-        switch (value)
-        {
-            case 0:
-                waitingDuration = 0.0f;
-                state = StateInfo.State;
-                Target = transform.gameObject;
-                break;
-
-            case 1:
-                state = StateInfo.Move;
-                waitingDuration = MaxWaitingTime + Time.deltaTime;
-                break;
-
-            case 2:
-                state = StateInfo.AttackMove;
-                break;
-
-            default:
-                break;
-        }
-
-    }
-
-    /// <summary>
-    /// true = 안전모드() / false = 모든방 뒤짐
-    /// </summary>
-    /// <param name="value"></param>
-    public void SetSaveState(bool value)
-    {
-        saveMove = value;
     }
 
     public void Update()
     {
-        Debug.Log(PlayerPos);
-
-        Vector3 offsetpos = transform.position;
+        Vector3 offsetpos = transform.position;//포지션 0이 땅에 박혀있으니까 위로 올려줌
         offsetpos.y += 8.0f;
 
-        if (Physics.Raycast(offsetpos, (PlayerPos - offsetpos), out hit, MaxRayDistance))
-        {
-            Debug.DrawLine(offsetpos, (PlayerPos - offsetpos) * MaxRayDistance, Color.red, 0.1f);
+        int layerMask = (1 << LayerMask.NameToLayer("Glass"));//Everything에서 Glass 만 제외하고 충돌 체크함
+        layerMask = ~layerMask;//레이어 마스크 제작
 
-            if (hit.transform.tag == "MainCamera")
+        if (OnMove == false)
+            waitingDuration += Time.deltaTime;
+
+        if (Physics.Raycast(offsetpos, (Player.transform.position - offsetpos), out hit, MaxRayDistance, layerMask))//만약 hit한게 Glass 레이어가 아니라면
+        {
+            if (hit.transform.name == "Player_Camera")
             {
+                Debug.DrawRay(offsetpos, (Player.transform.position - offsetpos) * hit.distance, Color.red, 5.0f);
                 state = StateInfo.AttackMove;
+                ChoiceTarget = true;
             }
+
             else if (OnMove == false)
-            {
                 state = StateInfo.State;
-            }
+
             else
-            {
                 state = StateInfo.Move;
+
+            switch (state)
+            {
+                case StateInfo.State://대기상태일때
+                    Debug.Log("State : State");
+                    if (waitingDuration > MaxWaitingTime)
+                    {
+                        OnMove = true;
+                        waitingDuration = 0;
+                        Destroy(gameObject);
+                    }
+                    break;
+
+                case StateInfo.Move:
+                    Debug.Log("State : Move");
+
+                    if (agent.remainingDistance < VecOffSet && ChoiceTarget == true)
+                    {
+                        OnMove = false;
+                        ChoiceTarget = false;
+                        state = StateInfo.State;
+                    }
+
+                    agent.destination = Target.transform.position;
+                    break;
+
+                case StateInfo.AttackMove:
+                    Debug.Log("State : AttackMove");
+
+                    agent.destination = Player.transform.position;
+                    if (Vector3.Distance(transform.position, Player.transform.position) < attackRange && hit.transform.name == "Player_Camera")
+                    {
+                        OnMove = false;
+                        anim.SetBool("Attack", true);
+                        anim.SetBool("Move", false);
+
+                        if (Manager.CM_Instance.GetDebugFalse())
+                            Manager.UIManager_Instance.UIPopup("Scene_UI/UI_Scene_GameOver");
+                    }
+                    else
+                    {
+                        OnMove = true;
+                        ChoiceTarget = false;
+                        anim.SetBool("Attack", false);
+                        anim.SetBool("Move", true);
+                    }
+                    break;
+
+                default:
+                    break;
             }
+
         }
+    }
 
-        switch (state)
-        {
-            case StateInfo.State:
-                Debug.Log("State : State");
-                waitingDuration += Time.deltaTime;
-                if (waitingDuration > MaxWaitingTime)
-                {
-                    OnMove = true;
-                    waitingDuration = 0;
-                    state = StateInfo.Move;
-                }
-                break;
-
-            case StateInfo.Move:
-                Debug.Log("State : Move");
-                //OnMove = true;
-
-                if (ChoiceTarget == false)
-                {
-                    //Target = selectTarget();
-                    ChoiceTarget = true;
-                }
-
-                agent.destination = Target.transform.position;
-                if (agent.remainingDistance < VecOffSet)
-                {
-                    OnMove = false;
-                    ChoiceTarget = false;
-                    state = StateInfo.State;
-                }
-                break;
-
-            case StateInfo.AttackMove:
-                Debug.Log("State : AttackMove");
-
-                agent.destination = PlayerPos;
-
-                if (agent.remainingDistance < attackRange)
-                {
-                    anim.SetBool("Attack", true);
-                    anim.SetBool("Move", false);
-
-                    Debug.Log("여자 Attack부분 ui예외처리함 나중에 켜주기");
-                    //Manager.UIManager_Instance.UIPopup("Scene_UI/UI_Scene_GameOver");
-                }
-                else
-                {
-                    anim.SetBool("Attack", true);
-                    anim.SetBool("Move", false);
-                }
-                break;
-
-            default:
-                break;
-        }
+    private void OnDisable()
+    {
+        GameObject.Find("EvenySystem").GetComponent<NPC_GaugeUI>().SetOnGauge(true);
     }
 }

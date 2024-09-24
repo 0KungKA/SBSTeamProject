@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class WorldSoundPlayer : MonoBehaviour
 {
-    //Todo:捞扒肚 构具
+    //Todo:捞扒肚 构具 Fucked = true;
 }

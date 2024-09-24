@@ -86,11 +86,11 @@ public class ButtonInteraction : MonoBehaviour
         }
         else if (this.name == "M_P")
         {
-            M_Obj.transform.Rotate(0, 0, RotateAngles);
+            M_Obj.transform.Rotate(0, 0, RotateAngles * 2);
         }
         else if (this.name == "M_M")
         {
-            M_Obj.transform.Rotate(0, 0, -RotateAngles);
+            M_Obj.transform.Rotate(0, 0, -(RotateAngles * 2));
         }
     }
 

@@ -2290,7 +2290,7 @@ GameObject:
   - component: {fileID: 7769009601862359518}
   - component: {fileID: 615246460374859849}
   - component: {fileID: 4345713212082780506}
-  - component: {fileID: 864200065432432607}
+  - component: {fileID: -7190473889815942526}
   m_Layer: 0
   m_Name: NPC_CM_M
   m_TagString: NPC
@@ -2353,7 +2353,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.15
-  m_Speed: 20
+  m_Speed: 5
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2365,7 +2365,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &864200065432432607
+--- !u!114 &-7190473889815942526
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2377,13 +2377,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6caec053c085c242b189cb067a6ab8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveMove: 0
+  saveMove: 1
   MaxRayDistance: 30
-  MaxWaitingTime: 30
+  MaxWaitingTime: 60
   waitingDuration: 0
   attackRange: 10
   VecOffSet: 3
-  Speed: 1.1
+  Speed: 1.5
 --- !u!1 &8292702949087783603
 GameObject:
   m_ObjectHideFlags: 0

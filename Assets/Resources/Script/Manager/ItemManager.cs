@@ -161,6 +161,21 @@ public class ItemManager : MonoBehaviour
         return null;
     }
 
+    public bool ItemOwnInfo(string itemName)
+    {
+
+        foreach (GameObject item in itemSlot)
+        {
+            if (item.transform.name == itemName)
+            {
+                Debug.Log(item.name + "»£√‚");
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void DeleteItem(string name)
     {
         for(int i = 0; i < itemSlot.Count(); i ++)

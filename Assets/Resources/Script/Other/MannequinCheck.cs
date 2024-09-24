@@ -15,22 +15,21 @@ public class MannequinCheck : MonoBehaviour
 
     private void Update()
     {
-        if(mannequinCheck == false)
+        int value = 0;
+        for (int i = 0; i < 2; i++)
         {
-            int value = 0;
-
-            for (int i = 0; i < 2; i++)
+            if (M_Check[i].thisMove)
             {
-                if (M_Check[i].thisMove)
-                {
-                    value++;
-                }
-            }
-
-            if (value == 2)
-            {
-                mannequinCheck = true;
+                value++;
             }
         }
+
+        if (value >= 2)
+        {
+            mannequinCheck = true;
+        }
+        else
+            mannequinCheck = false;
+
     }
 }

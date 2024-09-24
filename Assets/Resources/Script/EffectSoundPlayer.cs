@@ -11,6 +11,8 @@ public class EffectSoundPlayer : MonoBehaviour
     //AudioSource[] audioArr;
     List<AudioSource> audioArr = new List<AudioSource>();
 
+    float soundValue;
+
     private void Start()
     {
         setting();

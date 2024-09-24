@@ -10,7 +10,6 @@ TagManager:
   - Slot
   - Item
   - Target
-  - LavelUI
   - OnMouse
   - BoltLight
   - Hide
@@ -19,6 +18,9 @@ TagManager:
   - EffectSoundSource
   - NPC
   - Managers
+  - Undefined
+  - LevelUI
+  - Light
   layers:
   - Default
   - TransparentFX

@@ -9,12 +9,12 @@ using UnityEngine.UIElements;
 
 public class CameraMove : MonoBehaviour
 {
-    //Todo:³ªÁß¿¡ µ¥ÀÌÅÍ Å×ÀÌºí·Î ¼öÄ¡°ª ÁöÁ¤ÇÏ±â
+    //Todo:ë‚˜ì¤‘ì— ë°ì´í„° í…Œì´ë¸”ë¡œ ìˆ˜ì¹˜ê°’ ì§€ì •í•˜ê¸°
     [SerializeField]
-    float Hight = 8f;//Ä«¸Ş¶ó ³ôÀÌ
+    float Hight = 8f;//ì¹´ë©”ë¼ ë†’ì´
 
     [SerializeField]
-    int MouseSensitivity = 100;//¸¶¿ì½º °¨µµ
+    int MouseSensitivity = 100;//ë§ˆìš°ìŠ¤ ê°ë„
     public void SetSensitivity(int value) { MouseSensitivity = value; }
 
     float MouseX;
@@ -32,34 +32,31 @@ public class CameraMove : MonoBehaviour
     float Vertical;
     Vector3 Movement;
 
-    //Todo:Å×½ºÆ® Àü¿ë
-    float OD;
-
     Rigidbody rb;
-
     [SerializeField]
     AudioSource audio;
+
     GameObject[] npcs;
     public bool PlayHeart = false;
 
     [SerializeField]
     float Speed = 1.0f;
+    public void AddSpeed(float speed) { Speed += Speed; }
+    public void RemoveSpeed(float speed) { Speed -= Speed; }
 
     protected internal void Init()
     {
+        audio = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         Manager.Effect_SoundPlayer = transform.GetComponentInChildren<EffectSoundPlayer>();
     }
-
-    
 
     void Update()
     {
         GameObject anithing = GameObject.FindWithTag("OnMouse");
         if (anithing != null)
             return;
-
-        if(PlayHeart)
+        if (PlayHeart)
         {
             npcs = GameObject.FindGameObjectsWithTag("NPC");
             if (npcs.Length != 0)
@@ -80,8 +77,13 @@ public class CameraMove : MonoBehaviour
 
                 if (closestDistance < 30)
                 {
+                    audio.volume = 1;
                     audio.pitch = 1.3f;
-                    audio.pitch = -closestDistance * 0.1f;
+                    audio.pitch -= closestDistance * 0.01f;
+
+                    if(audio.pitch < 1)
+                        audio.pitch = 1;
+
                     if (audio.isPlaying == false)
                         audio.Play();
                 }
@@ -95,7 +97,8 @@ public class CameraMove : MonoBehaviour
         else
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, MaxDistance))
+            int layerMask = (-1) - (1 << LayerMask.NameToLayer("Glass"));
+            if (Physics.Raycast(transform.position, transform.forward, out hit, MaxDistance, layerMask))
             {
                 if (hit.transform.tag == "Hide")
                 {
@@ -126,13 +129,13 @@ public class CameraMove : MonoBehaviour
             {
                 hit.transform.GetComponent<Mission>().SendMSG();
             }
-            else if(hit.transform.tag == "IObject")//»óÈ£ÀÛ¿ë °¡´ÉÇÑ À¯µ¿ ¿ÀºêÁ§Æ®
+            else if(hit.transform.tag == "IObject")//ìƒí˜¸ì‘ìš© ê°€ëŠ¥í•œ ìœ ë™ ì˜¤ë¸Œì íŠ¸
             {
                 Debug.Log("Ray : IObject");
-                //SendMessage·Î ÇÔ¼ö¸¦ È£ÃâÇØÁÖ°í ¹İÈ¯Àº ÇÊ¿ä¾øÀ¸´Ï±î ¾ÈÇÏ´Â¿É¼ÇÀ» ³Ö¾îÁÜ
+                //SendMessageë¡œ í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•´ì£¼ê³  ë°˜í™˜ì€ í•„ìš”ì—†ìœ¼ë‹ˆê¹Œ ì•ˆí•˜ëŠ”ì˜µì…˜ì„ ë„£ì–´ì¤Œ
                 hit.transform.GetComponent<ObjectInteraction>().SendMessage("InteractionStart", SendMessageOptions.DontRequireReceiver);
             }
-            else if(hit.transform.tag == "GetItem")//¾ÆÀÌÅÛ ½Àµæ
+            else if(hit.transform.tag == "GetItem")//ì•„ì´í…œ ìŠµë“
             {
                 Debug.Log("Ray : GetItem");
                 if(hit.transform.GetComponent<ItemInteraction>() != null)
@@ -143,7 +146,7 @@ public class CameraMove : MonoBehaviour
                     hit.transform.GetComponent<ItemInteraction>().SendMessage("ItemUISpawn", SendMessageOptions.DontRequireReceiver);
                 }
             }
-            else if(hit.transform.tag == "ITObject")//À¯µ¿X ½ÀµæX ¾øÁö¸¸ 3DIObjectView·Î º¸¿©Áà¾ßÇÏ´Â ¿ÀºêÁ§Æ®µé
+            else if(hit.transform.tag == "ITObject")//ìœ ë™X ìŠµë“X ì—†ì§€ë§Œ 3DIObjectViewë¡œ ë³´ì—¬ì¤˜ì•¼í•˜ëŠ” ì˜¤ë¸Œì íŠ¸ë“¤
             {
                 Debug.Log("Ray : ITObject");
                 hit.transform.GetComponent<ItemInteraction>().SendMessage
@@ -161,10 +164,6 @@ public class CameraMove : MonoBehaviour
         Horizontal = Input.GetAxisRaw("Horizontal");
         Vertical = Input.GetAxisRaw("Vertical");
 
-        if(transform == null)
-        {
-
-        }
         Movement = transform.forward * Vertical;
         Movement += transform.right * Horizontal;
         Movement.y = 0;
@@ -174,66 +173,16 @@ public class CameraMove : MonoBehaviour
 
     protected internal void CameraRot()
     {
-        //¸¶¿ì½º XYÃà ¾ò¾î¿À´Â ÄÚµå
+        //ë§ˆìš°ìŠ¤ XYì¶• ì–»ì–´ì˜¤ëŠ” ì½”ë“œ
         MouseX = Input.GetAxis("Mouse X");
         MouseY = Input.GetAxis("Mouse Y");
 
-        //°¢µµ¸¦ Á¦ÇÑÇØÁÖ¸é¼­ ½ÃÁ¡À» ³Ö¾îÁÖ´Â ÄÚµå
-        transform.Rotate(-MouseY * MouseSensitivity * 10 * Time.deltaTime, 0f, 0);//¸¶¿ì½º YÃàÀ¸·Î ½ÃÁ¡ Á¶ÀÛ
-        transform.Rotate(0f, MouseX * MouseSensitivity * 10 * Time.deltaTime, 0, Space.World);//¸¶¿ì½º XÃàÀ¸·Î ½ÃÁ¡ Á¶ÀÛ
+        //ê°ë„ë¥¼ ì œí•œí•´ì£¼ë©´ì„œ ì‹œì ì„ ë„£ì–´ì£¼ëŠ” ì½”ë“œ
+        transform.Rotate(-MouseY * MouseSensitivity * 10 * Time.deltaTime, 0f, 0);//ë§ˆìš°ìŠ¤ Yì¶•ìœ¼ë¡œ ì‹œì  ì¡°ì‘
+        transform.Rotate(0f, MouseX * MouseSensitivity * 10 * Time.deltaTime, 0, Space.World);//ë§ˆìš°ìŠ¤ Xì¶•ìœ¼ë¡œ ì‹œì  ì¡°ì‘
 
-        //Æ¯Á¤ °¢µµÀÌ»óÀÌ µÇ¸é ½ÃÁ¡ÀÌ ÀÌ»óÇÑ °¢µµ¿¡¼­ °íÁ¤µÇ´Â ¹®Á¦¸¦ ÇØ°áÇÏ±â À§ÇÑ ÄÚµå
-        //Á¤È®ÇÏ°Õ eulerAngles Àº 0 ~ 180µµ ±îÁö ¹İÈ¯ÇØÁÖ´Â°Å¶ó 180µµ ÀÌ»óÀÌ µÇ¸é Á¦ÇÑÀÌ °É·Á¼­ 360µµ »©ÁÖ¸é¼­ clamp·Î Á¦ÇÑÀ» °É¾îµÒ
-        Vector3 rot = transform.rotation.eulerAngles;
-        rot.x = (rot.x > 180) ? rot.x - 360 : rot.x;
-        rot.x = Mathf.Clamp(rot.x, MinAngle, MaxAngle);
-
-        transform.rotation = Quaternion.Euler(rot.x, rot.y, 0);
-    }
-
-    protected internal void DebugMode()
-    {
-        //Todo:Å×½ºÆ® Àü¿ë
-        Debug.Log("CameraMove µğ¹ö±× ¸ğµå");
-        Horizontal = Input.GetAxisRaw("Horizontal");
-        Vertical = Input.GetAxisRaw("Vertical");
-        OD = Input.GetAxisRaw("UpDown");
-
-        if(Input.GetKeyDown(KeyCode.Equals))
-        {
-            Speed += 0.1f;
-        }
-        else if (Input.GetKeyDown(KeyCode.Minus))
-        {
-            Speed -= 0.1f;
-
-            if(Speed < 0)
-            {
-                Speed = 1;
-            }
-        }
-
-
-        Vector3 pos = Vector3.zero;
-
-        pos.x = Horizontal;
-        pos.y = OD;
-        pos.z = Vertical;
-
-        transform.Translate(pos * Speed ,Space.Self);
-
-        //½ÃÁ¡º¯È¯
-
-        //¸¶¿ì½º XYÃà ¾ò¾î¿À´Â ÄÚµå
-        MouseX = Input.GetAxis("Mouse X");
-        MouseY = Input.GetAxis("Mouse Y");
-
-        //°¢µµ¸¦ Á¦ÇÑÇØÁÖ¸é¼­ ½ÃÁ¡À» ³Ö¾îÁÖ´Â ÄÚµå
-        transform.Rotate(-MouseY * MouseSensitivity * 10 * Time.deltaTime, 0f, 0);//¸¶¿ì½º YÃàÀ¸·Î ½ÃÁ¡ Á¶ÀÛ
-        transform.Rotate(0f, MouseX * MouseSensitivity * 10 * Time.deltaTime, 0, Space.World);//¸¶¿ì½º XÃàÀ¸·Î ½ÃÁ¡ Á¶ÀÛ
-
-        //Æ¯Á¤ °¢µµÀÌ»óÀÌ µÇ¸é ½ÃÁ¡ÀÌ ÀÌ»óÇÑ °¢µµ¿¡¼­ °íÁ¤µÇ´Â ¹®Á¦¸¦ ÇØ°áÇÏ±â À§ÇÑ ÄÚµå
-        //Á¤È®ÇÏ°Õ eulerAngles Àº 0 ~ 180µµ ±îÁö ¹İÈ¯ÇØÁÖ´Â°Å¶ó 180µµ ÀÌ»óÀÌ µÇ¸é Á¦ÇÑÀÌ °É·Á¼­ 360µµ »©ÁÖ¸é¼­ clamp·Î Á¦ÇÑÀ» °É¾îµÒ
+        //íŠ¹ì • ê°ë„ì´ìƒì´ ë˜ë©´ ì‹œì ì´ ì´ìƒí•œ ê°ë„ì—ì„œ ê³ ì •ë˜ëŠ” ë¬¸ì œë¥¼ í•´ê²°í•˜ê¸° ìœ„í•œ ì½”ë“œ
+        //ì •í™•í•˜ê² eulerAngles ì€ 0 ~ 180ë„ ê¹Œì§€ ë°˜í™˜í•´ì£¼ëŠ”ê±°ë¼ 180ë„ ì´ìƒì´ ë˜ë©´ ì œí•œì´ ê±¸ë ¤ì„œ 360ë„ ë¹¼ì£¼ë©´ì„œ clampë¡œ ì œí•œì„ ê±¸ì–´ë‘ 
         Vector3 rot = transform.rotation.eulerAngles;
         rot.x = (rot.x > 180) ? rot.x - 360 : rot.x;
         rot.x = Mathf.Clamp(rot.x, MinAngle, MaxAngle);

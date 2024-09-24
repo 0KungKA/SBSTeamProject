@@ -12,6 +12,7 @@ public class UIBase : MonoBehaviour
     public bool MouseClose = true;
     public void Start()
     {
+        Debug.Log(gameObject.name + " : UIBase call ");
         if (gameObject.layer == (int)Layer_Enum.LayerInfo.System_UI)
         {
             Cursor.visible = true;
@@ -19,30 +20,12 @@ public class UIBase : MonoBehaviour
             Manager.CM_Instance.SetMoveState(false);
             Manager.CM_Instance.SetRotState(false);
         }
-        Manager.UIManager_Instance.UIPush(this.gameObject);
-        Debug.Log(gameObject.name + " : UIBase call ");
+        Manager.UIManager_Instance.UIPush(this.gameObject);//Todo:오류남 Fuck
     }
 
     public void SetSortOrdernumber()
     {
         //현재 Canvas의 sort order를 UIManager에서 배정받을거임
         Manager.UIManager_Instance.GetOrdernumber(gameObject);
-    }
-
-    private void OnDisable()
-    {
-        if(MouseClose)
-        {
-            /*if (Manager.UIManager_Instance.GetUILisetStackCount() >= 1)
-            {
-                if (Manager.UIManager_Instance.UIListsStackReturn().Peek().transform.tag != "OnMouse" )
-                    Manager.CM_Instance.OffMouseCursor();
-
-                //if(Manager.UIManager_Instance.)
-            }
-*/
-            if (gameObject.layer != (int)Layer_Enum.LayerInfo.System_UI)
-                Manager.UIManager_Instance.CloseUI();
-        }
     }
 }

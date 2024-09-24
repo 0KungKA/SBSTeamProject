@@ -8,9 +8,11 @@ public class LevelGuideSetting : MonoBehaviour
 {
     [SerializeField]
     string GuideString;
+    public void SetGuideString(string value) { GuideGO.GetComponent<Text>().text = value; }
 
     [SerializeField]
     string MissionString;
+    public void SetMissionString(string value) { GuideGO.GetComponent<Text>().text = value; }
 
     GameObject GuideGO;
     GameObject MissionGO;
@@ -21,10 +23,10 @@ public class LevelGuideSetting : MonoBehaviour
     [Tooltip("교체할 가이드 내용")]
     [SerializeField]
     string ChangeTargetGuideString;
+
     [Tooltip("교체할 미션 내용")]
     [SerializeField]
     string ChangeTargetMissionString;
-
 
     private void StartSetting()
     {

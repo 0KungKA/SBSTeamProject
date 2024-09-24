@@ -54,10 +54,6 @@ public class ObjectInteraction : MonoBehaviour
 
     bool OnHide = false;//숨은 상태인지 아닌지 확인하는 bool값
 
-    //Todo:테스트 전용
-    [SerializeField]
-    bool OnTest = false;
-
     /*[Space(20)]
     //만일 옷장같은 숨을수있는 가구와 상호작용할경우 해당 가구 앞쪽에 카메라를 이동시키기 위해 Vector3값으로 포지션 셋팅
     [SerializeField]
@@ -75,7 +71,6 @@ public class ObjectInteraction : MonoBehaviour
                 //통과하면 MeshCollider를 추가
                 gameObject.AddComponent<MeshCollider>();
                 gameObject.tag = "IObject";
-                Debug.Log(gameObject.name + " : Warring");
             }
         }
 
@@ -95,34 +90,12 @@ public class ObjectInteraction : MonoBehaviour
             audioSorce.maxDistance = 20.0f;
         }
 
-        if (TargetPos ==  Vector3.zero && TargetRot == Vector3.zero)
-        {
-            if(transform.parent != null)
-                Debug.Log(transform.parent.name + " " + gameObject.name + " : 설정값 오류");
-
-            else if (transform.parent != null)
-                Debug.Log(gameObject.name + " : 설정값 오류");
-        }
-
         //움직이든 돌리든 어쨋든 다시 원상태로 돌려야하기때문에 두개다 받아줌
         SavePos = transform.localPosition;
 
         SaveRot.x = (transform.localEulerAngles.x >= 180) ? transform.localEulerAngles.x - 360 : transform.localEulerAngles.x;
         SaveRot.y = (transform.localEulerAngles.y >= 180) ? transform.localEulerAngles.y - 360 : transform.localEulerAngles.y;
         SaveRot.z = (transform.localEulerAngles.z >= 180) ? transform.localEulerAngles.z - 360 : transform.localEulerAngles.z;
-    }
-
-    public void Update()
-    {
-        //Todo:테스트 전용 삭제할것
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            OnTest = !OnTest;
-        }
-        if (Input.GetKeyDown(KeyCode.P) && OnTest == true)
-        {
-            InteractionStart();
-        }
     }
 
     //sendMessage로 호출할거임
@@ -186,6 +159,10 @@ public class ObjectInteraction : MonoBehaviour
                 Debug.Log("Close");
                 StartCoroutine(RotClose(SaveRot));
             }
+        }
+        else //효과음만 재생
+        {
+            Manager.Effect_SoundPlayer.EffectSoundPlay(audioSorce);
         }
         
     }
@@ -385,14 +362,16 @@ public class ObjectInteraction : MonoBehaviour
 
     IEnumerator Hide()
     {
-        Manager.CM_Instance.SetMoveState(false);
-        GameObject gm = GameObject.FindWithTag("MainCamera").gameObject;
+        GameObject gm = GameObject.Find("Player_Camera").gameObject;
         SavePos = gm.transform.position;
         bool goSavePos = false;
+
         while (true)
         {
             if (OnHide == false)
             {
+                Manager.CM_Instance.SetMoveState(false);
+
                 gm.transform.position = new Vector3(Mathf.Lerp(gm.transform.position.x, transform.position.x, 0.5f),
                     Mathf.Lerp(gm.transform.position.y, transform.position.y, 0.5f),
                     Mathf.Lerp(gm.transform.position.z, transform.position.z, 0.5f));

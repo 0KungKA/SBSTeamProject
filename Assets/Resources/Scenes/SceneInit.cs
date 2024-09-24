@@ -28,9 +28,8 @@ public class SceneInit : MonoBehaviour
 
     IEnumerator SceneFade()
     {
-        GameObject go = Instantiate(Fade).gameObject;
-        go.gameObject.SetActive(true);
-        _Fade = go.GetComponent<CanvasRenderer>();
+        Manager.UIManager_Instance.UIPopup("Scene_UI/" + Fade.name);
+        _Fade = Manager.UIManager_Instance.ReturnUIObj(Fade.name).GetComponent<CanvasRenderer>();
 
         fadeDuration = 0;
         while (fadeDuration < fadeTime)
@@ -40,14 +39,13 @@ public class SceneInit : MonoBehaviour
             yield return null;
         }
 
-        Manager.Instance.Setting();
         transform.GetComponent<Synthesis>().Init();
+        Manager.Instance.Setting();
         Manager.UIManager_Instance.SpawnRenderView();
         GameObject.Find("EventSystem").GetComponent<NPCTalk>().StartNPCTalk(1);
 
         //뭔가 더 추가할것들 추가하기
-
-        Destroy(go.gameObject);
+        Manager.UIManager_Instance.CloseUI(_Fade.name);
         yield break;
     }
 }

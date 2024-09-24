@@ -46,6 +46,7 @@ public class CutSceneScript : MonoBehaviour
         int cutSceneCount = 0;
 
         GameObject canvas = Instantiate(_Canvas);
+        canvas.name = Manager.UIManager_Instance.DeletClone(_Canvas.name);
         canvas.gameObject.SetActive(true);
         canvas.transform.SetAsLastSibling();
 

@@ -19,8 +19,12 @@ public class InstantLightCtrl : MonoBehaviour
     private void Start()
     {
         theLight = GetComponent<Light>();
-        currentIntensity = theLight.intensity;
-        targetIntensity = Random.Range(0.4f, 1f);
+        if(theLight != null )
+        {
+            currentIntensity = theLight.intensity;
+            targetIntensity = Random.Range(0.4f, 1f);
+        }
+            
     }
 
     private void Update()

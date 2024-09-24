@@ -12,7 +12,8 @@ public class CameraManager : MonoBehaviour
     public bool OnHide = false;
 
     [SerializeField]//디버그 전용
-    bool DebugMode = false;
+    bool DebugModeFalse = true;
+    public bool GetDebugFalse() {  return DebugModeFalse; }
 
     protected internal void SetMoveState(bool value) { MoveState = value; }
     protected internal void SetRotState(bool value) { RotState = value; }
@@ -31,38 +32,34 @@ public class CameraManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         MoveState = true;
         RotState = true;
-        DebugMode = false;
+        DebugModeFalse = true;
     }
 
     public void OnMouseCursor()
     {
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
         MoveState = false;
         RotState = false;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-            DebugMode = !DebugMode;
+        GameObject.Find("UI_Scene_Main").transform.GetChild(GameObject.Find("UI_Scene_Main").transform.childCount - 1).gameObject.SetActive(DebugModeFalse);
+        if (Input.GetKeyDown(KeyCode.F12))
+        {
+            DebugModeFalse = !DebugModeFalse;
+            GameObject.Find("UI_Scene_Main").transform.GetChild(GameObject.Find("UI_Scene_Main").transform.childCount - 1).gameObject.SetActive(!DebugModeFalse);
+        }
 
         if (CM == null)
             CM = GameObject.Find("Player_Camera").gameObject.GetComponent<CameraMove>();
-
-        if (DebugMode == true)
-        {
-            CM.DebugMode();
-        }
-        else
-        {
-            if (MoveState)
-                CM.Move();
-
-            if (RotState)
-                CM.CameraRot();
-        }
         
+        if (MoveState && OnHide == false)
+            CM.Move();
+
+        if (RotState)
+            CM.CameraRot();
     }
 
     protected internal void print(string msg)

@@ -3363,8 +3363,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uAE08\uACE0\uAC00 \uC7A0\uACA8\uC788\uB2E4.\n3\uC790\uB9AC \uBE44\uBC00\uBC88\uD638\uB97C
-    \uB9DE\uCDB0\uC11C \uC5F4\uC218\uC788\uB2E4."
+  m_Text: "\uAE08\uACE0\uC758 \uB2E4\uC774\uC5BC\uC774\uB2E4.\n\uC790\uB9AC\uC758
+    \uBE44\uBC00\uBC88\uD638\uB97C \uB9DE\uCDB0\uC11C \uC5F4 \uC218 \uC788\uB2E4."
 --- !u!114 &2239246200257996029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3382,8 +3382,8 @@ MonoBehaviour:
   Skip_delay: 0
   cnt: 0
   fulltext:
-  - "\uAE08\uACE0\uAC00 \uC7A0\uACA8\uC788\uB2E4.\\n3\uC790\uB9AC \uBE44\uBC00\uBC88\uD638\uB97C
-    \uB9DE\uCDB0\uC11C \uC5F4\uC218\uC788\uB2E4."
+  - "\uAE08\uACE0\uC758 \uB2E4\uC774\uC5BC\uC774\uB2E4. \\n3\uC790\uB9AC\uC758 \uBE44\uBC00\uBC88\uD638\uB97C
+    \uB9DE\uCDB0\uC11C \uC5F4 \uC218 \uC788\uB2E4."
   dialog_cnt: 1
   text_exit: 0
   text_full: 0

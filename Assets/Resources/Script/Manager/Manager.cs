@@ -72,7 +72,6 @@ public class Manager : MonoBehaviour
     private void Awake()
     {
         Init();
-        //_UIManager.Init();
     }
 
     static void Init()
@@ -94,13 +93,13 @@ public class Manager : MonoBehaviour
         Instance._errorInfo = Instance.GetComponent<ErrorInfo>();
         Instance._DataManager = Instance.GetComponent<DataManager>();
 
-        if (Instance._UIManager == null)
-            Instance._UIManager = Manager_Obj.AddComponent<UIManager>();
+        /*if (Instance._UIManager == null)
+            Instance._UIManager = Manager_Obj.AddComponent<UIManager>();*/
     }
 
     private void Update()
     {
-
+        
     }
 
     protected internal void Setting()
@@ -127,10 +126,7 @@ public class Manager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {//제대로 실행되는지 확인함
 
-        if(_UIManager.GetUILisetStackCount() >= 1)
-            _UIManager.CloseAllUI();
-
-        _UIManager.Init();
+         _UIManager.Init();
     }
 
     void OnDisable()

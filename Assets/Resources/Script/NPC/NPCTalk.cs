@@ -29,8 +29,8 @@ public class NPCTalk : MonoBehaviour
                 talksize++;
         }
 
-        GameObject go = Instantiate(NPCTalkCanvas).gameObject;
-        Manager.UIManager_Instance.UIPush(go);
+        Manager.UIManager_Instance.UIPopup("UI_ChatNPC");
+        GameObject go = GameObject.Find("UI_ChatNPC");
         go.transform.SetAsLastSibling();
         go.transform.gameObject.SetActive(true);
         go = go.transform.Find("Chat_Window").transform.GetChild(0).gameObject;

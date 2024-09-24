@@ -25,8 +25,9 @@ public class InputManager : MonoBehaviour
         {
             GameObject npcTalk = GameObject.Find("UI_ChatNPC");
             GameObject Fade = GameObject.Find("_Canvas");
+            GameObject cutScene = GameObject.Find("UI_CutScene");
 
-            if (npcTalk == null && Fade == null)
+            if (npcTalk == null && Fade == null && cutScene == null)
                 Manager.UIManager_Instance.UIPopup("UI_Puase");
         }
         else if(Input.GetKeyDown(KeyCode.M) && OnMap)

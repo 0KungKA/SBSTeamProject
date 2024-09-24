@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 2123321892997495047}
   - component: {fileID: 4869293943934737110}
   - component: {fileID: 446819315786053997}
+  - component: {fileID: -4149345896061092372}
   m_Layer: 5
   m_Name: _Canvas
-  m_TagString: Untagged
+  m_TagString: LevelUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,3 +142,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-4149345896061092372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5833383188583197369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61fb49ef1b046b49a87711d4a1cddec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MouseClose: 1

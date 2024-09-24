@@ -17,6 +17,9 @@ public class GaugeSelf : MonoBehaviour
 
     void Update()
     {
-        GaugeOBJself.fillAmount = NPC_GaugeUI.GetGaugeF();
+        if(transform.name == "CM_M_Gauge")
+            GaugeOBJself.fillAmount = NPC_GaugeUI.GetGaugeM();
+        else if(transform.name == "CM_F_Gauge")
+            GaugeOBJself.fillAmount = NPC_GaugeUI.GetGaugeF();
     }
 }

@@ -9,8 +9,10 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     //UI의 스택 관리 + 시스템UI의 로드 + 닫기
-    static Stack<GameObject> UIListsStack = new Stack<GameObject>();
-    public Stack<GameObject> UIListsStackReturn() {  return UIListsStack; }
+    //static Stack<GameObject> UIListsStack = new Stack<GameObject>();
+    static List<GameObject> UIListsStack = new List<GameObject>();
+    //public Stack<GameObject> UIListsStackReturn() {  return UIListsStack; }
+
     public int GetUILisetStackCount() { return UIListsStack.Count; }
 
     [Header("최대 UI 갯수\n(이 이상이면 버그로 판단하고 게임 강제종료)")]
@@ -23,12 +25,15 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        CloseAllUI();
+
         if (UIListsStack.Count != 0)
             UIListsStack.Clear();
     }
 
     protected internal void Init()
     {
+
         string SystemUIName = "Scene_UI/" + "UI_Scene_" + SceneManager.GetActiveScene().name;
         if (SystemUIName == "Scene_UI/UI_Scene_/SLobby")
         {
@@ -38,6 +43,15 @@ public class UIManager : MonoBehaviour
         {
             UIPopup(SystemUIName);
         }
+    }
+
+    public string DeletClone(string name)
+    {
+        int SCindex = name.IndexOf("(Clone)");
+        if (SCindex > 0)
+            name = name.Substring(0, SCindex);
+
+        return name;
     }
 
     public GameObject SpawnUI(GameObject prefepPath)
@@ -92,11 +106,31 @@ public class UIManager : MonoBehaviour
                     SpawnUI(prefep);
                     return;
                 }
-                UIListsStack.Push(SpawnUI(prefep));//스택 Push
+                SortUI();
+                GameObject createUI = SpawnUI(prefep);
+                createUI.transform.GetComponent<Canvas>().sortingOrder = UIListsStack.Count - 1;
+                UIListsStack.Add(createUI);
 
+                if (UIListsStack[UIListsStack.Count - 1].GetComponent<UIBase>().MouseClose == false)
+                {
+                    Manager.CM_Instance.OnMouseCursor();
+                }
+                else
+                    Manager.CM_Instance.OffMouseCursor();
             }
             else
                 Debug.Log("UIPopup : " + "Error path" + UI_Path);//프리팹을 못찾으면 어떤 프리팹을 못찾았는지 확인하기위해 주소전체를 디버그로그에 출력함
+        }
+    }
+
+    private void SortUI()
+    {
+        for (int i = UIListsStack.Count; i < 0; i--) 
+        {
+            if (UIListsStack[i - 1] == null) 
+            {
+                UIListsStack.RemoveAt(i-1);
+            }
         }
     }
 
@@ -110,12 +144,23 @@ public class UIManager : MonoBehaviour
         {
             if (obj.name == go.name)//검사해서 걸리면 Push는 스킵하고 order 번호만 위로 올림
             {
-                GetOrdernumber(go);
+                GetOrdernumber(obj);
                 return;
             }
         }
-        UIListsStack.Push(go);
+        UIListsStack.Add(go);
         GetOrdernumber(go);
+    }
+
+    public GameObject ReturnUIObj(string name)
+    {
+        for(int i = 0; i <  UIListsStack.Count; i++)
+        {
+            if (UIListsStack[i].name == name)
+                return UIListsStack[i];
+        }
+
+        return null;
     }
 
     public void GetOrdernumber(GameObject go)
@@ -126,61 +171,67 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if(UIListsStack.Count > 1)
-        {
-            foreach (GameObject obj in UIListsStack)
-                if (obj == null)
-                {
-                    UIListsStack.Pop();
-                }
-                /*else if(obj)
-                {
-                    if (UIListsStack.Peek().gameObject.GetComponent<UIBase>().MouseClose == true)
-                    {
-                        Manager.CM_Instance.OffMouseCursor();
-                    }
-                    else
-                        Manager.CM_Instance.OnMouseCursor();
-                }*/
-        }
         
-        //Debug.Log(UIListsStack.Count);
     }
 
-    public void CheackUICount()
+    public void CloseAllUI()//씬 전환 할때만 호출
     {
-        if (UIListsStack.Count >= MaximumUICount)
+        for(int i = UIListsStack.Count; i < 0 ; i --)
         {
-            //System.Diagnostics.Process.GetCurrentProcess().Kill();
-            Debug.Log("Kill"); //지금당장은 끌 이유가 없어서 일단 디버그로그로 출력만해서 버그가 터졌는지 안터졌는지 확인하기위함
+            Destroy(UIListsStack[i-1].gameObject);
+            UIListsStack.RemoveAt(i-1);
         }
-    }
 
-    public void CloseAllUI()
-    {
-        while( UIListsStack.Count > 0 )
-        {
-            Debug.Log(transform.name + "while 작동중");
-            GameObject go = UIListsStack.Pop();
-            Destroy(go);
-        }
+        UIListsStack.Clear();
         Init();
+    }
+
+    public void CloseUI(string name)
+    {
+        for (int i = UIListsStack.Count; i > 0; i--)
+        {
+            if (UIListsStack[i - 1].name == name)
+            {
+                GameObject go = UIListsStack[i - 1].gameObject;
+
+                if (UIListsStack[i - 2].GetComponent<UIBase>().MouseClose == true)
+                    Manager.CM_Instance.OffMouseCursor();
+                else
+                    Manager.CM_Instance.OnMouseCursor();
+
+                UIListsStack.RemoveAt(i - 1);
+                Destroy(go);
+            }
+        }
     }
 
     public void CloseUI()
     {
-        if (UIListsStack.Peek().gameObject.tag == "LevelUI")
-            return;
-
-        GameObject go = UIListsStack.Pop();
-        Destroy(go);
-
-        if (UIListsStack.Peek().gameObject.GetComponent<UIBase>().MouseClose == true)
+        int currentUINumber = UIListsStack.Count;
+        if(currentUINumber == 0)
         {
-            Manager.CM_Instance.OffMouseCursor();
+            return;
+            
+        }
+        else if(currentUINumber == 1)
+        {
+            GameObject go = UIListsStack[currentUINumber - 1];
+            UIListsStack.RemoveAt(currentUINumber - 1);
+            Destroy(go);
         }
         else
-            Manager.CM_Instance.OnMouseCursor();
+        {
+            GameObject go = UIListsStack[currentUINumber - 1];
 
+            if(UIListsStack[currentUINumber - 2].GetComponent<UIBase>().MouseClose == true)
+            {
+                Manager.CM_Instance.OffMouseCursor();
+            }
+            else
+                Manager.CM_Instance.OnMouseCursor();
+
+            UIListsStack.RemoveAt(currentUINumber - 1);
+            Destroy(go);
+        }
     }
 }

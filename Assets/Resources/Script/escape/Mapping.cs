@@ -24,7 +24,7 @@ public class Mapping : MonoBehaviour
 
     private void Update()
     {
-        if(FindMap >= Maps.Length)
+        if (FindMap >= Maps.Length && GameObject.Find("B_Door_Lock") == null)
         {
             GameObject.Find("B_Exit").transform.GetChild(0).gameObject.SetActive(true);
             GameObject.Find("Player_Camera").GetComponent<InputManager>().StartOnMap();

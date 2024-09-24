@@ -10,6 +10,10 @@ public class NPC_GaugeUI : MonoBehaviour
     public void SetOnGauge(bool value) {  OnGauge = value; }
     public bool GetOnGauge() {  return OnGauge; }
 
+    bool OnGaugeM = false;//B방에서는 게이지가 차면 안되서 분리 케일럽 전용 bool
+    public void SetOnGaugeM(bool value) { OnGaugeM = value; }
+    public bool GetOnGaugeM() { return OnGaugeM; }
+
     float NPC_CM_F_Gauge;//아그네스 전용 게이지
     public float GetGaugeF() { return NPC_CM_F_Gauge; }//가져오기
     public void SetGaugeF(float value) {  NPC_CM_F_Gauge = value;}//넣기 <-얘는 쓸일없음
@@ -35,6 +39,9 @@ public class NPC_GaugeUI : MonoBehaviour
     {
         if(OnGauge == false) { return; }
 
+        if(OnGaugeM)
+            NPC_CM_M_Gauge = 1;
+
         if (GaugeTimeDuration > TimePoint)
         {
             UpGauge(tickTimeGauge);
@@ -45,12 +52,11 @@ public class NPC_GaugeUI : MonoBehaviour
 
         if (NPC_CM_F_Gauge >= 1)
         {
-
-            GameObject npc_cm_f = Resources.Load<GameObject>("Prefep/Object/NPC/NPC_CM_M");
+            NPC_CM_F_Gauge = 0;
+            GameObject npc_cm_f = Resources.Load<GameObject>("Prefep/Object/NPC/NPC_CM_F");
             npc_cm_f = Instantiate(npc_cm_f).gameObject;
             npc_cm_f.transform.position = GameObject.Find("NPC_Spawn_Point").transform.position;
             npc_cm_f.GetComponent<NPCM_AI_Ctrl>().SetState(2);
-            NPC_CM_F_Gauge = 0;
         }
     }
 

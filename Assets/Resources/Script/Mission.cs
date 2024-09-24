@@ -43,17 +43,11 @@ public class Mission : MonoBehaviour
     [Tooltip("게임 가이드 미션 바꿀때 사용함")]
     GameObject GM;
 
-    public bool Test = false;
+    public bool OnDestroyComponent = false;
 
     public void Update()
     {
-        if (Test)
-        {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                SendMSG();
-            }
-        }
+        
     }
 
 #pragma warning disable IDE0051 // 사용되지 않는 private 멤버 제거
@@ -95,6 +89,8 @@ public class Mission : MonoBehaviour
                     MissionOnEnable();
                     MissionDelete();
                 }
+                else
+                    MissionFail();
             }
             else if (keyName != null)
             {
@@ -105,6 +101,8 @@ public class Mission : MonoBehaviour
                     MissionOnEnable();
                     MissionDelete();
                 }
+                else
+                    MissionFail();
             }
         }
         else
@@ -331,6 +329,12 @@ public class Mission : MonoBehaviour
                 OnEnableTarge[i].SetActive(true);
             }
         }
+
+        if(OnDestroyComponent)
+        {
+            Destroy(transform.gameObject.GetComponent<Mission>());
+        }
+
     }
 
     public void TableTool_Mission()
