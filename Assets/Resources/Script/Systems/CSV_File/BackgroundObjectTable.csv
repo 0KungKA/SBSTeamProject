@@ -2,193 +2,179 @@
 (오브젝트명)","기획자 참조용
 (방 구분)","기획자 참조용
 (상세 위치)","기획자 참조용
-(용도)",,,,
-Idx,OriginNum,ObjectType,ObjectName,ObjectFileName,RotationView,GetInventory,Hide,SoundFileName1,SoundFileName2,Description1,Description2,Description3,PasswordNum,,,,,,,,
-Int,Int,Int,String,String,Int,Int,Int,String,String,String,String,String,Int,,,,,,,,
-1,1001,1,Obj_name_001,B_Wall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 벽,작은방,,,,컬럼명,자료형,설명
-2,1002,1,Obj_name_002,B_Floor,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 바닥,작은방,,,,Idx,Int,항목 번호
-3,1003,1,Obj_name_003,B_Ceiling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 천장,작은방,,,,OriginNum,Int,"각 오브젝트의 고유번호
-스테이지1 : 1000번대
-스테이지2 : 2000번대 
-공통 : 3000번대"
-4,1004,1,Obj_name_019,B_Curtain,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 커튼,작은방,,,,,,
-5,1005,1,Obj_name_020,B_Door,0,0,0,잠긴 문 상호 작용,잠긴 문 상호 작용,Obj_act_001,Obj_act_013,Obj_act_014,0,작은방 방문,작은방,,,,,,
-6,1006,1,Obj_name_021,B_Rug,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 러그,작은방,,,,,,
-7,1007,1,Obj_name_022,B_Bed,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 침대,작은방,,,,ObjectType,Int,"오브젝트의 종류
-1:가구 
-2:프랍(상호작용) 
-3:아이템(인벤토리)
-4:데코 
-5:점프스퀘어"
-8,1008,1,Obj_name_023,B_NightStand,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 협탁,작은방,,,,,,
-9,1009,1,Obj_name_024,B_Closet,0,0,0,옷장 상호 작용,NULL,NULL,NULL,NULL,0,작은방 옷장,작은방,,,,,,
-10,1010,1,Obj_name_025,B_Cabinet,0,0,0,서랍 상호 작용,NULL,NULL,NULL,NULL,0,작은방 서랍장,작은방,,,,,,
-11,1011,1,Obj_name_026,B_Desk,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 책상,작은방,,,,,,
-12,1012,1,Obj_name_027,B_DeskChair,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 책상의자,작은방,,,,,,
-13,1013,2,Obj_name_054,B_Calendar,1,0,0,달력 상호 작용,NULL,Obj_act_002,NULL,NULL,0,달력,작은방,,3D 뷰로 [10월 11일] 확인 가능,,ObjectName,String,오브젝트 이름의 키 텍스트(스트링 테이블)
-14,1014,2,Obj_name_055,B_Diary,1,0,0,일기장 상호 작용,NULL,Obj_act_004,NULL,NULL,0,일기장,작은방,,,,ObjectFileName,String,오브젝트의 obj 파일명
-15,1015,2,Obj_name_056,B_Memo,1,0,0,쪽지 상호 작용,NULL,Obj_act_005,NULL,NULL,0,작은방 쪽지,작은방,,,,RotationView,Int,"상호작용 시 3D 회전 뷰 기능
-0: 3D 회전 뷰 X
-1: 3D 회전 뷰 O"
-16,1016,2,Obj_name_057,B_Lock,0,0,0,비밀번호 입력 시 자물쇠 상호 작용,잠금 해제 시 자물쇠 상호 작용,Obj_act_006,NULL,NULL,2,자물쇠,작은방,,[1011],,,,
-17,1017,2,Obj_name_058,B_Chain,0,0,0,NULL,NULL,NULL,NULL,NULL,0,쇠사슬,작은방,,,,,,
-18,1018,3,Obj_name_059,B_Hairpin,0,1,0,머리핀 떨어지는 소리,NULL,Obj_act_007,Obj_act_008,NULL,0,머리핀,작은방,,,,GetInventory,Int,"상호작용 시 인벤토리 획득 기능
-0: 인벤토리 획득 X
-1: 인벤토리 획득 O"
-19,1019,3,Obj_name_060,B_BentHairpin,0,1,0,NULL,NULL,Obj_act_009,Obj_act_010,NULL,0,구부러진 머리핀,작은방,,,,,,
-20,1020,3,Obj_name_061,B_HairpinPair,0,1,0,NULL,NULL,Obj_act_011,Obj_act_012,NULL,0,머리핀 한 쌍,작은방,,,,,,
-21,1021,2,Obj_name_062,B_Newspaper,1,0,0,쪽지 상호 작용,NULL,Obj_act_003,NULL,NULL,0,신문,작은방,,,,Hide,Int,"상호작용 시 숨기 기능
-0: 숨기 불가능
-1: 숨기 가능"
-22,1022,4,Obj_name_066,B_SpierWeb,0,0,0,NULL,NULL,NULL,NULL,NULL,0,거미줄,작은방,,,,,,
-23,1023,4,Obj_name_067,B_WoodenBox,0,0,0,NULL,NULL,NULL,NULL,NULL,0,나무 박스,작은방,,,,,,
-24,1024,4,Obj_name_068,B_Fabric,0,0,0,NULL,NULL,NULL,NULL,NULL,0,옷감,작은방,,,,SoundFileName,String,사운드 파일명
-25,1025,4,Obj_name_069,B_Mannequin,0,0,0,NULL,NULL,NULL,NULL,NULL,0,마네킹,작은방,,,,Description,String,상호작용 시 출력 텍스트(스트링 테이블)
-26,1026,4,Obj_name_070,B_Hanger,0,0,0,NULL,NULL,NULL,NULL,NULL,0,옷걸이,작은방,,,,,,
-27,1027,4,Obj_name_071,B_Candlestick,0,0,0,NULL,NULL,NULL,NULL,NULL,0,촛대,작은방,,,,,,
-28,1028,4,Obj_name_072,B_KidsClothes,0,0,0,NULL,NULL,NULL,NULL,NULL,0,아이 옷,작은방,,,,,,
-29,1029,4,Obj_name_073,B_Ladder,0,0,0,NULL,NULL,NULL,NULL,NULL,0,사다리,작은방,,,,,,
-30,1030,4,Obj_name_074,B_Bowl,0,0,0,NULL,NULL,NULL,NULL,NULL,0,접시/컵/먹다 남은 음식,작은방,,,,,,
-31,1031,4,Obj_name_075,B_OldBook,0,0,0,NULL,NULL,NULL,NULL,NULL,0,낡은 책,작은방,,,,,,
-32,1032,4,Obj_name_076,B_Frame,0,0,0,NULL,NULL,NULL,NULL,NULL,0,액자,작은방,,,,,,
-33,1033,4,Obj_name_077,B_SoccerBall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,축구공,작은방,,,,,,
-34,1034,4,Obj_name_078,B_Vase,0,0,0,NULL,NULL,NULL,NULL,NULL,0,금 간 화병,작은방,,,,,,
-35,1035,4,Obj_name_079,B_WoodenBlocks,0,0,0,NULL,NULL,NULL,NULL,NULL,0,나무 블럭,작은방,,,,,,
-36,1036,4,Obj_name_080,B_SketchBook,0,0,0,NULL,NULL,NULL,NULL,NULL,0,스케치북,작은방,,,,,,
-37,1037,4,Obj_name_081,B_SurpriseBox,0,0,0,NULL,NULL,NULL,NULL,NULL,0,깜짝 상자,작은방,,,,,,
-38,1038,4,Obj_name_082,B_TeddyBear,0,0,0,NULL,NULL,Obj_act_015,NULL,NULL,0,곰인형,작은방,,,,,,
-39,1039,4,Obj_name_161,B_Jar,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 항아리,작은방,,,,,,
-40,1040,4,Obj_name_084,B_GlassBottle,0,0,0,NULL,NULL,NULL,NULL,NULL,0,유리병,작은방,,,,,,
-41,1041,2,Obj_name_139,B_MapPiece1,0,0,0,쪽지 상호 작용,NULL,NULL,NULL,NULL,0,지도조각1,작은방,옷장 아래 서랍 속,,,,,
-42,1042,2,Obj_name_140,B_MapPiece2,0,0,0,쪽지 상호 작용,NULL,NULL,NULL,NULL,0,지도조각2,작은방,협탁 서랍 속,,,,,
-43,1043,2,Obj_name_141,B_MapPiece3,0,0,0,쪽지 상호 작용,NULL,NULL,NULL,NULL,0,지도조각3,작은방,책상 왼쪽 서랍 속,,,,,
-44,1044,2,Obj_name_142,B_MapPiece4,0,0,0,쪽지 상호 작용,NULL,NULL,NULL,NULL,0,지도조각4,작은방,서랍장 서랍 속,,,,,
-45,2001,1,Obj_name_004,G_Wall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,복도 벽,복도,,,,,,
-46,2002,1,Obj_name_005,G_Floor,0,0,0,NULL,NULL,NULL,NULL,NULL,0,복도 바닥,복도,,,,,,
-47,2003,1,Obj_name_006,G_Ceiling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,복도 천장,복도,,,,,,
-48,2004,1,Obj_name_007,C_Wall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,안방 벽,안방,,,,,,
-49,2005,1,Obj_name_008,C_Floor,0,0,0,NULL,NULL,NULL,NULL,NULL,0,안방 바닥,안방,,,,,,
-50,2006,1,Obj_name_009,C_Ceiling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,안방 천장,안방,,,,,,
-51,2007,1,Obj_name_010,D_Wall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,서재 벽,서재,,,,,,
-52,2008,1,Obj_name_011,D_Floor,0,0,0,NULL,NULL,NULL,NULL,NULL,0,서재 바닥,서재,,,,,,
-53,2009,1,Obj_name_012,D_Ceiling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,서재 천장,서재,,,,,,
-54,2010,1,Obj_name_013,F_Wall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,거실 벽,거실,,,,,,
-55,2011,1,Obj_name_014,F_Floor,0,0,0,NULL,NULL,NULL,NULL,NULL,0,거실 바닥,거실,,,,,,
-56,2012,1,Obj_name_015,F_Ceiling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,거실 천장,거실,,,,,,
-57,2013,1,Obj_name_016,E_Wall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,수술실 벽,수술실,,,,,,
-58,2014,1,Obj_name_017,E_Floor,0,0,0,NULL,NULL,NULL,NULL,NULL,0,수술실 바닥,수술실,,,,,,
-59,2015,1,Obj_name_018,E_Ceiling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,수술실 천장,수술실,,,,,,
-60,2016,1,Obj_name_028,A_CurvedPillar,0,0,0,NULL,NULL,NULL,NULL,NULL,0,기역자 기둥,,,,,,,
-61,2017,1,Obj_name_029,A_Pillar,0,0,0,NULL,NULL,NULL,NULL,NULL,0,일자 기둥,,,,,,,
-62,2018,1,Obj_name_032,A_Door,0,0,0,잠긴 문 상호 작용,잠긴 문 상호 작용,NULL,NULL,NULL,0,방문,,,,,,,
-63,2019,1,Obj_name_033,A_WallLamp,0,0,0,NULL,NULL,NULL,NULL,NULL,0,벽등,복도,벽,,,,,
-64,2020,1,Obj_name_034,A_StandLamp,0,0,0,NULL,NULL,NULL,NULL,NULL,0,스탠드등,안방,,,,,,
-65,2021,1,Obj_name_035,A_FirePlace,0,0,0,NULL,NULL,NULL,NULL,NULL,0,벽난로,,,,,,,
-66,2022,1,Obj_name_036,A_Shelf,0,0,0,NULL,NULL,NULL,NULL,NULL,0,선반,,,,,,,
-67,2023,1,Obj_name_037,A_Cabinet,0,0,0,서랍 상호 작용,NULL,NULL,NULL,NULL,0,서랍장,,,,,,,
-68,2024,1,Obj_name_038,A_BookShelf,0,0,0,책장 사운드,NULL,NULL,NULL,NULL,0,책장,서재,,,,,,
-69,2025,1,Obj_name_039,A_Closet,0,0,1,옷장 상호 작용,NULL,NULL,NULL,NULL,0,옷장,안방,,,,,,
-70,2026,1,Obj_name_040,A_Bed,0,0,1,NULL,NULL,NULL,NULL,NULL,0,침대,안방,,,,,,
-71,2027,1,Obj_name_041,A_NightStand,0,0,0,NULL,NULL,NULL,NULL,NULL,0,협탁,안방,,,,,,
-72,2028,1,Obj_name_042,A_Desk,0,0,1,잠긴 문 상호 작용,서랍 상호 작용,Obj_act_028,NULL,NULL,0,책상,서재,,,,,,
-73,2029,1,Obj_name_043,A_DeskChair,0,0,0,NULL,NULL,NULL,NULL,NULL,0,책상의자,서재,,,,,,
-74,2030,1,Obj_name_044,A_TeaTable,0,0,0,NULL,NULL,NULL,NULL,NULL,0,티테이블,안방,,,,,,
-75,2031,1,Obj_name_045,A_TeaTableChair,0,0,0,NULL,NULL,NULL,NULL,NULL,0,티테이블의자,안방,,,,,,
-76,2032,1,Obj_name_046,A_SofaTable,0,0,1,NULL,NULL,NULL,NULL,NULL,0,소파테이블,거실,,,,,,
-77,2033,1,Obj_name_047,A_SofaS,0,0,0,NULL,NULL,NULL,NULL,NULL,0,짧은 소파,거실,,,,,,
-78,2034,1,Obj_name_085,A_SofaL,0,0,0,NULL,NULL,NULL,NULL,NULL,0,긴 소파,거실,,,,,,
-79,2035,1,Obj_name_048,A_Vanity,0,0,0,서랍 상호 작용,NULL,NULL,NULL,NULL,0,화장대,안방,,,,,,
-80,2036,1,Obj_name_049,A_VanityChair,0,0,0,NULL,NULL,NULL,NULL,NULL,0,화장대의자,안방,,,,,,
-81,2037,1,Obj_name_050,F_Piano,0,0,0,NULL,NULL,NULL,NULL,NULL,0,피아노,거실,,,,,,
-82,2038,1,Obj_name_051,F_PianoChair,0,0,0,NULL,NULL,NULL,NULL,NULL,0,피아노의자,거실,,,,,,
-83,2039,1,Obj_name_052,A_GrandfatherClock,0,0,0,시계 문 여는 사운드,시계 종소리 사운드,NULL,NULL,NULL,1,괘종시계,거실,,[10시10분] 접시에서 얻은 힌트로 시계바늘 퍼즐을 맞추면 시계 내부 바닥에 쪽지 등장 및 획득,,,,
-84,2040,1,Obj_name_053,G_Gate,0,0,0,잠긴 문 상호 작용,잠금 해제 시 방문 상호 작용,NULL,NULL,NULL,0,정문,복도,,,,,,
-85,2041,4,Obj_name_063,A_Clothes,0,0,0,NULL,NULL,NULL,NULL,NULL,0,옷,안방,옷장 속,,,,,
-86,2042,4,Obj_name_064,A_HumanDoll,0,0,0,NULL,NULL,NULL,NULL,NULL,0,사람 인형,,,,,,,
-87,2043,5,Obj_name_065,A_Rat,0,0,0,쥐소리,NULL,NULL,NULL,NULL,0,쥐,,,,,,,
-88,2044,1,Obj_name_086,H_Wall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,비밀제단 벽,비밀제단,,,,,,
-89,2045,1,Obj_name_087,H_Floor,0,0,0,NULL,NULL,NULL,NULL,NULL,0,비밀제단 바닥,비밀제단,,,,,,
-90,2046,1,Obj_name_088,H_Ceiling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,비밀제단 천장,비밀제단,,,,,,
-91,2047,4,Obj_name_089,C_Vase,0,0,0,NULL,NULL,NULL,NULL,NULL,0,화병,안방,,,,,,
-92,2048,4,Obj_name_076,A_Frame,0,0,0,NULL,NULL,NULL,NULL,NULL,0,액자,,,,,,,
-93,2049,4,Obj_name_091,C_Firewood,0,0,0,NULL,NULL,NULL,NULL,NULL,0,장작,안방,,,,,,
-94,2050,4,Obj_name_092,C_Kindling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,불쏘시개,안방,,,,,,
-95,2051,2,Obj_name_093,C_Perfume,1,0,0,향수병 사운드,NULL,Obj_act_017,NULL,NULL,0,향수병,안방,화장대 위,3D뷰로 금고 비밀번호 3개 중 1자리[4] 확인,,,,
-96,2052,4,Obj_name_153,C_Cosmetics,0,0,0,NULL,NULL,NULL,NULL,NULL,0,화장품,안방,,,,,,
-97,2053,1,Obj_name_096,C_JewelCase,0,0,0,잠금 해제 시 자물소 상호 작용,보석함 사운드,Obj_act_043,NULL,NULL,0,보석함,안방,화장대 위,서재와 거실에서 얻은 열쇠조각을 합성한 보석함 열쇠로 열면 보석(비밀제단 문 열쇠) 획득,,,,
-98,2054,4,Obj_name_070,C_Hanger,0,0,0,NULL,NULL,NULL,NULL,NULL,0,옷걸이,안방,,,,,,
-99,2055,1,Obj_name_109,C_Safe,0,0,0,금고 사운드,NULL,Obj_act_019,NULL,NULL,1,금고,안방,,"[422] 보석, 향수병, 쪽지에서 얻은 3자리의 비밀번호로 열면 안방 열쇠, 서재 열쇠 획득",,,,
-100,2056,4,Obj_name_097,C_WallHanger,0,0,0,NULL,NULL,NULL,NULL,NULL,0,벽 옷걸이,안방,,,,,,
-101,2057,4,Obj_name_098,C_TreePot,0,0,0,NULL,NULL,NULL,NULL,NULL,0,나무화분,안방,,,,,,
-102,2058,4,Obj_name_099,C_Hat,0,0,0,NULL,NULL,NULL,NULL,NULL,0,모자,안방,,,,,,
-103,2059,4,Obj_name_100,C_Scarf,0,0,0,NULL,NULL,NULL,NULL,NULL,0,스카프,안방,,,,,,
-104,2060,4,Obj_name_101,C_Tie,0,0,0,NULL,NULL,NULL,NULL,NULL,0,넥타이,안방,,,,,,
-105,2061,1,Obj_name_102,C_Rug,0,0,0,NULL,NULL,NULL,NULL,NULL,0,러그,안방,,,,,,
-106,2062,2,Obj_name_103,C_ScatteredGems,1,0,0,보석 사운드,NULL,Obj_act_018,NULL,NULL,0,널브러진 보석들,안방,화장대 위,3D뷰로 금고 비밀번호 3개 중 1자리[2] 확인,,,,
-107,2063,2,Obj_name_104,D_Book,0,0,0,NULL,NULL,Obj_act_032,NULL,NULL,0,책,서재,책장,텍스트를 통해 스토리 내용 출력,,,,
-108,2064,4,Obj_name_105,D_Commission,0,0,0,NULL,NULL,NULL,NULL,NULL,0,위임장,서재,,,,,,
-109,2065,4,Obj_name_106,D_SkullModel,0,0,0,NULL,NULL,NULL,NULL,NULL,0,두개골 모형,서재,,,,,,
-110,2066,2,Obj_name_107,D_Globe,0,0,0,지구본 사운드,NULL,Obj_act_026,Obj_act_027,NULL,0,지구본,서재,책상 위,지구본 조각을 사용하면 잠겨있던 책상 서랍 1개가 열려 쪽지 획득 가능,,,,
-111,2067,1,Obj_name_108,D_SuitCase,0,0,0,슈트케이스 사운드,NULL,Obj_act_031,NULL,NULL,1,슈트케이스,서재,,"[706] 서류더미, 쪽지에서 얻은 3자리의 비밀번호로 열면 거실 열쇠 획득",,,,
-112,2068,4,Obj_name_110,D_Whiskeybottle,0,0,0,NULL,NULL,NULL,NULL,NULL,0,위스키병,서재,,,,,,
-113,2069,4,Obj_name_111,D_WhiskeyGlass,0,0,0,NULL,NULL,NULL,NULL,NULL,0,위스키잔,서재,,,,,,
-114,2070,4,Obj_name_112,D_DecorationGun,0,0,0,NULL,NULL,NULL,NULL,NULL,0,장식용 총,서재,,,,,,
-115,2071,4,Obj_name_113,D_StuffedDeerHead,0,0,0,NULL,NULL,NULL,NULL,NULL,0,박제된 사슴 머리,서재,,,,,,
-116,2072,4,Obj_name_114,D_InkBottle,0,0,0,NULL,NULL,NULL,NULL,NULL,0,잉크병/깃펜,서재,,,,,,
-117,2073,4,Obj_name_071,D_Candlestick,0,0,0,NULL,NULL,NULL,NULL,NULL,0,촛대,서재,,,,,,
-118,2074,2,Obj_name_154,D_Documents1,1,0,0,일기장 상호 작용,NULL,Obj_act_029,NULL,NULL,0,서류더미1,서재,책상 위,3D뷰로 슈트케이스 비밀번호 3개 중 앞의 1자리[7] 확인,,,,
-119,2075,4,Obj_name_116,D_Typewriter,0,0,0,NULL,NULL,NULL,NULL,NULL,0,타자기,서재,,,,,,
-120,2076,4,Obj_name_117,D_Trophy,0,0,0,NULL,NULL,NULL,NULL,NULL,0,트로피,서재,,,,,,
-121,2077,4,Obj_name_118,F_TeaTray,0,0,0,NULL,NULL,NULL,NULL,NULL,0,티 트레이,거실,,,,,,
-122,2078,4,Obj_name_119,F_WineBottle,0,0,0,NULL,NULL,NULL,NULL,NULL,0,와인병,거실,,,,,,
-123,2079,4,Obj_name_120,F_Statue,0,0,0,NULL,NULL,NULL,NULL,NULL,0,조각상,거실,,,,,,
-124,2080,4,Obj_name_121,F_Mirror,0,0,0,NULL,NULL,NULL,NULL,NULL,0,거울,거실,,,,,,
-125,2081,2,Obj_name_122,F_Telephone,0,0,0,전화기 사운드,전화기 퍼즐 완료 사운드,Obj_act_041,Obj_act_042,NULL,1,전화기,거실,,[823] 괘종시계의 쪽지에서 얻은 3자리 비밀번호로 열면 수술실 문이 열림,,,,
-126,2082,2,Obj_name_162,F_MiniStatue,0,0,0,접시 및 꽃병 사운드,NULL,Obj_act_036,NULL,NULL,0,미니 조각상,거실,선반 위,텍스트 출력 후 선반 맨 아래칸에서 보석함 열쇠조각2 등장 및 획득,,,,
-127,2083,1,Obj_name_175,F_WallShelf,0,0,0,NULL,NULL,NULL,NULL,NULL,0,거실 벽선반,거실,,,,,,
-128,2084,4,Obj_name_124,F_TeacupSet,0,0,0,NULL,NULL,NULL,NULL,NULL,0,찻잔세트,거실,,,,,,
-129,2085,2,Obj_name_126,F_Dish,1,0,0,접시 및 꽃병 사운드,NULL,Obj_act_064,Obj_act_065,NULL,0,접시,거실,선반 위,"1개의 접시에는 괘종시계 퍼즐 힌트[10:10]이 텍스트로 출력되고, 나머지 3개는 일반 텍스트 출력",,,,
-130,2086,4,Obj_name_127,F_SimpleAltar,0,0,0,NULL,NULL,NULL,NULL,NULL,0,간이 제단,거실,,,,,,
-131,2087,4,Obj_name_128,G_UmbrellaStand,0,0,0,NULL,NULL,NULL,NULL,NULL,0,우산꽂이,복도,,,,,,
-132,2088,1,Obj_name_129,E_SurgeryTable,0,0,1,수술대 사운드,NULL,Obj_act_047,Obj_act_048,NULL,0,수술대,수술실,,수술도구를 사용하면 잠겨있던 1차 비밀제단 문이 열림,,,,
-133,2089,3,Obj_name_130,E_SurgicalTool1,0,1,0,수술도구 사운드,NULL,Obj_act_046,NULL,NULL,0,수술도구1,수술실,수술 선반 위,수술대에 사용할 수 있는 퍼즐 조각 (수술대 위의 일지와 상호작용 후 사용 가능),,,,
-134,2090,4,Obj_name_178,E_SurgicalTool2,0,0,0,NULL,NULL,NULL,NULL,NULL,0,수술도구2,수술실,수술 선반 위,데코용 수술도구,,,,
-135,2091,1,Obj_name_131,E_SurgicalShelf,0,0,0,NULL,NULL,NULL,NULL,NULL,0,수술 선반,수술실,,,,,,
-136,2092,4,Obj_name_132,E_BrainBottle,0,0,0,NULL,NULL,NULL,NULL,NULL,0,뇌 보관병,수술실,,,,,,
-137,2093,4,Obj_name_133,E_MopBucket,0,0,0,NULL,NULL,NULL,NULL,NULL,0,걸레 양동이,수술실,,,,,,
-138,2094,1,Obj_name_177,E_VinylCurtain,0,0,0,NULL,NULL,NULL,NULL,NULL,0,비닐 커튼,수술실,,,,,,
-139,2095,4,Obj_name_135,E_LeatherBoots,0,0,0,NULL,NULL,NULL,NULL,NULL,0,가죽장화,수술실,,,,,,
-140,2096,1,Obj_name_136,H_Altar,0,0,0,제단 및 수수께끼 사운드,제단 및 수수께끼 사운드,Obj_act_050,Obj_act_061,NULL,0,제단,비밀제단,,"비밀제단의 다른 오브젝트들과 상호작용하기 위한 트리거(조건), 텍스트로 수수께끼 출력",,,,
-141,2097,4,Obj_name_137,H_Mannequin,0,0,0,NULL,NULL,NULL,NULL,NULL,0,인간 마네킹,비밀제단,,,,,,
-142,2098,2,Obj_name_138,H_Butterfly,0,0,0,마네킹 나비 사운드,NULL,NULL,NULL,NULL,0,나비 모형,비밀제단,,제단의 수수께끼와 각 마네킹 앞의 힌트를 보고 각 나비의 날개를 접고 펴며 퍼즐을 풀면 제단 위에 정문 열쇠 등장 및 획득 ,,,,
-143,2099,3,Obj_name_143,A_JewelCaseKeyPiece1,0,1,0,NULL,NULL,Obj_act_037,NULL,NULL,0,보석함 열쇠조각1,서재,서랍장 서랍 속,안방 보석함 열쇠의 합성 재료 1/2 (화장대 서랍 속의 쪽지와 상호작용 후 합성 가능),,,,
-144,2100,3,Obj_name_144,A_JewelCaseKeyPiece2,0,1,0,NULL,NULL,Obj_act_037,NULL,NULL,0,보석함 열쇠조각2,거실,선반 위,안방 보석함 열쇠의 합성 재료 2/2 (화장대 서랍 속의 쪽지와 상호작용 후 합성 가능),,,,
-145,2101,3,Obj_name_145,A_JewelCaseKey,0,1,0,NULL,NULL,Obj_act_038,Obj_act_039,NULL,0,보석함 열쇠,,,"서재와 거실에서 얻은 열쇠조각을 합성하여 얻을 수 있고, 잠긴 보석함을 여는 데 사용된다.",,,,
-146,2102,3,Obj_name_146,D_GlobePiece,0,1,0,NULL,NULL,Obj_act_025,NULL,NULL,0,지구본 조각,서재,서랍장 서랍 속,지구본에 사용할 수 있는 퍼즐 조각,,,,
-147,2103,1,Obj_name_147,H_SecretDoor1,0,0,0,비밀문 사운드,NULL,NULL,NULL,NULL,0,1차 비밀제단문,수술실,비밀제단 입구,수술대에 수술도구 퍼즐을 풀면 양옆으로 열림,,,,
-148,2104,1,Obj_name_148,H_SecretDoor2,0,0,0,비밀문 보석 장착 사운드,비밀문 사운드,Obj_act_049,NULL,NULL,0,2차 비밀제단문,수술실,비밀제단 입구,안방의 보석함에서 얻은 보석을 사용하면 위로 열림,,,,
-149,2105,3,Obj_name_149,A_Gemstone,0,1,0,NULL,NULL,Obj_act_044,NULL,NULL,0,보석,안방,보석함 속,수술실에서 잠긴 2차 비밀제단문에 사용하면 열 수 있다,,,,
-150,2106,3,Obj_name_150,A_MainRoomKey,0,1,0,NULL,NULL,Obj_act_020,NULL,NULL,0,안방 열쇠,안방,금고 속,잠긴 안방 문에 사용하면 열 수 있다.,,,,
-151,2107,3,Obj_name_151,A_StudyKey,0,1,0,NULL,NULL,Obj_act_021,NULL,NULL,0,서재 열쇠,안방,금고 속,잠긴 서재 문에 사용하면 열 수 있다.,,,,
-152,2108,3,Obj_name_152,A_LivingRoomKey,0,1,0,NULL,NULL,Obj_act_034,NULL,NULL,0,거실 열쇠,서재,슈트케이스 속,잠긴 거실 문에 사용하면 열 수 있다.,,,,
-153,2109,2,Obj_name_056,C_Memo1,1,0,0,쪽지 상호 작용,NULL,Obj_act_016,NULL,NULL,0,안방 쪽지1,안방,화장대 서랍 속,보석함 열쇠 조각을 합성하기 위한 트리거(조건) -> 트리거 삭제,,,,
-154,2110,2,Obj_name_056,C_Memo2,1,0,0,쪽지 상호 작용,NULL,Obj_act_015,NULL,NULL,0,안방 쪽지2,안방,서랍장 서랍 속,텍스트로 금고 비밀번호 3개 중 마지막 1자리[2] 확인,,,,
-155,2111,2,Obj_name_056,D_Memo,1,0,0,쪽지 상호 작용,NULL,Obj_act_030,NULL,NULL,0,서재 쪽지,서재,책상 서랍 속,"텍스트로 슈트케이스 비밀번호 3개 중 마지막 2자리[0],[6] 확인",,,,
-156,2112,2,Obj_name_056,F_Memo,1,0,0,쪽지 상호 작용,NULL,Obj_act_040,NULL,NULL,0,거실 쪽지,거실,괘종시계 속,"3D뷰로 전화기 비밀번호 3개 중 3자리[8],[2],[3] 확인",,,,
-157,2113,2,Obj_name_155,D_Documents2,0,0,0,일기장 상호 작용,NULL,Obj_act_033,NULL,NULL,0,서류더미2,서재,선반 위,텍스트를 통해 스토리 내용 출력,,,,
-158,2114,2,Obj_name_163,E_Diary,0,0,0,일기장 상호 작용,NULL,Obj_act_045,NULL,NULL,0,일지,수술실,수술대 위,실험실의 다른 오브젝트들과 상호작용하기 위한 트리거(조건),,,,
-159,2115,3,Obj_name_164,A_MainGateKey,0,1,0,NULL,NULL,Obj_act_062,NULL,NULL,0,정문 열쇠,비밀제단,제단 위,잠긴 정문에 사용하면 열 수 있다.,,,,
-160,2116,2,Obj_name_165,H_Tile1,0,0,0,NULL,NULL,Obj_act_051,NULL,NULL,0,타일1,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.,,,,
-161,2117,2,Obj_name_166,H_Tile2,0,0,0,NULL,NULL,Obj_act_052,NULL,NULL,0,타일2,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.,,,,
-162,2118,2,Obj_name_167,H_Tile3,0,0,0,NULL,NULL,Obj_act_053,NULL,NULL,0,타일3,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.,,,,
-163,2119,2,Obj_name_168,H_Tile4,0,0,0,NULL,NULL,Obj_act_054,NULL,NULL,0,타일4,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.,,,,
-164,2120,2,Obj_name_169,H_Tile5,0,0,0,NULL,NULL,Obj_act_055,NULL,NULL,0,타일5,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.,,,,
-165,2121,2,Obj_name_170,H_Tile6,0,0,0,NULL,NULL,Obj_act_056,NULL,NULL,0,타일6,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.,,,,
-166,2122,2,Obj_name_171,H_Tile7,0,0,0,NULL,NULL,Obj_act_057,NULL,NULL,0,타일7,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.,,,,
-167,2123,2,Obj_name_172,H_Tile8,0,0,0,NULL,NULL,Obj_act_058,NULL,NULL,0,타일8,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.,,,,
-168,2124,2,Obj_name_173,H_Tile9,0,0,0,NULL,NULL,Obj_act_059,NULL,NULL,0,타일9,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.,,,,
-169,2125,2,Obj_name_174,H_Tile10,0,0,0,NULL,NULL,Obj_act_060,NULL,NULL,0,타일10,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.,,,,
-170,2126,1,Obj_name_176,E_WallShelf,0,0,0,NULL,NULL,NULL,NULL,NULL,1,수술실 벽선반,수술실,,,,,,
-171,2127,2,Obj_name_179,A_Cat,0,0,0,고양이 울음소리,NULL,Obj_act_063,NULL,NULL,0,고양이,안방,침대 위,상호작용 시 고양이 울음소리 사운드가 출력된다.,,,,
-172,2128,4,Obj_name_180,C_Handkerchief,0,0,0,NULL,NULL,NULL,NULL,NULL,0,손수건,안방,화장대 위,널브러진 보석들 밑에 깔린다,,,,
-173,2129,4,Obj_name_90,F_MusicSheet,0,0,0,쪽지 상호 작용,NULL,NULL,NULL,NULL,0,악보,거실,피아노 밑,,,,,
+(용도)"
+Idx,OriginNum,ObjectType,ObjectName,ObjectFileName,RotationView,GetInventory,Hide,SoundFileName1,SoundFileName2,Description1,Description2,Description3,PasswordNum,/,/,/,
+Int,Int,Int,String,String,Int,Int,Int,String,String,String,String,String,Int,/,/,/,
+1,1001,1,Obj_name_001,B_Wall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 벽,작은방,,
+2,1002,1,Obj_name_002,B_Floor,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 바닥,작은방,,
+3,1003,1,Obj_name_003,B_Ceiling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 천장,작은방,,
+4,1004,1,Obj_name_019,B_Curtain,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 커튼,작은방,,
+5,1005,1,Obj_name_020,B_Door,0,0,0,잠긴 문 상호 작용,잠긴 문 상호 작용,Obj_act_001,Obj_act_013,Obj_act_014,0,작은방 방문,작은방,,
+6,1006,1,Obj_name_021,B_Rug,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 러그,작은방,,
+7,1007,1,Obj_name_022,B_Bed,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 침대,작은방,,
+8,1008,1,Obj_name_023,B_NightStand,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 협탁,작은방,,
+9,1009,1,Obj_name_024,B_Closet,0,0,0,옷장 상호 작용,NULL,NULL,NULL,NULL,0,작은방 옷장,작은방,,
+10,1010,1,Obj_name_025,B_Cabinet,0,0,0,서랍 상호 작용,NULL,NULL,NULL,NULL,0,작은방 서랍장,작은방,,
+11,1011,1,Obj_name_026,B_Desk,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 책상,작은방,,
+12,1012,1,Obj_name_027,B_DeskChair,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 책상의자,작은방,,
+13,1013,2,Obj_name_054,B_Calendar,1,0,0,달력 상호 작용,NULL,Obj_act_002,NULL,NULL,0,달력,작은방,,3D 뷰로 [10월 11일] 확인 가능
+14,1014,2,Obj_name_055,B_Diary,1,0,0,일기장 상호 작용,NULL,Obj_act_004,NULL,NULL,0,일기장,작은방,,
+15,1015,2,Obj_name_056,B_Memo,1,0,0,쪽지 상호 작용,NULL,Obj_act_005,NULL,NULL,0,작은방 쪽지,작은방,,
+16,1016,2,Obj_name_057,B_Lock,0,0,0,비밀번호 입력 시 자물쇠 상호 작용,잠금 해제 시 자물쇠 상호 작용,Obj_act_006,NULL,NULL,2,자물쇠,작은방,,[1011]
+17,1017,2,Obj_name_058,B_Chain,0,0,0,NULL,NULL,NULL,NULL,NULL,0,쇠사슬,작은방,,
+18,1018,3,Obj_name_059,B_Hairpin,0,1,0,머리핀 떨어지는 소리,NULL,Obj_act_007,Obj_act_008,NULL,0,머리핀,작은방,,
+19,1019,3,Obj_name_060,B_BentHairpin,0,1,0,NULL,NULL,Obj_act_009,Obj_act_010,NULL,0,구부러진 머리핀,작은방,,
+20,1020,3,Obj_name_061,B_HairpinPair,0,1,0,NULL,NULL,Obj_act_011,Obj_act_012,NULL,0,머리핀 한 쌍,작은방,,
+21,1021,2,Obj_name_062,B_Newspaper,1,0,0,쪽지 상호 작용,NULL,Obj_act_003,NULL,NULL,0,신문,작은방,,
+22,1022,4,Obj_name_066,B_SpierWeb,0,0,0,NULL,NULL,NULL,NULL,NULL,0,거미줄,작은방,,
+23,1023,4,Obj_name_067,B_WoodenBox,0,0,0,NULL,NULL,NULL,NULL,NULL,0,나무 박스,작은방,,
+24,1024,4,Obj_name_068,B_Fabric,0,0,0,NULL,NULL,NULL,NULL,NULL,0,옷감,작은방,,
+25,1025,4,Obj_name_069,B_Mannequin,0,0,0,NULL,NULL,NULL,NULL,NULL,0,마네킹,작은방,,
+26,1026,4,Obj_name_070,B_Hanger,0,0,0,NULL,NULL,NULL,NULL,NULL,0,옷걸이,작은방,,
+27,1027,4,Obj_name_071,B_Candlestick,0,0,0,NULL,NULL,NULL,NULL,NULL,0,촛대,작은방,,
+28,1028,4,Obj_name_072,B_KidsClothes,0,0,0,NULL,NULL,NULL,NULL,NULL,0,아이 옷,작은방,,
+29,1029,4,Obj_name_073,B_Ladder,0,0,0,NULL,NULL,NULL,NULL,NULL,0,사다리,작은방,,
+30,1030,4,Obj_name_074,B_Bowl,0,0,0,NULL,NULL,NULL,NULL,NULL,0,접시/컵/먹다 남은 음식,작은방,,
+31,1031,4,Obj_name_075,B_OldBook,0,0,0,NULL,NULL,NULL,NULL,NULL,0,낡은 책,작은방,,
+32,1032,4,Obj_name_076,B_Frame,0,0,0,NULL,NULL,NULL,NULL,NULL,0,액자,작은방,,
+33,1033,4,Obj_name_077,B_SoccerBall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,축구공,작은방,,
+34,1034,4,Obj_name_078,B_Vase,0,0,0,NULL,NULL,NULL,NULL,NULL,0,금 간 화병,작은방,,
+35,1035,4,Obj_name_079,B_WoodenBlocks,0,0,0,NULL,NULL,NULL,NULL,NULL,0,나무 블럭,작은방,,
+36,1036,4,Obj_name_080,B_SketchBook,0,0,0,NULL,NULL,NULL,NULL,NULL,0,스케치북,작은방,,
+37,1037,4,Obj_name_081,B_SurpriseBox,0,0,0,NULL,NULL,NULL,NULL,NULL,0,깜짝 상자,작은방,,
+38,1038,4,Obj_name_082,B_TeddyBear,0,0,0,NULL,NULL,Obj_act_015,NULL,NULL,0,곰인형,작은방,,
+39,1039,4,Obj_name_161,B_Jar,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 항아리,작은방,,
+40,1040,4,Obj_name_084,B_GlassBottle,0,0,0,NULL,NULL,NULL,NULL,NULL,0,유리병,작은방,,
+41,1041,2,Obj_name_139,B_MapPiece1,0,0,0,쪽지 상호 작용,NULL,NULL,NULL,NULL,0,지도조각1,작은방,옷장 아래 서랍 속,
+42,1042,2,Obj_name_140,B_MapPiece2,0,0,0,쪽지 상호 작용,NULL,NULL,NULL,NULL,0,지도조각2,작은방,협탁 서랍 속,
+43,1043,2,Obj_name_141,B_MapPiece3,0,0,0,쪽지 상호 작용,NULL,NULL,NULL,NULL,0,지도조각3,작은방,책상 왼쪽 서랍 속,
+44,1044,2,Obj_name_142,B_MapPiece4,0,0,0,쪽지 상호 작용,NULL,NULL,NULL,NULL,0,지도조각4,작은방,서랍장 서랍 속,
+45,2001,1,Obj_name_004,G_Wall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,복도 벽,복도,,
+46,2002,1,Obj_name_005,G_Floor,0,0,0,NULL,NULL,NULL,NULL,NULL,0,복도 바닥,복도,,
+47,2003,1,Obj_name_006,G_Ceiling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,복도 천장,복도,,
+48,2004,1,Obj_name_007,C_Wall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,안방 벽,안방,,
+49,2005,1,Obj_name_008,C_Floor,0,0,0,NULL,NULL,NULL,NULL,NULL,0,안방 바닥,안방,,
+50,2006,1,Obj_name_009,C_Ceiling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,안방 천장,안방,,
+51,2007,1,Obj_name_010,D_Wall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,서재 벽,서재,,
+52,2008,1,Obj_name_011,D_Floor,0,0,0,NULL,NULL,NULL,NULL,NULL,0,서재 바닥,서재,,
+53,2009,1,Obj_name_012,D_Ceiling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,서재 천장,서재,,
+54,2010,1,Obj_name_013,F_Wall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,거실 벽,거실,,
+55,2011,1,Obj_name_014,F_Floor,0,0,0,NULL,NULL,NULL,NULL,NULL,0,거실 바닥,거실,,
+56,2012,1,Obj_name_015,F_Ceiling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,거실 천장,거실,,
+57,2013,1,Obj_name_016,E_Wall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,수술실 벽,수술실,,
+58,2014,1,Obj_name_017,E_Floor,0,0,0,NULL,NULL,NULL,NULL,NULL,0,수술실 바닥,수술실,,
+59,2015,1,Obj_name_018,E_Ceiling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,수술실 천장,수술실,,
+60,2016,1,Obj_name_028,A_CurvedPillar,0,0,0,NULL,NULL,NULL,NULL,NULL,0,기역자 기둥,,,
+61,2017,1,Obj_name_029,A_Pillar,0,0,0,NULL,NULL,NULL,NULL,NULL,0,일자 기둥,,,
+62,2018,1,Obj_name_032,A_Door,0,0,0,잠긴 문 상호 작용,잠긴 문 상호 작용,NULL,NULL,NULL,0,방문,,,
+63,2019,1,Obj_name_033,A_WallLamp,0,0,0,NULL,NULL,NULL,NULL,NULL,0,벽등,복도,벽,
+64,2020,1,Obj_name_034,A_StandLamp,0,0,0,NULL,NULL,NULL,NULL,NULL,0,스탠드등,안방,,
+65,2021,1,Obj_name_035,A_FirePlace,0,0,0,NULL,NULL,NULL,NULL,NULL,0,벽난로,,,
+66,2022,1,Obj_name_036,A_Shelf,0,0,0,NULL,NULL,NULL,NULL,NULL,0,선반,,,
+67,2023,1,Obj_name_037,A_Cabinet,0,0,0,서랍 상호 작용,NULL,NULL,NULL,NULL,0,서랍장,,,
+68,2024,1,Obj_name_038,A_BookShelf,0,0,0,책장 사운드,NULL,NULL,NULL,NULL,0,책장,서재,,
+69,2025,1,Obj_name_039,A_Closet,0,0,1,옷장 상호 작용,NULL,NULL,NULL,NULL,0,옷장,안방,,
+70,2026,1,Obj_name_040,A_Bed,0,0,1,NULL,NULL,NULL,NULL,NULL,0,침대,안방,,
+71,2027,1,Obj_name_041,A_NightStand,0,0,0,NULL,NULL,NULL,NULL,NULL,0,협탁,안방,,
+72,2028,1,Obj_name_042,A_Desk,0,0,1,잠긴 문 상호 작용,서랍 상호 작용,Obj_act_028,NULL,NULL,0,책상,서재,,
+73,2029,1,Obj_name_043,A_DeskChair,0,0,0,NULL,NULL,NULL,NULL,NULL,0,책상의자,서재,,
+74,2030,1,Obj_name_044,A_TeaTable,0,0,0,NULL,NULL,NULL,NULL,NULL,0,티테이블,안방,,
+75,2031,1,Obj_name_045,A_TeaTableChair,0,0,0,NULL,NULL,NULL,NULL,NULL,0,티테이블의자,안방,,
+76,2032,1,Obj_name_046,A_SofaTable,0,0,1,NULL,NULL,NULL,NULL,NULL,0,소파테이블,거실,,
+77,2033,1,Obj_name_047,A_SofaS,0,0,0,NULL,NULL,NULL,NULL,NULL,0,짧은 소파,거실,,
+78,2034,1,Obj_name_085,A_SofaL,0,0,0,NULL,NULL,NULL,NULL,NULL,0,긴 소파,거실,,
+79,2035,1,Obj_name_048,A_Vanity,0,0,0,서랍 상호 작용,NULL,NULL,NULL,NULL,0,화장대,안방,,
+80,2036,1,Obj_name_049,A_VanityChair,0,0,0,NULL,NULL,NULL,NULL,NULL,0,화장대의자,안방,,
+81,2037,1,Obj_name_050,F_Piano,0,0,0,NULL,NULL,NULL,NULL,NULL,0,피아노,거실,,
+82,2038,1,Obj_name_051,F_PianoChair,0,0,0,NULL,NULL,NULL,NULL,NULL,0,피아노의자,거실,,
+83,2039,1,Obj_name_052,A_GrandfatherClock,0,0,0,시계 문 여는 사운드,시계 종소리 사운드,NULL,NULL,NULL,1,괘종시계,거실,,[10시10분] 접시에서 얻은 힌트로 시계바늘 퍼즐을 맞추면 시계 내부 바닥에 쪽지 등장 및 획득
+84,2040,1,Obj_name_053,G_Gate,0,0,0,잠긴 문 상호 작용,잠금 해제 시 방문 상호 작용,NULL,NULL,NULL,0,정문,복도,,
+85,2041,4,Obj_name_063,A_Clothes,0,0,0,NULL,NULL,NULL,NULL,NULL,0,옷,안방,옷장 속,
+86,2042,4,Obj_name_064,A_HumanDoll,0,0,0,NULL,NULL,NULL,NULL,NULL,0,사람 인형,,,
+87,2043,5,Obj_name_065,A_Rat,0,0,0,쥐소리,NULL,NULL,NULL,NULL,0,쥐,,,
+88,2044,1,Obj_name_086,H_Wall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,비밀제단 벽,비밀제단,,
+89,2045,1,Obj_name_087,H_Floor,0,0,0,NULL,NULL,NULL,NULL,NULL,0,비밀제단 바닥,비밀제단,,
+90,2046,1,Obj_name_088,H_Ceiling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,비밀제단 천장,비밀제단,,
+91,2047,4,Obj_name_089,C_Vase,0,0,0,NULL,NULL,NULL,NULL,NULL,0,화병,안방,,
+92,2048,4,Obj_name_076,A_Frame,0,0,0,NULL,NULL,NULL,NULL,NULL,0,액자,,,
+93,2049,4,Obj_name_091,C_Firewood,0,0,0,NULL,NULL,NULL,NULL,NULL,0,장작,안방,,
+94,2050,4,Obj_name_092,C_Kindling,0,0,0,NULL,NULL,NULL,NULL,NULL,0,불쏘시개,안방,,
+95,2051,2,Obj_name_093,C_Perfume,1,0,0,향수병 사운드,NULL,Obj_act_017,NULL,NULL,0,향수병,안방,화장대 위,3D뷰로 금고 비밀번호 3개 중 1자리[4] 확인
+96,2052,4,Obj_name_153,C_Cosmetics,0,0,0,NULL,NULL,NULL,NULL,NULL,0,화장품,안방,,
+97,2053,1,Obj_name_096,C_JewelCase,0,0,0,잠금 해제 시 자물소 상호 작용,보석함 사운드,Obj_act_043,NULL,NULL,0,보석함,안방,화장대 위,서재와 거실에서 얻은 열쇠조각을 합성한 보석함 열쇠로 열면 보석(비밀제단 문 열쇠) 획득
+98,2054,4,Obj_name_070,C_Hanger,0,0,0,NULL,NULL,NULL,NULL,NULL,0,옷걸이,안방,,
+99,2055,1,Obj_name_109,C_Safe,0,0,0,금고 사운드,NULL,Obj_act_019,NULL,NULL,1,금고,안방,,"[422] 보석, 향수병, 쪽지에서 얻은 3자리의 비밀번호로 열면 안방 열쇠, 서재 열쇠 획득"
+100,2056,4,Obj_name_097,C_WallHanger,0,0,0,NULL,NULL,NULL,NULL,NULL,0,벽 옷걸이,안방,,
+101,2057,4,Obj_name_098,C_TreePot,0,0,0,NULL,NULL,NULL,NULL,NULL,0,나무화분,안방,,
+102,2058,4,Obj_name_099,C_Hat,0,0,0,NULL,NULL,NULL,NULL,NULL,0,모자,안방,,
+103,2059,4,Obj_name_100,C_Scarf,0,0,0,NULL,NULL,NULL,NULL,NULL,0,스카프,안방,,
+104,2060,4,Obj_name_101,C_Tie,0,0,0,NULL,NULL,NULL,NULL,NULL,0,넥타이,안방,,
+105,2061,1,Obj_name_102,C_Rug,0,0,0,NULL,NULL,NULL,NULL,NULL,0,러그,안방,,
+106,2062,2,Obj_name_103,C_ScatteredGems,1,0,0,보석 사운드,NULL,Obj_act_018,NULL,NULL,0,널브러진 보석들,안방,화장대 위,3D뷰로 금고 비밀번호 3개 중 1자리[2] 확인
+107,2063,2,Obj_name_104,D_Book,0,0,0,NULL,NULL,Obj_act_032,NULL,NULL,0,책,서재,책장,텍스트를 통해 스토리 내용 출력
+108,2064,4,Obj_name_105,D_Commission,0,0,0,NULL,NULL,NULL,NULL,NULL,0,위임장,서재,,
+109,2065,4,Obj_name_106,D_SkullModel,0,0,0,NULL,NULL,NULL,NULL,NULL,0,두개골 모형,서재,,
+110,2066,2,Obj_name_107,D_Globe,0,0,0,지구본 사운드,NULL,Obj_act_026,Obj_act_027,NULL,0,지구본,서재,책상 위,지구본 조각을 사용하면 잠겨있던 책상 서랍 1개가 열려 쪽지 획득 가능
+111,2067,1,Obj_name_108,D_SuitCase,0,0,0,슈트케이스 사운드,NULL,Obj_act_031,NULL,NULL,1,슈트케이스,서재,,"[706] 서류더미, 쪽지에서 얻은 3자리의 비밀번호로 열면 거실 열쇠 획득"
+112,2068,4,Obj_name_110,D_Whiskeybottle,0,0,0,NULL,NULL,NULL,NULL,NULL,0,위스키병,서재,,
+113,2069,4,Obj_name_111,D_WhiskeyGlass,0,0,0,NULL,NULL,NULL,NULL,NULL,0,위스키잔,서재,,
+114,2070,4,Obj_name_112,D_DecorationGun,0,0,0,NULL,NULL,NULL,NULL,NULL,0,장식용 총,서재,,
+115,2071,4,Obj_name_113,D_StuffedDeerHead,0,0,0,NULL,NULL,NULL,NULL,NULL,0,박제된 사슴 머리,서재,,
+116,2072,4,Obj_name_114,D_InkBottle,0,0,0,NULL,NULL,NULL,NULL,NULL,0,잉크병/깃펜,서재,,
+117,2073,4,Obj_name_071,D_Candlestick,0,0,0,NULL,NULL,NULL,NULL,NULL,0,촛대,서재,,
+118,2074,2,Obj_name_154,D_Documents1,1,0,0,일기장 상호 작용,NULL,Obj_act_029,NULL,NULL,0,서류더미1,서재,책상 위,3D뷰로 슈트케이스 비밀번호 3개 중 앞의 1자리[7] 확인
+119,2075,4,Obj_name_116,D_Typewriter,0,0,0,NULL,NULL,NULL,NULL,NULL,0,타자기,서재,,
+120,2076,4,Obj_name_117,D_Trophy,0,0,0,NULL,NULL,NULL,NULL,NULL,0,트로피,서재,,
+121,2077,4,Obj_name_118,F_TeaTray,0,0,0,NULL,NULL,NULL,NULL,NULL,0,티 트레이,거실,,
+122,2078,4,Obj_name_119,F_WineBottle,0,0,0,NULL,NULL,NULL,NULL,NULL,0,와인병,거실,,
+123,2079,4,Obj_name_120,F_Statue,0,0,0,NULL,NULL,NULL,NULL,NULL,0,조각상,거실,,
+124,2080,4,Obj_name_121,F_Mirror,0,0,0,NULL,NULL,NULL,NULL,NULL,0,거울,거실,,
+125,2081,2,Obj_name_122,F_Telephone,0,0,0,전화기 사운드,전화기 퍼즐 완료 사운드,Obj_act_041,Obj_act_042,NULL,1,전화기,거실,,[823] 괘종시계의 쪽지에서 얻은 3자리 비밀번호로 열면 수술실 문이 열림
+126,2082,2,Obj_name_162,F_MiniStatue,0,0,0,접시 및 꽃병 사운드,NULL,Obj_act_036,NULL,NULL,0,미니 조각상,거실,선반 위,텍스트 출력 후 선반 맨 아래칸에서 보석함 열쇠조각2 등장 및 획득
+127,2083,1,Obj_name_175,F_WallShelf,0,0,0,NULL,NULL,NULL,NULL,NULL,0,거실 벽선반,거실,,
+128,2084,4,Obj_name_124,F_TeacupSet,0,0,0,NULL,NULL,NULL,NULL,NULL,0,찻잔세트,거실,,
+129,2085,2,Obj_name_126,F_Dish,1,0,0,접시 및 꽃병 사운드,NULL,Obj_act_064,Obj_act_065,NULL,0,접시,거실,선반 위,"1개의 접시에는 괘종시계 퍼즐 힌트[10:10]이 텍스트로 출력되고, 나머지 3개는 일반 텍스트 출력"
+130,2086,4,Obj_name_127,F_SimpleAltar,0,0,0,NULL,NULL,NULL,NULL,NULL,0,간이 제단,거실,,
+131,2087,4,Obj_name_128,G_UmbrellaStand,0,0,0,NULL,NULL,NULL,NULL,NULL,0,우산꽂이,복도,,
+132,2088,1,Obj_name_129,E_SurgeryTable,0,0,1,수술대 사운드,NULL,Obj_act_047,Obj_act_048,NULL,0,수술대,수술실,,수술도구를 사용하면 잠겨있던 1차 비밀제단 문이 열림
+133,2089,3,Obj_name_130,E_SurgicalTool1,0,1,0,수술도구 사운드,NULL,Obj_act_046,NULL,NULL,0,수술도구1,수술실,수술 선반 위,수술대에 사용할 수 있는 퍼즐 조각 (수술대 위의 일지와 상호작용 후 사용 가능)
+134,2090,4,Obj_name_178,E_SurgicalTool2,0,0,0,NULL,NULL,NULL,NULL,NULL,0,수술도구2,수술실,수술 선반 위,데코용 수술도구
+135,2091,1,Obj_name_131,E_SurgicalShelf,0,0,0,NULL,NULL,NULL,NULL,NULL,0,수술 선반,수술실,,
+136,2092,4,Obj_name_132,E_BrainBottle,0,0,0,NULL,NULL,NULL,NULL,NULL,0,뇌 보관병,수술실,,
+137,2093,4,Obj_name_133,E_MopBucket,0,0,0,NULL,NULL,NULL,NULL,NULL,0,걸레 양동이,수술실,,
+138,2094,1,Obj_name_177,E_VinylCurtain,0,0,0,NULL,NULL,NULL,NULL,NULL,0,비닐 커튼,수술실,,
+139,2095,4,Obj_name_135,E_LeatherBoots,0,0,0,NULL,NULL,NULL,NULL,NULL,0,가죽장화,수술실,,
+140,2096,1,Obj_name_136,H_Altar,0,0,0,제단 및 수수께끼 사운드,제단 및 수수께끼 사운드,Obj_act_050,Obj_act_061,NULL,0,제단,비밀제단,,"비밀제단의 다른 오브젝트들과 상호작용하기 위한 트리거(조건), 텍스트로 수수께끼 출력"
+141,2097,4,Obj_name_137,H_Mannequin,0,0,0,NULL,NULL,NULL,NULL,NULL,0,인간 마네킹,비밀제단,,
+142,2098,2,Obj_name_138,H_Butterfly,0,0,0,마네킹 나비 사운드,NULL,NULL,NULL,NULL,0,나비 모형,비밀제단,,제단의 수수께끼와 각 마네킹 앞의 힌트를 보고 각 나비의 날개를 접고 펴며 퍼즐을 풀면 제단 위에 정문 열쇠 등장 및 획득 
+143,2099,3,Obj_name_143,A_JewelCaseKeyPiece1,0,1,0,NULL,NULL,Obj_act_037,NULL,NULL,0,보석함 열쇠조각1,서재,서랍장 서랍 속,안방 보석함 열쇠의 합성 재료 1/2 (화장대 서랍 속의 쪽지와 상호작용 후 합성 가능)
+144,2100,3,Obj_name_144,A_JewelCaseKeyPiece2,0,1,0,NULL,NULL,Obj_act_037,NULL,NULL,0,보석함 열쇠조각2,거실,선반 위,안방 보석함 열쇠의 합성 재료 2/2 (화장대 서랍 속의 쪽지와 상호작용 후 합성 가능)
+145,2101,3,Obj_name_145,A_JewelCaseKey,0,1,0,NULL,NULL,Obj_act_038,Obj_act_039,NULL,0,보석함 열쇠,,,"서재와 거실에서 얻은 열쇠조각을 합성하여 얻을 수 있고, 잠긴 보석함을 여는 데 사용된다."
+146,2102,3,Obj_name_146,D_GlobePiece,0,1,0,NULL,NULL,Obj_act_025,NULL,NULL,0,지구본 조각,서재,서랍장 서랍 속,지구본에 사용할 수 있는 퍼즐 조각
+147,2103,1,Obj_name_147,H_SecretDoor1,0,0,0,비밀문 사운드,NULL,NULL,NULL,NULL,0,1차 비밀제단문,수술실,비밀제단 입구,수술대에 수술도구 퍼즐을 풀면 양옆으로 열림
+148,2104,1,Obj_name_148,H_SecretDoor2,0,0,0,비밀문 보석 장착 사운드,비밀문 사운드,Obj_act_049,NULL,NULL,0,2차 비밀제단문,수술실,비밀제단 입구,안방의 보석함에서 얻은 보석을 사용하면 위로 열림
+149,2105,3,Obj_name_149,A_Gemstone,0,1,0,NULL,NULL,Obj_act_044,NULL,NULL,0,보석,안방,보석함 속,수술실에서 잠긴 2차 비밀제단문에 사용하면 열 수 있다
+150,2106,3,Obj_name_150,A_MainRoomKey,0,1,0,NULL,NULL,Obj_act_020,NULL,NULL,0,안방 열쇠,안방,금고 속,잠긴 안방 문에 사용하면 열 수 있다.
+151,2107,3,Obj_name_151,A_StudyKey,0,1,0,NULL,NULL,Obj_act_021,NULL,NULL,0,서재 열쇠,안방,금고 속,잠긴 서재 문에 사용하면 열 수 있다.
+152,2108,3,Obj_name_152,A_LivingRoomKey,0,1,0,NULL,NULL,Obj_act_034,NULL,NULL,0,거실 열쇠,서재,슈트케이스 속,잠긴 거실 문에 사용하면 열 수 있다.
+153,2109,2,Obj_name_056,C_Memo1,1,0,0,쪽지 상호 작용,NULL,Obj_act_016,NULL,NULL,0,안방 쪽지1,안방,화장대 서랍 속,보석함 열쇠 조각을 합성하기 위한 트리거(조건) -> 트리거 삭제
+154,2110,2,Obj_name_056,C_Memo2,1,0,0,쪽지 상호 작용,NULL,Obj_act_015,NULL,NULL,0,안방 쪽지2,안방,서랍장 서랍 속,텍스트로 금고 비밀번호 3개 중 마지막 1자리[2] 확인
+155,2111,2,Obj_name_056,D_Memo,1,0,0,쪽지 상호 작용,NULL,Obj_act_030,NULL,NULL,0,서재 쪽지,서재,책상 서랍 속,"텍스트로 슈트케이스 비밀번호 3개 중 마지막 2자리[0],[6] 확인"
+156,2112,2,Obj_name_056,F_Memo,1,0,0,쪽지 상호 작용,NULL,Obj_act_040,NULL,NULL,0,거실 쪽지,거실,괘종시계 속,"3D뷰로 전화기 비밀번호 3개 중 3자리[8],[2],[3] 확인"
+157,2113,2,Obj_name_155,D_Documents2,0,0,0,일기장 상호 작용,NULL,Obj_act_033,NULL,NULL,0,서류더미2,서재,선반 위,텍스트를 통해 스토리 내용 출력
+158,2114,2,Obj_name_163,E_Diary,0,0,0,일기장 상호 작용,NULL,Obj_act_045,NULL,NULL,0,일지,수술실,수술대 위,실험실의 다른 오브젝트들과 상호작용하기 위한 트리거(조건)
+159,2115,3,Obj_name_164,A_MainGateKey,0,1,0,NULL,NULL,Obj_act_062,NULL,NULL,0,정문 열쇠,비밀제단,제단 위,잠긴 정문에 사용하면 열 수 있다.
+160,2116,2,Obj_name_165,H_Tile1,0,0,0,NULL,NULL,Obj_act_051,NULL,NULL,0,타일1,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.
+161,2117,2,Obj_name_166,H_Tile2,0,0,0,NULL,NULL,Obj_act_052,NULL,NULL,0,타일2,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.
+162,2118,2,Obj_name_167,H_Tile3,0,0,0,NULL,NULL,Obj_act_053,NULL,NULL,0,타일3,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.
+163,2119,2,Obj_name_168,H_Tile4,0,0,0,NULL,NULL,Obj_act_054,NULL,NULL,0,타일4,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.
+164,2120,2,Obj_name_169,H_Tile5,0,0,0,NULL,NULL,Obj_act_055,NULL,NULL,0,타일5,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.
+165,2121,2,Obj_name_170,H_Tile6,0,0,0,NULL,NULL,Obj_act_056,NULL,NULL,0,타일6,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.
+166,2122,2,Obj_name_171,H_Tile7,0,0,0,NULL,NULL,Obj_act_057,NULL,NULL,0,타일7,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.
+167,2123,2,Obj_name_172,H_Tile8,0,0,0,NULL,NULL,Obj_act_058,NULL,NULL,0,타일8,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.
+168,2124,2,Obj_name_173,H_Tile9,0,0,0,NULL,NULL,Obj_act_059,NULL,NULL,0,타일9,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.
+169,2125,2,Obj_name_174,H_Tile10,0,0,0,NULL,NULL,Obj_act_060,NULL,NULL,0,타일10,비밀제단,마네킹 앞 바닥,앞의 마네킹에 해당하는 수수께끼 힌트를 텍스트로 출력한다.
+170,2126,1,Obj_name_176,E_WallShelf,0,0,0,NULL,NULL,NULL,NULL,NULL,1,수술실 벽선반,수술실,,
+171,2127,2,Obj_name_179,A_Cat,0,0,0,고양이 울음소리,NULL,Obj_act_063,NULL,NULL,0,고양이,안방,침대 위,상호작용 시 고양이 울음소리 사운드가 출력된다.
+172,2128,4,Obj_name_180,C_Handkerchief,0,0,0,NULL,NULL,NULL,NULL,NULL,0,손수건,안방,화장대 위,널브러진 보석들 밑에 깔린다
+173,2129,4,Obj_name_90,F_MusicSheet,0,0,0,쪽지 상호 작용,NULL,NULL,NULL,NULL,0,악보,거실,피아노 밑,
