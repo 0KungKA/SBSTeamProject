@@ -42,7 +42,6 @@ public class Manager : MonoBehaviour
     EffectSoundPlayer _EffectSoundPlayer;
     public static EffectSoundPlayer Effect_SoundPlayer
     {
-
         get
         {
             if (Instance._EffectSoundPlayer != null)

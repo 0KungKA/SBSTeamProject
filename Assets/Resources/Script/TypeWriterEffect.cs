@@ -130,7 +130,10 @@ public class TypeWriterEffect : MonoBehaviour
         }
         else
         {
-            if(npcName != null)
+            if (effectAudio != null && effectAudio.isPlaying == false)
+                effectAudio.Play();
+
+            if (npcName != null)
                 npcNameTextField.text = npcName[cnt];
 
             //기존문구clear
@@ -138,8 +141,7 @@ public class TypeWriterEffect : MonoBehaviour
             //타이핑 시작
             for (int i = 0; i < _fullText[cnt].Length; i++)
             {
-                if(effectAudio != null)
-                    effectAudio.Play();
+                
 
                 //타이핑중도탈출
                 if (text_cut == true)

@@ -17,10 +17,8 @@ public class EffectSound : MonoBehaviour
 
     private void Update()
     {
-        if (Manager.Effect_SoundPlayer.StopBackgroundSound) return;
-
         transform.position = Player.transform.position;
-        if (!effects.isPlaying)
+        if (!effects.isPlaying && Manager.Effect_SoundPlayer.StopBackgroundSound == false)
         {
             effects.clip = null;
         }
