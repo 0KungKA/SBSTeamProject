@@ -23,7 +23,7 @@ public class SceneInit : MonoBehaviour
 
     void Start()
     {
-        Manager.Effect_SoundPlayer.PlaySound = true;
+
     }
 
     IEnumerator SceneFade()

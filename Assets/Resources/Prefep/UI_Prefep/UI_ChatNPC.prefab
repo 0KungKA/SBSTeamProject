@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MouseClose: 0
+  StopSound: 0
 --- !u!1 &2079261560524008420
 GameObject:
   m_ObjectHideFlags: 0

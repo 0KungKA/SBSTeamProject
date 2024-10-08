@@ -352,4 +352,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MouseClose: 0
-  StopSound: 1
+  StopSound: 0

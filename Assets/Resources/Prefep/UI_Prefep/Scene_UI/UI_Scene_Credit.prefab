@@ -1836,7 +1836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MouseClose: 0
-  StopSound: 1
+  StopSound: 0
 --- !u!114 &6596119047785737212
 MonoBehaviour:
   m_ObjectHideFlags: 0

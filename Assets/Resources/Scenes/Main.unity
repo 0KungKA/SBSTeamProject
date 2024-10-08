@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 2
   m_FogDensity: 0.04
@@ -2737,6 +2737,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a02679df5e6743c439fd81754d1cb42c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StopBackgroundSound: 0
+  StopPlaySound: 0
 --- !u!1 &154949477
 GameObject:
   m_ObjectHideFlags: 0

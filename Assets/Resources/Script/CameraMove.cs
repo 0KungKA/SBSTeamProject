@@ -68,7 +68,7 @@ public class CameraMove : MonoBehaviour
         if (anithing != null)
             return;
 
-        if (PlayHeart && Manager.Effect_SoundPlayer.PlaySound)
+        if (PlayHeart && Manager.Effect_SoundPlayer.StopPlaySound == false)
         {
             npcs = GameObject.FindGameObjectsWithTag("NPC");
             if (npcs.Length != 0)

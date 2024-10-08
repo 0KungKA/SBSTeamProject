@@ -11,11 +11,15 @@ public class UIBase : MonoBehaviour
     [SerializeField]
     [Header("True = Æ÷ÀÎÅÍ ¼û±è / False = Æ÷ÀÎÅÍ ¾È¼û±è (±âº» True)")]
     public bool MouseClose = true;
-    public bool StopSound;
+    public bool StopSound = false;
+    public bool StopBackGroundSound = false;
     public void Start()
     {
         if (StopSound)
-            Manager.Effect_SoundPlayer.EffectSoundEnd();
+            Manager.Effect_SoundPlayer.StopPlaySound = true;
+        if (StopBackGroundSound)
+            Manager.Effect_SoundPlayer.StopBackgroundSound = true;
+
         if(transform.name == "UI_Scene_Credit")
         {
             Invoke("Credit", 7.0f);
@@ -53,6 +57,7 @@ public class UIBase : MonoBehaviour
 
     private void OnDestroy()
     {
-        Manager.Effect_SoundPlayer.PlaySound = true;
+        Manager.Effect_SoundPlayer.StopPlaySound = false;
+        Manager.Effect_SoundPlayer.StopBackgroundSound = false;
     }
 }

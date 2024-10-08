@@ -11,7 +11,8 @@ public class EffectSoundPlayer : MonoBehaviour
     //AudioSource[] audioArr;
     List<AudioSource> audioArr = new List<AudioSource>();
 
-    public bool PlaySound = true;
+    public bool StopBackgroundSound = false;
+    public bool StopPlaySound = false;
 
     float soundValue;
 
@@ -63,7 +64,7 @@ public class EffectSoundPlayer : MonoBehaviour
 
     public void EffectSoundPlay(AudioSource source)
     {
-        if (PlaySound == false) return;
+        if (StopPlaySound) return;
         for (int i = 0; i < audioArr.Count; i++)
         {
             if (audioArr[i].clip == source && audioArr[i].isPlaying == true)
@@ -87,7 +88,7 @@ public class EffectSoundPlayer : MonoBehaviour
 
     public void EffectSoundPlay(AudioClip source)
     {
-        if (PlaySound == false) return;
+        if (StopPlaySound) return;
         for (int i = 0; i < audioArr.Count; i++) 
         {
             if (audioArr[i].clip == source && audioArr[i].isPlaying == true)
@@ -111,7 +112,7 @@ public class EffectSoundPlayer : MonoBehaviour
 
     public void EffectSoundEnd()
     {
-        PlaySound = false;
+        StopPlaySound = false;
         for (int i = audioArr.Count - 1; i >= 1; i--)
         {
             if (audioArr[i].isPlaying == false)
