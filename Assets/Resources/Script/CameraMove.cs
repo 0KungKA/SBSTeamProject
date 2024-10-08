@@ -9,7 +9,6 @@ using UnityEngine.UIElements;
 
 public class CameraMove : MonoBehaviour
 {
-    //Todo:나중에 데이터 테이블로 수치값 지정하기
     [SerializeField]
     float Hight = 8f;//카메라 높이
 
@@ -53,10 +52,23 @@ public class CameraMove : MonoBehaviour
 
     void Update()
     {
+        RaycastHit mhit;
+        if (Physics.Raycast(transform.position, transform.forward, out mhit, MaxDistance))
+        {
+            Transform h = mhit.transform;
+            if (h.GetComponent<Mission>() || h.GetComponent<ObjectInteraction>() || h.GetComponent<ItemInteraction>() || h.GetComponent<ItemInfo>())
+            {
+                GameObject.Find("MouseHirghlight").transform.GetChild(0).gameObject.SetActive(true);
+            }
+        }
+        else
+            GameObject.Find("MouseHirghlight").transform.GetChild(0).gameObject.SetActive(false);
+
         GameObject anithing = GameObject.FindWithTag("OnMouse");
         if (anithing != null)
             return;
-        if (PlayHeart)
+
+        if (PlayHeart && Manager.Effect_SoundPlayer.PlaySound)
         {
             npcs = GameObject.FindGameObjectsWithTag("NPC");
             if (npcs.Length != 0)
@@ -75,10 +87,10 @@ public class CameraMove : MonoBehaviour
                     }
                 }
 
-                if (closestDistance < 30)
+                if (closestDistance < 60)
                 {
                     audio.volume = 1;
-                    audio.pitch = 1.3f;
+                    audio.pitch = 1.6f;
                     audio.pitch -= closestDistance * 0.01f;
 
                     if(audio.pitch < 1)
@@ -100,6 +112,14 @@ public class CameraMove : MonoBehaviour
             int layerMask = (-1) - (1 << LayerMask.NameToLayer("Glass"));
             if (Physics.Raycast(transform.position, transform.forward, out hit, MaxDistance, layerMask))
             {
+                Transform h = hit.transform;
+                if (h.GetComponent<Mission>() || h.GetComponent<ObjectInteraction>() || h.GetComponent<ItemInteraction>() || h.GetComponent<ItemInfo>())
+                {
+                    GameObject.Find("MouseHirghlight").transform.GetChild(0).gameObject.SetActive(true);
+                }
+                else
+                    GameObject.Find("MouseHirghlight").transform.GetChild(0).gameObject.SetActive(false);
+
                 if (hit.transform.tag == "Hide")
                 {
                     if (Input.GetKeyDown(KeyCode.E))
@@ -229,4 +249,5 @@ public class CameraMove : MonoBehaviour
             Hight = 9.0f;
         }
     }
+
 }

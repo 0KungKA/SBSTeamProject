@@ -685,7 +685,7 @@ MonoBehaviour:
   StartAudioClip: {fileID: 0}
   effectSoundEnd: {fileID: 0}
   GM: {fileID: 0}
-  Test: 0
+  OnDestroyComponent: 0
 --- !u!1 &1539205865239291332
 GameObject:
   m_ObjectHideFlags: 0
@@ -3613,8 +3613,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC637\uC7A5\uC744 \uC7A0\uADF8\uACE0\uC788\uB294 \uC790\uBB3C\uC1E0 \uC774\uB2E4.\n4\uC790\uB9AC
-    \uBE44\uBC00\uBC88\uD638\uB97C \uB9DE\uCDB0\uC11C \uC5F4\uC218\uC788\uB2E4."
+  m_Text: 
 --- !u!114 &2239246200257996029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3638,7 +3637,7 @@ MonoBehaviour:
   text_exit: 0
   text_full: 0
   text_cut: 0
-  npcNameTextField: {fileID: 0}
+  npcNameTextField: {fileID: 8294202526137597969}
 --- !u!114 &5961879907452664018
 MonoBehaviour:
   m_ObjectHideFlags: 0

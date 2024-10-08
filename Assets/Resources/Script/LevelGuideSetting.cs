@@ -6,14 +6,6 @@ using UnityEngine.UI;
 
 public class LevelGuideSetting : MonoBehaviour
 {
-    [SerializeField]
-    string GuideString;
-    public void SetGuideString(string value) { GuideGO.GetComponent<Text>().text = value; }
-
-    [SerializeField]
-    string MissionString;
-    public void SetMissionString(string value) { GuideGO.GetComponent<Text>().text = value; }
-
     GameObject GuideGO;
     GameObject MissionGO;
 
@@ -28,13 +20,24 @@ public class LevelGuideSetting : MonoBehaviour
     [SerializeField]
     string ChangeTargetMissionString;
 
+    [SerializeField]
+    string GuideString;
+    public void SetGuideString(string value) { GuideGO.GetComponent<Text>().text = value; }
+
+    [SerializeField]
+    string MissionString;
+    public void SetMissionString(string value) { MissionGO.GetComponent<Text>().text = value; }
+
+    private void Start()
+    {
+        GuideGO = GameObject.Find("UI_Scene_Main").transform.Find("Guide").gameObject;
+        MissionGO = GameObject.Find("UI_Scene_Main").transform.Find("Mission").gameObject;
+    }
+
     private void StartSetting()
     {
         GuideGO = GameObject.Find("UI_Scene_Main").transform.Find("Guide").gameObject;
         MissionGO = GameObject.Find("UI_Scene_Main").transform.Find("Mission").gameObject;
-
-        GuideString = GuideString.Replace("\\n", "\n");
-        MissionString = MissionString.Replace("\\n", "\n");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,6 +47,9 @@ public class LevelGuideSetting : MonoBehaviour
         {
             GuideGO.GetComponent<Text>().text = GuideString;
             MissionGO.GetComponent<Text>().text = MissionString;
+
+            GuideGO.GetComponent<Text>().text = GuideGO.GetComponent<Text>().text.Replace("\\n","\n");
+            MissionGO.GetComponent<Text>().text = MissionGO.GetComponent<Text>().text.Replace("\\n","\n");
         }
 
         if(ChangeTarget != null)

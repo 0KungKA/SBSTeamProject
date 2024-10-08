@@ -113,6 +113,7 @@ public class Mission : MonoBehaviour
 
     void BRoomDoorLock()
     {
+        setManager();
         ItemCheck();
     }
 

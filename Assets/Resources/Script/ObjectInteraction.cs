@@ -62,9 +62,6 @@ public class ObjectInteraction : MonoBehaviour
     {
         interactionGaugeValue = Manager.DataManager_Instance.GetBalanceValue(3);//데이터 테이블에서 상호작용시 얼마나 차는지 가져옴
 
-        //Todo:여기 수치 강제삽입 지워줄것
-        interactionGaugeValue = 5;
-
         if (gameObject.GetComponent<MeshCollider>() == null)//Mesh collider가 없는경우
         {
             //Mesh Collider를 추가해야하지만 피봇이 어긋나서 MT로 따로 잡아준 경우가 있으니 예외처리
@@ -104,7 +101,7 @@ public class ObjectInteraction : MonoBehaviour
     //sendMessage로 호출할거임
     void InteractionStart()
     {
-        if (OnMove) return;//오브젝트가 이미 상호작용을 해서 움직이고있는 상태이면 리턴박아서 더 못들어오게 설정
+        //if (OnMove) return;//오브젝트가 이미 상호작용을 해서 움직이고있는 상태이면 리턴박아서 더 못들어오게 설정
 
         if(GameObject.Find("EventSystem").GetComponent<NPC_GaugeUI>().GetOnGauge())
             GameObject.Find("EventSystem").GetComponent<NPC_GaugeUI>().UpGauge(interactionGaugeValue);

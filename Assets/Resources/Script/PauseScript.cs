@@ -14,7 +14,7 @@ public class PauseScript : MonoBehaviour
 
     private void OnDisable()
     {
-        Manager.CM_Instance.OffMouseCursor();
+        //Manager.CM_Instance.OffMouseCursor();
         Time.timeScale = 1;
     }
 }

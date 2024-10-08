@@ -61,14 +61,14 @@ public class CutSceneClass//컷씬 테이블 + 오디오 소스 이름
     public int index;
     public int type;
     public Sprite img;
-    public AudioClip soundSource;
+    public string soundSourceName;
 
-    public CutSceneClass(int _index, int _type, Sprite _img, AudioClip _soundSource)
+    public CutSceneClass(int _index, int _type, Sprite _img, string _soundSource)
     {
         this.index = _index;
         this.type = _type;
         this.img = _img;
-        this.soundSource = _soundSource;
+        this.soundSourceName = _soundSource;
     }   
 }
 public class NPCTalkClass//NPC대화 데이터 테이블
@@ -391,7 +391,6 @@ public class DataManager : MonoBehaviour
         }
     }
 
-
     //밸런스 테이블 시작
     public void SetValueBalanceTable()
     {
@@ -424,11 +423,8 @@ public class DataManager : MonoBehaviour
         Data = CSVReader.Read(CSVPath + "CutSceneTable");
 
         Sprite[] cutSceneArr = Resources.LoadAll<Sprite>("0.UI/UITex/CutScene");
-        AudioClip[] audioclipArr = Resources.LoadAll<AudioClip>("0.Sound");
-
 
         int cutSceneNum = 0;
-        int cutSceneAidioClipNum = 0;
 
         for (int i = 2; i < Data.Count; i++)
         {
@@ -440,22 +436,11 @@ public class DataManager : MonoBehaviour
                 }
             }
 
-            for (int j = 0; j < audioclipArr.Length; j++)
-            {
-                if(Data[i]["사운드 파일명"].ToString() == "NULL")
-                {
-                    audioclipArr[j].name = "NULL";
-                    break;
-                }
-                if (audioclipArr[j].name == Data[i]["사운드 파일명"].ToString())
-                {
-                    cutSceneAidioClipNum = j;
-                }
-            }
-            CutSceneClass temp = new CutSceneClass(int.Parse(Data[i]["번호"].ToString()),
+            CutSceneClass  temp = new CutSceneClass(int.Parse(Data[i]["번호"].ToString()),
                 int.Parse(Data[i]["이미지 타입"].ToString()),
                 cutSceneArr[cutSceneNum],//이미지 스프라이트 넣을거임
-                audioclipArr[cutSceneAidioClipNum]);//이미지 사운드클립 넣을거임
+                Data[i]["사운드 파일명"].ToString());
+            
 
             CutSceneLists.Add(temp);
         }

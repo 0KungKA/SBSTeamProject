@@ -3,18 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CutSceneScript : MonoBehaviour
 {
     List<CutSceneClass> cutScenes = new List<CutSceneClass>();
-
-    List<Sprite> OpCutScenes = new List<Sprite>();
-    List<AudioClip> OpAudioClip = new List<AudioClip>();
-
-    List<Sprite> EdCutScenes = new List<Sprite>();
-    List<AudioClip> EdAudioClip = new List<AudioClip>();
-
+    AudioClip[] audioclipArr;
 
     [SerializeField]
     float CutTime = 3.0f;
@@ -27,6 +22,7 @@ public class CutSceneScript : MonoBehaviour
     private void Start()
     {
         cutScenes = Manager.DataManager_Instance.GetCutSceneLists();
+        audioclipArr = Resources.LoadAll<AudioClip>("0.Sound");
         PlayeCutScene(1);
     }
 
@@ -72,14 +68,23 @@ public class CutSceneScript : MonoBehaviour
             yield break;
         }
 
+
         // 컷신 재생 루프
         while (number < cutSceneCount)
         {
             // 각 컷신이 끝날 때까지 시간 경과 처리
             cutSceneImage.sprite = cutScenes[startPoint + number].img;
 
-            if(cutScenes[startPoint + number].soundSource.name != "NULL")
-                soundPlayer.EffectSoundPlay(cutScenes[startPoint + number].soundSource);
+            if (cutScenes[startPoint + number].soundSourceName != "Null")
+            {
+                for (int i = 0; i < audioclipArr.Length; i++)
+                {
+                    if (cutScenes[startPoint + number].soundSourceName == audioclipArr[i].name)
+                    {
+                        soundPlayer.EffectSoundPlay(audioclipArr[i]);
+                    }
+                }
+            }
 
             while (CutDuration < CutTime)
             {
@@ -103,6 +108,7 @@ public class CutSceneScript : MonoBehaviour
             yield return null;  // 한 프레임 대기
         }
 
+        bool EndingScenePlay = false;
         if(value == 1)
         {
             transform.GetComponent<Synthesis>().Init();
@@ -110,11 +116,33 @@ public class CutSceneScript : MonoBehaviour
         }
         else if(value == 2)
         {
-            Debug.Log("엔딩 크레딩 넣어주기");
+            float endingDuration = 0;
+            EndingScenePlay = true;
+            while (true)
+            {
+                if (endingDuration > 5)
+                {
+                    Manager.UIManager_Instance.UIPopup("Scene_UI/UI_Scene_Credit");
+                    Destroy(canvas);
+                    yield break;
+                }
+                else
+                    endingDuration += Time.deltaTime;
+
+                yield return null;
+            }
         }
 
         // Canvas 삭제
-        Destroy(canvas);
-        yield break;  // 코루틴 종료
+        if(EndingScenePlay == true)
+        {
+            yield break;
+        }
+        else
+        {
+            Destroy(canvas);
+            yield break;  // 코루틴 종료
+        }
+        
     }
 }

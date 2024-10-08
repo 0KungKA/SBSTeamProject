@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Mapping : MonoBehaviour
 {
-    //Todo:나중에 데이터 테이블로 수치값 지정하기
     float MaxDistance;
 
     int FindMap = 0;

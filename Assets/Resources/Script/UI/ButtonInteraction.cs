@@ -30,18 +30,23 @@ public class ButtonInteraction : MonoBehaviour
         if (render != null)
             Destroy(render);
 
-        GameObject[] @Obj = GameObject.FindGameObjectsWithTag("Managers");
-        foreach (GameObject obj in @Obj)
+        GameObject[] Obj = GameObject.FindGameObjectsWithTag("Managers");
+        foreach (GameObject obj in Obj)
         {
             Destroy(obj);
         }
-
         SceneManager.LoadScene("Lobby");
     }
 
     public void Restart()
     {
-        OpenLobby();
+        Manager.UIManager_Instance.CloseAllUI();
+        GameObject[] Obj = GameObject.FindGameObjectsWithTag("Managers");
+        foreach (GameObject obj in Obj)
+        {
+            Destroy(obj);
+        }
+        SceneManager.LoadScene("Lobby");
         SceneManager.LoadScene("Main");
     }
 

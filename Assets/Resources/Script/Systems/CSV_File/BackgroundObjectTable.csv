@@ -1,8 +1,4 @@
-번호,고유번호,오브젝트 타입,오브젝트 이름,오브젝트 파일명,3D 회전 뷰 기능,인벤토리 획득 기능,숨기 기능,사운드 파일명1,사운드 파일명2,설명1,설명2,설명3,비밀번호 자릿수,"기획자 참조용
-(오브젝트명)","기획자 참조용
-(방 구분)","기획자 참조용
-(상세 위치)","기획자 참조용
-(용도)"
+번호,고유번호,오브젝트 타입,오브젝트 이름,오브젝트 파일명,3D 회전 뷰 기능,인벤토리 획득 기능,숨기 기능,사운드 파일명1,사운드 파일명2,설명1,설명2,설명3,비밀번호 자릿수,"기획자 참조용(오브젝트명)","기획자 참조용(방 구분)","기획자 참조용(상세 위치)","기획자 참조용(용도)"
 Idx,OriginNum,ObjectType,ObjectName,ObjectFileName,RotationView,GetInventory,Hide,SoundFileName1,SoundFileName2,Description1,Description2,Description3,PasswordNum,/,/,/,
 Int,Int,Int,String,String,Int,Int,Int,String,String,String,String,String,Int,/,/,/,
 1,1001,1,Obj_name_001,B_Wall,0,0,0,NULL,NULL,NULL,NULL,NULL,0,작은방 벽,작은방,,

@@ -11,10 +11,6 @@ public class CameraManager : MonoBehaviour
 
     public bool OnHide = false;
 
-    [SerializeField]//디버그 전용
-    bool DebugModeFalse = true;
-    public bool GetDebugFalse() {  return DebugModeFalse; }
-
     protected internal void SetMoveState(bool value) { MoveState = value; }
     protected internal void SetRotState(bool value) { RotState = value; }
 
@@ -32,7 +28,6 @@ public class CameraManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         MoveState = true;
         RotState = true;
-        DebugModeFalse = true;
     }
 
     public void OnMouseCursor()
@@ -45,12 +40,12 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
-        GameObject.Find("UI_Scene_Main").transform.GetChild(GameObject.Find("UI_Scene_Main").transform.childCount - 1).gameObject.SetActive(DebugModeFalse);
-        if (Input.GetKeyDown(KeyCode.F12))
+        if(OnHide == true)
         {
-            DebugModeFalse = !DebugModeFalse;
-            GameObject.Find("UI_Scene_Main").transform.GetChild(GameObject.Find("UI_Scene_Main").transform.childCount - 1).gameObject.SetActive(!DebugModeFalse);
+            CM.GetComponent<CharacterController>().height = 0;
         }
+        else
+            CM.GetComponent<CharacterController>().height = 14;
 
         if (CM == null)
             CM = GameObject.Find("Player_Camera").gameObject.GetComponent<CameraMove>();

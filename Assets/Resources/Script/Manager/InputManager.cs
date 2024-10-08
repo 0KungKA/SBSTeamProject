@@ -30,10 +30,15 @@ public class InputManager : MonoBehaviour
             if (npcTalk == null && Fade == null && cutScene == null)
                 Manager.UIManager_Instance.UIPopup("UI_Puase");
         }
-        else if(Input.GetKeyDown(KeyCode.M) && OnMap)
-        { 
-            Manager.UIManager_Instance.UIPopup("UI_Map");
+
+        if (Input.GetKeyDown(KeyCode.M) && OnMap)
+        {
+            if (GameObject.Find("UI_Map"))
+                Manager.UIManager_Instance.CloseUI("UI_Map");
+            else
+                Manager.UIManager_Instance.UIPopup("UI_Map");
         }
+
     }
 
     public void SelectItem(GameObject item)

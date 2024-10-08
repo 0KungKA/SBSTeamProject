@@ -532,7 +532,7 @@ MonoBehaviour:
   StartAudioClip: {fileID: 0}
   effectSoundEnd: {fileID: 0}
   GM: {fileID: 0}
-  Test: 0
+  OnDestroyComponent: 0
 --- !u!1 &1539205865239291332
 GameObject:
   m_ObjectHideFlags: 0
@@ -3388,7 +3388,7 @@ MonoBehaviour:
   text_exit: 0
   text_full: 0
   text_cut: 0
-  npcNameTextField: {fileID: 0}
+  npcNameTextField: {fileID: 8294202526137597969}
 --- !u!114 &2881597187068251898
 MonoBehaviour:
   m_ObjectHideFlags: 0

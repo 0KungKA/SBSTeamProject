@@ -11,10 +11,6 @@ public class TriggerEvent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Todo:이거 뭔지 모르겠는데 주석처리함 shit
-        /*Debug.Log("Test Sound Play : " + transform.name);
-        transform.GetComponent<AudioSource>().Play();*/
-
         if (other.transform.name == "Player_Camera" && transform.name == "G_MainGate_Exit")
         {
             GameObject.Find("EventSystem").GetComponent<CutSceneScript>().PlayeCutScene(2);
@@ -34,6 +30,15 @@ public class TriggerEvent : MonoBehaviour
                 GameObject.Find("EventSystem").GetComponent<NPCTalk>().StartNPCTalk(2);
 
                 GameObject.Find("NPC_CM_M_Run").GetComponent<NPCM_AI_Ctrl>().SetState(0);
+
+                ObjectInteraction temp = GameObject.Find("C_Room_Door_Pivot").GetComponent<ObjectInteraction>();
+                if (temp.thisMove == true)
+                {
+                    temp.SendMessage("InteractionStart");
+                }
+
+                
+
                 Destroy(GameObject.Find("NPC_CM_M_Run").gameObject);
 
                 Destroy(gameObject);
@@ -64,24 +69,29 @@ public class TriggerEvent : MonoBehaviour
         }
     }
 
+    float HideTime = 0.0f;
+
+
     private void OnTriggerStay(Collider other)
     {
         if (transform.name == "C_Room_HideCheck" && other.transform.name == "Player_Camera" && Manager.CM_Instance.OnHide == true)
         {
-            Manager.Effect_SoundPlayer.EffectSoundPlay(clip);
-            CallSecondNPCTalk();
-        }
-    }
+            ObjectInteraction temp = GameObject.Find("C_Closet_Hide").transform.Find("L_Door_Pivot").GetComponent<ObjectInteraction>();
+            if (temp.thisMove == true)
+            {
+                temp.SendMessage("InteractionStart");
+            }
 
-    private void CallSecondNPCTalk()
-    {
-        GameObject.Find("EventSystem").GetComponent<NPCTalk>().StartNPCTalk(4);
-        ObjectInteraction temp = GameObject.Find("C_Room_Door_Pivot").GetComponent<ObjectInteraction>();
-        if (temp.thisMove == true)
-        {
-            temp.SendMessage("InteractionStart");
+            temp = GameObject.Find("C_Closet_Hide").transform.Find("R_Door_Pivot").GetComponent<ObjectInteraction>();
+            if (temp.thisMove == true)
+            {
+                temp.SendMessage("InteractionStart");
+            }
+
+            Manager.Effect_SoundPlayer.EffectSoundPlay(clip);
+            GameObject.Find("EventSystem").GetComponent<NPCTalk>().StartNPCTalk(4);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 
     private void TriggerDestroy()

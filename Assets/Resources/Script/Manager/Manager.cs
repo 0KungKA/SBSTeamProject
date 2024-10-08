@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using static UnityEngine.UI.Image;
 
 public class Manager : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class Manager : MonoBehaviour
 
     CameraManager _CameraManager = new CameraManager();
     public static CameraManager CM_Instance { get { return Instance._CameraManager; } }
+
+    public Texture2D origin;
 
     GameObject _OriginObject = null;
     public static GameObject Origin_Object {
@@ -72,6 +75,7 @@ public class Manager : MonoBehaviour
     private void Awake()
     {
         Init();
+        Cursor.SetCursor(origin, new Vector2(0, 0), CursorMode.ForceSoftware);
     }
 
     static void Init()
@@ -82,7 +86,6 @@ public class Manager : MonoBehaviour
             if (Manager_Obj == null)
             {
                 Manager_Obj = new GameObject { name = "@Managers" };
-                Manager_Obj.tag = "Managets";
                 Manager_Obj.AddComponent<Manager>();
             }
 
@@ -99,7 +102,7 @@ public class Manager : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
     protected internal void Setting()

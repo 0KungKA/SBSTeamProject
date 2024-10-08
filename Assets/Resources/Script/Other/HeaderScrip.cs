@@ -12,7 +12,9 @@ public class HeaderScrip : MonoBehaviour
 
 
     [SerializeField]
-    Material[] matGroup;
+    GameObject[] matGroup;
+    [SerializeField]
+    Material[] mats;
 
     [SerializeField]
     AudioClip[] Clips;
@@ -22,7 +24,7 @@ public class HeaderScrip : MonoBehaviour
     Light[] lightGroup;
 
     [SerializeField]
-    GameObject[] GM;//°¡ÀÌµå¶û ¹Ì¼Ç ÀüºÎ Å»ÃâÇØ¾ßÇÑ´Ù ·Î ¹Ù²Ü°ÅÀÓ
+    GameObject[] GM;//ê²Œì„ ê°€ì´ë“œ ë¯¸ì…˜ ì˜¤ë¸Œì íŠ¸
 
     private void Start()
     {
@@ -36,7 +38,6 @@ public class HeaderScrip : MonoBehaviour
 
     private void Update()
     {
-
         int mValue = 0;
         for(int i = 0; i < mannequins.Length; i ++)
         {
@@ -70,37 +71,34 @@ public class HeaderScrip : MonoBehaviour
             PCAS.volume = 1.0f;
             PCAS.Play();
 
-            //Á¡ÇÁ½ºÄù¾î ºÎºĞ
-            for (int i = 0; i < Clips.Length; i++)
-            {
-                Manager.Effect_SoundPlayer.EffectSoundPlay(Clips[i]);
-            }
-
-            foreach (Light light in lightGroup)
-            {
-                Destroy(light.GetComponent<InstantLightCtrl>());
-                light.color = Color.red;
-
-                if(light.range != 0)
-                    light.range = 80;
-
-                light.intensity = 3;
-            }
-            foreach (Material material in matGroup)
-            {
-                material.color = Color.red;
-            }
-            
-
+            //ì í”„ìŠ¤í€˜ì–´
             int temp = GameObject.Find("GuideAndMissionGroup").transform.childCount;
             GM = new GameObject[temp];
             for (int i = 0; i < temp; i++)
             {
                 GM[i] = GameObject.Find("GuideAndMissionGroup").transform.GetChild(i).gameObject;
-                GM[i].GetComponent<LevelGuideSetting>().SetGuideString("Å» Ãâ ÇØ ¾ß ÇÑ ´Ù");
-                GM[i].GetComponent<LevelGuideSetting>().SetMissionString("Å» Ãâ ÇØ ¾ß ÇÑ ´Ù");
+                GM[i].GetComponent<LevelGuideSetting>().SetGuideString("íƒˆ ì¶œ í•´ ì•¼ í•œ ë‹¤");
+                GM[i].GetComponent<LevelGuideSetting>().SetMissionString("íƒˆ ì¶œ í•´ ì•¼ í•œ ë‹¤");
+            }
+
+            for (int i = 0; i < Clips.Length; i++)
+            {
+                Manager.Effect_SoundPlayer.EffectSoundPlay(Clips[i]);
+            }
+
+            for (int i = 0; i < matGroup.Length; i++)
+            {
+                matGroup[i].GetComponent<Renderer>().material = mats[0];
+            }
+
+            for (int i = 0; i < lightGroup.Length; i++)
+            {
+                if (lightGroup[i] == null)
+                    continue;
+                Debug.Log(i + "ë²ˆì§¸" + "ì´ ê°¯ìˆ˜ : " + lightGroup.Length);
+                lightGroup[i].GetComponent<Light>().color = Color.red;
+                lightGroup[i].GetComponent<Light>().range += 50.0f;
             }
         }
-
     }
 }

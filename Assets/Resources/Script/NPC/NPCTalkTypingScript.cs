@@ -164,7 +164,7 @@ public class NPCTalkTypingScript : MonoBehaviour
             }
 
             StopAllCoroutines();
-            Manager.UIManager_Instance.CloseUI();
+            Manager.UIManager_Instance.CloseUI("UI_ChatNPC");
         }
     }
 
@@ -210,9 +210,26 @@ public class NPCTalkTypingScript : MonoBehaviour
     IEnumerator ShowText(string[] _fullText)
     {
         Debug.Log("텍스트 출력");
-        //모든텍스트 종료
 
-        if (npcTalks[temp + cnt].Left2DSprite != null)
+        if (cnt >= dialog_cnt)
+        {
+            text_exit = true;
+            StopCoroutine("showText");
+        }
+        else
+        {
+            if (npcTalks[temp + cnt].Right2DSprite != null)
+            {
+                if (RightNPC.GetComponent<Image>().sprite.name != npcTalks[temp + cnt].Right2DSprite.name)
+                {
+                    RightNPC.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                    RightNPC.GetComponent<Image>().sprite = npcTalks[temp + cnt].Right2DSprite;
+                }
+            }
+            else
+                RightNPC.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+
+            if (npcTalks[temp + cnt].Left2DSprite != null)
         {
             if (LeftNPC.GetComponent<Image>().sprite.name != npcTalks[temp + cnt].Left2DSprite.name)
             {
@@ -235,25 +252,7 @@ public class NPCTalkTypingScript : MonoBehaviour
             RightNPC.GetComponent<Image>().color = Color.gray;
 
 
-        if (cnt >= dialog_cnt)
-        {
-            text_exit = true;
-            StopCoroutine("showText");
-        }
-        else
-        {
-            
-
-            if (npcTalks[temp + cnt].Right2DSprite != null)
-            {
-                if (RightNPC.GetComponent<Image>().sprite.name != npcTalks[temp + cnt].Right2DSprite.name)
-                {
-                    RightNPC.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                    RightNPC.GetComponent<Image>().sprite = npcTalks[temp + cnt].Right2DSprite;
-                }
-            }
-            else
-                RightNPC.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        
 
             if (npcName != null)
             {

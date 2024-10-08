@@ -1,8 +1,11 @@
+using Cinemachine.Utility;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 
 public class NPCM_AI_Ctrl : MonoBehaviour
@@ -51,10 +54,11 @@ public class NPCM_AI_Ctrl : MonoBehaviour
 
     //agent.destination 목표지점까지 이동
     GameObject Player;
-    GameObject Target;
+    Vector3 Target;
     
     bool ChoiceTarget = false;//타겟을 지정할때 분기점으로 씀
     bool OnMove = false;
+    bool PatrolMove = false;
 
     Animator anim;
 
@@ -68,8 +72,7 @@ public class NPCM_AI_Ctrl : MonoBehaviour
 
         //Todo:공격 거리에 대한 데이터 테이블 수정필요함
         attackRange = Manager.DataManager_Instance.GetBalanceValue(11);
-        attackRange = 10.0f;
-
+        attackRange = 20;
         VecOffSet = 10.0f;
 
         anim = GetComponent<Animator>();
@@ -101,7 +104,7 @@ public class NPCM_AI_Ctrl : MonoBehaviour
             case 0:
                 waitingDuration = 0.0f;
                 state = StateInfo.State;
-                Target = transform.gameObject;
+                Target = transform.position;
                 break;
 
             case 1:
@@ -135,9 +138,6 @@ public class NPCM_AI_Ctrl : MonoBehaviour
         int layerMask = (1 << LayerMask.NameToLayer("Glass"));//Everything에서 Glass 만 제외하고 충돌 체크함
         layerMask = ~layerMask;//레이어 마스크 제작
 
-        if(OnMove == false)
-            waitingDuration += Time.deltaTime;
-
         if (Physics.Raycast(offsetpos, (Player.transform.position - offsetpos), out hit, MaxRayDistance, layerMask))//만약 hit한게 Glass 레이어가 아니라면
         {
             if (hit.transform.name == "Player_Camera")
@@ -164,6 +164,32 @@ public class NPCM_AI_Ctrl : MonoBehaviour
                         waitingDuration = 0;
                         state = StateInfo.Move;
                     }
+
+                    if (agent.remainingDistance < VecOffSet)
+                    {
+                        PatrolMove = false;
+                    }
+
+                    if (PatrolMove == false)
+                    {
+                        float range_X = 60.0f;
+                        float range_Z = 60.0f;
+
+                        range_X = Random.Range((range_X / 2) * -1, range_X / 2);
+                        range_Z = Random.Range((range_Z / 2) * -1, range_Z / 2);
+                        Vector3 PatrolPoint = new Vector3(Target.x + range_X, 0f, Target.z + range_Z);
+
+                        NavMeshHit checkPatrolhit;
+                        if (NavMesh.SamplePosition(PatrolPoint, out checkPatrolhit, 20f, NavMesh.AllAreas))
+                        {
+                            agent.destination = checkPatrolhit.position;
+                            PatrolMove = true;
+                        }
+                        else
+                        {
+                            agent.destination = transform.position;
+                        }
+                    }
                     break;
 
                 case StateInfo.Move:
@@ -180,27 +206,29 @@ public class NPCM_AI_Ctrl : MonoBehaviour
                         Target = selectTarget();
                         ChoiceTarget = true;
                     }
-                    agent.destination = Target.transform.position;
 
+                    agent.destination = Target;
                     break;
 
                 case StateInfo.AttackMove:
                     Debug.Log("State : AttackMove");
 
-                    agent.destination = Player.transform.position;
-                    if (Vector3.Distance(transform.position,Player.transform.position) < attackRange && hit.transform.name == "Player_Camera")
+
+                    //if(OnMove == true)
+                    if (Vector3.Distance(transform.position,Player.transform.position) < attackRange &&//캐릭터가 공격범위 안에있으면서
+                        hit.transform.name == "Player_Camera" &&//레이케스팅을 했을때 플레이어가 잡혀야되고
+                        Manager.CM_Instance.OnHide == false)//숨은 상태가 아닐때만 공격함
                     {
                         OnMove = false;
                         anim.SetBool("Attack", true);
                         anim.SetBool("Move", false);
-
-                        if(Manager.CM_Instance.GetDebugFalse())
-                            Manager.UIManager_Instance.UIPopup("Scene_UI/UI_Scene_GameOver");
                     }
                     else
                     {
                         OnMove = true;
-                        ChoiceTarget = false;
+                        Target = Player.transform.position;
+                        agent.destination = Player.transform.position;
+                        //ChoiceTarget = false;
                         anim.SetBool("Attack", false);
                         anim.SetBool("Move", true);
                     }
@@ -209,33 +237,48 @@ public class NPCM_AI_Ctrl : MonoBehaviour
                 default:
                     break;
             }
-
         }
+
+        if (OnMove == false)
+            waitingDuration += Time.deltaTime;
     }
 
-    private GameObject selectTarget()
+    private void StartAttack()
+    {
+        Vector3 offsetpos = transform.position;//포지션 0이 땅에 박혀있으니까 위로 올려줌
+        offsetpos.y += 16.0f;
+
+        GameObject.Find("Player_Camera").transform.LookAt(offsetpos);
+        Manager.CM_Instance.SetMoveState(false);
+        Manager.CM_Instance.SetRotState(false);
+    }
+
+    private void EndAttack()
+    {
+        Manager.UIManager_Instance.UIPopup("Scene_UI/UI_Scene_GameOver");
+    }
+
+    private Vector3 selectTarget()
     {
         if(saveMove)
         {
             GameObject temp = Ways[Random.Range(0, Ways.Length - 1)];
 
-            while (temp == Target && temp.name != "C")
+            while (temp.transform.position == Target && temp.name != "C")
             {
                 temp = Ways[Random.Range(0, Ways.Length - 1)];
             }
-            return temp;
+            return temp.transform.position;
         }
         else
         {
             GameObject temp = Ways[Random.Range(0, Ways.Length - 1)];
 
-            while (temp == Target)
+            while (temp.transform.position == Target)
             {
                 temp = Ways[Random.Range(0, Ways.Length - 1)];
             }
-            return temp;
+            return temp.transform.position;
         }
-
-
     }
 }

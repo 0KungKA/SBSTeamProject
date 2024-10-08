@@ -45,6 +45,29 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void AutoSortOtherNumber()
+    {
+        for (int i = 0; i < UIListsStack.Count; i++)
+        {
+            UIListsStack[i].GetComponent<Canvas>().sortingOrder = i;
+        }
+    }
+
+    public void otherNumberUpdate(GameObject go)
+    {
+        for (int i = 0; i < UIListsStack.Count; i++)
+        {
+            if (UIListsStack[i].name == name)
+            {
+                GameObject temp = UIListsStack[i];
+                UIListsStack.RemoveAt(i);
+                UIListsStack.Add(temp);
+                temp.GetComponent<Canvas>().sortingOrder = UIListsStack.Count - 1;
+            }
+        }
+
+    }
+
     public string DeletClone(string name)
     {
         int SCindex = name.IndexOf("(Clone)");
@@ -73,7 +96,7 @@ public class UIManager : MonoBehaviour
             return;
         }
         prefep = SpawnUI(prefep);
-        DontDestroyOnLoad(prefep);
+        //DontDestroyOnLoad(prefep);
     }
     
 
@@ -171,7 +194,12 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        
+        for (int i = UIListsStack.Count; i < 0; i--)
+        {
+            if(UIListsStack[i - 1] == null)
+                UIListsStack.RemoveAt(i - 1);
+        }
+        AutoSortOtherNumber();
     }
 
     public void CloseAllUI()//씬 전환 할때만 호출
