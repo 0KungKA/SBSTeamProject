@@ -213,12 +213,12 @@ public class NPCM_AI_Ctrl : MonoBehaviour
                 case StateInfo.AttackMove:
                     Debug.Log("State : AttackMove");
 
-
                     //if(OnMove == true)
                     if (Vector3.Distance(transform.position,Player.transform.position) < attackRange &&//캐릭터가 공격범위 안에있으면서
                         hit.transform.name == "Player_Camera" &&//레이케스팅을 했을때 플레이어가 잡혀야되고
                         Manager.CM_Instance.OnHide == false)//숨은 상태가 아닐때만 공격함
                     {
+                        agent.destination = transform.position;
                         OnMove = false;
                         anim.SetBool("Attack", true);
                         anim.SetBool("Move", false);

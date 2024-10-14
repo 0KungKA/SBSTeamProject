@@ -9,9 +9,9 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     //UI의 스택 관리 + 시스템UI의 로드 + 닫기
-    //static Stack<GameObject> UIListsStack = new Stack<GameObject>();
+    //static Stack<GameObject> UIStack = new Stack<GameObject>();
     static List<GameObject> UIListsStack = new List<GameObject>();
-    //public Stack<GameObject> UIListsStackReturn() {  return UIListsStack; }
+    //public Stack<GameObject> UIStackReturn() {  return UIsStack; }
 
     public int GetUILisetStackCount() { return UIListsStack.Count; }
 
@@ -49,7 +49,12 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < UIListsStack.Count; i++)
         {
-            UIListsStack[i].GetComponent<Canvas>().sortingOrder = i;
+            if (UIListsStack[i] == null)
+            {
+                UIListsStack.RemoveAt(i);
+            }
+            else
+                UIListsStack[i].GetComponent<Canvas>().sortingOrder = i;
         }
     }
 

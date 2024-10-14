@@ -8968,16 +8968,7 @@ MonoBehaviour:
   mats:
   - {fileID: 2100000, guid: d24053e4b52afd041a8db7fc720241e5, type: 2}
   Clips:
-  - {fileID: 8300000, guid: 62759720b9326b64fb18aad9bb0170e4, type: 3}
-  - {fileID: 8300000, guid: 178f14227de6f944bb00d6864e565622, type: 3}
-  - {fileID: 8300000, guid: 774e5f4dcc32c2a488bd550cd5a24bb5, type: 3}
-  - {fileID: 8300000, guid: 826bbc5ce51108f4da48cb9077e1c83a, type: 3}
-  - {fileID: 8300000, guid: 568b0798f87da944781f5fc1be0312fc, type: 3}
-  - {fileID: 8300000, guid: 93526e5b8c0358a4ca0e3a8c1b79601e, type: 3}
-  - {fileID: 8300000, guid: 319e2df862305bc40bdfd34206d59d69, type: 3}
-  - {fileID: 8300000, guid: 7c731b0fc954ffc46878038e1937d5e8, type: 3}
-  - {fileID: 8300000, guid: 86021bccc649011498ff8b73f333af19, type: 3}
-  - {fileID: 8300000, guid: 25ac43750a7828c40b110e112b3c9337, type: 3}
+  - {fileID: 8300000, guid: 037f938e1b1061c43883fc2fdf1b2178, type: 3}
   lightGroup:
   - {fileID: 844902244}
   - {fileID: 694661013}

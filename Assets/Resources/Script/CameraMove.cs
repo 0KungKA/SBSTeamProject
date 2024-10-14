@@ -31,7 +31,6 @@ public class CameraMove : MonoBehaviour
     float Vertical;
     Vector3 Movement;
 
-    Rigidbody rb;
     [SerializeField]
     AudioSource audio;
 
@@ -46,7 +45,6 @@ public class CameraMove : MonoBehaviour
     protected internal void Init()
     {
         audio = GetComponent<AudioSource>();
-        rb = GetComponent<Rigidbody>();
         Manager.Effect_SoundPlayer = transform.GetComponentInChildren<EffectSoundPlayer>();
     }
 

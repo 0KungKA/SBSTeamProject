@@ -172,11 +172,10 @@ public class NPCF_AI_Ctrl : MonoBehaviour
                         hit.transform.name == "Player_Camera" &&//레이 맞은 대상이 플레이어 이며
                         Manager.CM_Instance.OnHide == false)//숨은 상태가 아닌상태여야만 공격을 함
                     {
+                        agent.destination = transform.position;
                         OnMove = false;
                         anim.SetBool("Attack", true);
                         anim.SetBool("Move", false);
-
-                        Manager.UIManager_Instance.UIPopup("Scene_UI/UI_Scene_GameOver");
                     }
                     else
                     {
@@ -196,6 +195,10 @@ public class NPCF_AI_Ctrl : MonoBehaviour
         if (OnMove == false)
             waitingDuration += Time.deltaTime;
     }
+    private void EndAttack()
+    {
+        Manager.UIManager_Instance.UIPopup("Scene_UI/UI_Scene_GameOver");
+    }
 
     private void StartAttack()
     {
@@ -205,10 +208,5 @@ public class NPCF_AI_Ctrl : MonoBehaviour
         GameObject.Find("Player_Camera").transform.LookAt(offsetpos);
         Manager.CM_Instance.SetMoveState(false);
         Manager.CM_Instance.SetRotState(false);
-    }
-
-    private void EndAttack()
-    {
-        Manager.UIManager_Instance.UIPopup("Scene_UI/UI_Scene_GameOver");
     }
 }

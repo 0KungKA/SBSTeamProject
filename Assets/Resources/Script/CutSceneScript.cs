@@ -132,9 +132,9 @@ public class CutSceneScript : MonoBehaviour
                 yield return null;
             }
         }
-
+        Manager.Effect_SoundPlayer.StopEffectSound();
         // Canvas ªË¡¶
-        if(EndingScenePlay == true)
+        if (EndingScenePlay == true)
         {
             yield break;
         }

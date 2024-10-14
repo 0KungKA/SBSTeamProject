@@ -123,4 +123,12 @@ public class EffectSoundPlayer : MonoBehaviour
             }
         }
     }
+
+    public void StopEffectSound()
+    {
+        for (int i = audioArr.Count - 1; i >= 1; i--)
+        {
+            audioArr[i].Stop();
+        }
+    }
 }

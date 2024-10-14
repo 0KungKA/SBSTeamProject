@@ -11,11 +11,6 @@ public class NPCTalk : MonoBehaviour
     [SerializeField]
     GameObject NPCTalkCanvas;
 
-    //Start is called before the first frame update
-    void Start()
-    {
-    }
-
     public void StartNPCTalk(int val)
     {
         if(npcTalks.Count == 0)
@@ -37,9 +32,4 @@ public class NPCTalk : MonoBehaviour
         go.GetComponent<NPCTalkTypingScript>().StartTalk(npcTalks, val, go);//, talksize
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
