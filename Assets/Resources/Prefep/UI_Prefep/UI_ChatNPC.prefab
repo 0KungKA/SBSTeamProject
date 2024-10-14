@@ -155,7 +155,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MouseClose: 0
   StopSound: 0
-  StopBackGroundSound: 0
 --- !u!1 &2079261560524008420
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,7 +732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectAudio: {fileID: 0}
   delay: 0.0459
-  Skip_delay: 0.01
+  Skip_delay: 0
   PObject: {fileID: 1672782357205379371}
   LeftNPC: {fileID: 6155954588805424027}
   RightNPC: {fileID: 7331130732152338302}
