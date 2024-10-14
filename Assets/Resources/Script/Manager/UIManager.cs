@@ -49,7 +49,12 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < UIListsStack.Count; i++)
         {
-            UIListsStack[i].GetComponent<Canvas>().sortingOrder = i;
+            if (UIListsStack[i] == null)
+            {
+                UIListsStack.RemoveAt(i);
+            }
+            else
+                UIListsStack[i].GetComponent<Canvas>().sortingOrder = i;
         }
     }
 
