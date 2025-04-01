@@ -95,8 +95,6 @@ public class Manager : MonoBehaviour
         Instance._errorInfo = Instance.GetComponent<ErrorInfo>();
         Instance._DataManager = Instance.GetComponent<DataManager>();
 
-        /*if (Instance._UIManager == null)
-            Instance._UIManager = Manager_Obj.AddComponent<UIManager>();*/
     }
 
     private void Update()

@@ -243,7 +243,7 @@ public class ItemManager : MonoBehaviour
             //아래 디스트로이로 지우긴하는데 지우기보단 오브젝트를 타겟으로 옮겨서 렌더타깃시킬려고했는데 크기가 너무 작음
             //크기를 자동으로 설정해주는 코드를 짜야할듯
 
-            Debug.Log("ItemInteraction 코드 수정 필요");
+            //Debug.Log("ItemInteraction 코드 수정 필요");
             //Destroy(gameObject);
         }
         else

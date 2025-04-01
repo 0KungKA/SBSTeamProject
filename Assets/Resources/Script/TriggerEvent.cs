@@ -25,17 +25,19 @@ public class TriggerEvent : MonoBehaviour
         {
             if (other.transform.name == "Player_Camera")
             {
+                ObjectInteraction temp = GameObject.Find("C_Room_Door_Pivot").GetComponent<ObjectInteraction>();
+                if (temp.thisMove == true)
+                {
+                    temp.SendMessage("InteractionStart");
+                }
+
                 GameObject.Find("EventSystem").GetComponent<NPC_GaugeUI>().SetOnGauge(true);
 
                 GameObject.Find("EventSystem").GetComponent<NPCTalk>().StartNPCTalk(2);
 
                 GameObject.Find("NPC_CM_M_Run").GetComponent<NPCM_AI_Ctrl>().SetState(0);
 
-                ObjectInteraction temp = GameObject.Find("C_Room_Door_Pivot").GetComponent<ObjectInteraction>();
-                if (temp.thisMove == true)
-                {
-                    temp.SendMessage("InteractionStart");
-                }
+                
 
                 
 

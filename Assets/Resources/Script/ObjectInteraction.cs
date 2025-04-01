@@ -62,7 +62,7 @@ public class ObjectInteraction : MonoBehaviour
     {
         interactionGaugeValue = Manager.DataManager_Instance.GetBalanceValue(3);//데이터 테이블에서 상호작용시 얼마나 차는지 가져옴
 
-        if (gameObject.GetComponent<MeshCollider>() == null)//Mesh collider가 없는경우
+        /*if (gameObject.GetComponent<MeshCollider>() == null)//Mesh collider가 없는경우
         {
             //Mesh Collider를 추가해야하지만 피봇이 어긋나서 MT로 따로 잡아준 경우가 있으니 예외처리
             //상호작용 가능한 오브젝트는 모두 Mesh Fillter랑 Mesh Renderer가 있으니 이걸로 예외처리 실행
@@ -72,7 +72,7 @@ public class ObjectInteraction : MonoBehaviour
                 gameObject.AddComponent<MeshCollider>();
                 gameObject.tag = "IObject";
             }
-        }
+        }*/
 
         if(objectInteractionSount != null)
         {
